@@ -4,5 +4,5 @@
 ### Clone repo and submodules
 
 ```sh
-git clone --recurse-submodules https://github.com/0xk0sta/minishell.git
+git clone --recurse-submodules https://github.com/0xk0sta/cub3D.git
 ```
