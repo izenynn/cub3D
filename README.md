@@ -1,4 +1,5 @@
 # cub3D
+
 ## How to use
 
 ### Clone repo and submodules
