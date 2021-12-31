@@ -1,4 +1,17 @@
-#include "../inc/cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
+/*   Updated: 2021/12/31 18:45:36 by dpoveda-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
 static int fill_buffer(char *map, int lines, t_utils *vars)
 {
 	int fd;
@@ -25,7 +38,7 @@ int first_read(char *str, t_utils *vars)
 	lines = 0;
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
-		return (ft_error("Error: Opening the map file\n", 1));
+		return (perror_ret(str, 1));
 	aux = ft_get_next_line(fd);
 	while (aux)
 	{
@@ -35,9 +48,9 @@ int first_read(char *str, t_utils *vars)
 	}
 	close(fd);
 	if (lines == 0)
-		return (ft_error("Error: Empty map\n", 1));
+		return (error_ret("Error: empty map\n", 1));
 	if (fill_buffer(str, lines, vars) != 0)
-		return (ft_error("Error: Fatal\n", 1));
+		return (error_ret("Error: fatal error\n", 1));
 	return (0);
 }
 
@@ -50,7 +63,7 @@ int check_format(char *str)
 	if (ft_strncmp(tmp, "buc.", 4) != 0)
 	{	
 		free(tmp);
-		return (ft_error("Invalid map format\n", 1));
+		return (error_ret("Error: invalid map format\n", 1));
 	}
 	free(tmp);
 	return (0);
