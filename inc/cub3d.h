@@ -20,6 +20,14 @@ typedef struct s_utils
 	char	**buffer;
 	int	width;
 	int	height;
+	int	res[2];		// Resolution of the window defined on the map file;
+	char	*NO;		////////////////////////////////////////;
+	char	*SO;		//Path to the different wall textures///;
+	char	*WE;		////////////////////////////////////////;
+	char	*EA;		////////////////////////////////////////;
+	char	*S;		// Sprite texture path;
+	char	*fRGB;		// Floor rgb colours;
+	char	*cRGB;		// Ceiling rgb colours;
 }	t_utils;
 
 /* parse_map.c */
