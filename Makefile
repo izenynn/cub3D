@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2021/12/31 18:54:43 by dpoveda-         ###   ########.fr        #
+#    Updated: 2022/01/10 15:20:50 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ endif
 .PHONY: all clean fclean re norme
 
 # ALL
-all: $(NAME) $(CHECKER_NAME)
+all: $(NAME)
 
 # NAME
 $(NAME): $(LFT_NAME) $(LMLX_NAME) $(OBJ)
