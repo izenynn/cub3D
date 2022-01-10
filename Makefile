@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2022/01/10 15:20:50 by dpoveda-         ###   ########.fr        #
+#    Updated: 2022/01/10 15:33:16 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -194,6 +194,7 @@ $(OBJ_PATH):
 clean:
 	@printf "${RED}"
 	$(MAKE) clean -sC $(LFT_DIR)
+	@printf "${RED}"
 	rm -rf $(LFT_NAME)
 	rm -rf $(LMLX_NAME)
 	rm -rf $(OBJ_PATH)
@@ -203,7 +204,9 @@ clean:
 fclean: clean
 	@printf "${RED}"
 	$(MAKE) fclean -sC $(LFT_DIR)
+	@printf "${RED}"
 	$(MAKE) clean -sC $(LMLX_DIR)
+	@printf "${RED}"
 	rm -rf $(NAME)
 	@printf "${NOCOL}"
 

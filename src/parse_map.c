@@ -6,30 +6,30 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/12/31 18:45:36 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:31:07 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int fill_buffer(char *map, int lines, t_utils *vars)
+static int fill_buffer(char *file, int lines, t_map *map)
 {
 	int fd;
 	int i;
 
 	i = -1;
-	vars->buffer = malloc(sizeof(char *) * (lines + 1));
-	if (!vars->buffer)
+	map->buffer = (char **)malloc(sizeof(char *) * (lines + 1));
+	if (!map->buffer)
 		return (1);
-	fd = open(map, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	while (++i < lines)
-		vars->buffer[i] = ft_get_next_line(fd);
+		map->buffer[i] = ft_get_next_line(fd);
 	return (0);
 }
 
-int first_read(char *str, t_utils *vars)
+int first_read(char *str, t_map *map)
 {
 	char *aux;
 	int fd;
@@ -49,7 +49,7 @@ int first_read(char *str, t_utils *vars)
 	close(fd);
 	if (lines == 0)
 		return (error_ret("Error: empty map\n", 1));
-	if (fill_buffer(str, lines, vars) != 0)
+	if (fill_buffer(str, lines, map) != 0)
 		return (error_ret("Error: fatal error\n", 1));
 	return (0);
 }

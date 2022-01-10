@@ -76,10 +76,4 @@ Mkfile.old
 dkms.conf
 
 # Program name
-minishell
-
-# Test files
-in
-infile
-out
-outfile
+cub3D

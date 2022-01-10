@@ -15,12 +15,12 @@
 /* open() */
 # include <fcntl.h>
 
-typedef struct s_utils
+typedef struct s_map
 {
 	char	**buffer;
-	int	width;
-	int	height;
-	int	res[2];		// Resolution of the window defined on the map file;
+	int		width;
+	int		height;
+	int		res[2];		// Resolution of the window defined on the map file;
 	char	*NO;		////////////////////////////////////////;
 	char	*SO;		//Path to the different wall textures///;
 	char	*WE;		////////////////////////////////////////;
@@ -28,10 +28,14 @@ typedef struct s_utils
 	char	*S;		// Sprite texture path;
 	char	*fRGB;		// Floor rgb colours;
 	char	*cRGB;		// Ceiling rgb colours;
-}	t_utils;
+}	t_map;
+
+typedef struct s_vars {
+	t_map	map;
+}	t_vars;
 
 /* parse_map.c */
-int		first_read(char *str, t_utils *vars);
+int		first_read(char *str, t_map *map);
 int		check_format(char *str);
 
 /* error_utils.c */
