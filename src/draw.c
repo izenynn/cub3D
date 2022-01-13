@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:04:36 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:08:37 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/13 13:52:17 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,16 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open doors: F");
 }
 
+static void draw_minimap(t_vars *vars)
+{
+	(void)vars;
+}
+
 void	draw(t_vars *vars)
 {
+	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
+	// TODO draw
+	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	draw_menu(vars);
 }

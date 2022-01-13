@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2022/01/13 13:13:41 by dpoveda-         ###   ########.fr        #
+#    Updated: 2022/01/13 13:57:25 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,8 +103,8 @@ SRC_FILES =		main.c				error.c				utils.c
 SRC_FILES +=	parse_map.c
 
 # SOURCES MINILIBX
-SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_utils.c			\
-				draw.c
+SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
+				mlx_utils.c			draw.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
