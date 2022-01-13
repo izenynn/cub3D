@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:37:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:48:44 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:17:35 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static void initialise_minimap(t_vars *vars)
 {
-	(void)vars;
+	vars->minimap.img = mlx_new_image(vars->mlx,
+		WIN_W / MINIMAP_SCALE, WIN_H / MINIMAP_SCALE);
+	vars->minimap.addr = mlx_get_data_addr(vars->minimap.img,
+			&vars->minimap.bpp, &vars->minimap.sz_l, &vars->minimap.endian);
 }
 
 void	initialise_mlx(t_vars *vars)

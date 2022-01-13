@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:20:37 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:27:24 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:26:11 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 /* our own implementation of libc */
 # include <libft.h>
 
+/* window resolution */
 # ifndef WIN_W
 #  define WIN_W 1280
 # endif
@@ -41,8 +42,13 @@
 #  define WIN_H 720
 # endif
 
+/* minimap scale --> ?:1 */
+# define MINIMAP_SCALE 10
+
+/* other useful macros */
 # define WHITE 0xFFFFFF
 
+/* minilibx keymaps */
 # ifdef OSX
 #  define KEY_ESC 53
 #  define KEY_UP 126
@@ -142,6 +148,7 @@ typedef struct s_vars
 {
 	t_map	map;
 	t_img	img;
+	t_img	minimap;
 	void	*mlx;
 	void	*win;
 }	t_vars;
@@ -169,8 +176,11 @@ int		mlx_main(t_vars *vars);
 int		close_win(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
 
-/* mlx_utils.c */
+/* mlx_init.c */
 void	initialise_mlx(t_vars *vars);
+
+/* mlx_utils.c */
+void	img_pixel_put(t_img img, int x, int y, int color);
 
 /* draw.c */
 void	draw(t_vars *vars);
