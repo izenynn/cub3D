@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2022/01/10 15:33:16 by dpoveda-         ###   ########.fr        #
+#    Updated: 2022/01/13 13:13:41 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,8 +96,15 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-# SOURCES
-SRC_FILES =		main.c				error.c			parse_map.c
+# SOURCES MAIN
+SRC_FILES =		main.c				error.c				utils.c
+
+# SOURCES PARSE
+SRC_FILES +=	parse_map.c
+
+# SOURCES MINILIBX
+SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_utils.c			\
+				draw.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

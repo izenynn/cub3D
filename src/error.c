@@ -6,11 +6,11 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:15:51 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/12/31 18:39:02 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/13 13:28:02 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 /* exit printint perror */
 void	perror_exit(const char *s)
