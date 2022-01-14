@@ -86,7 +86,7 @@ int	parse_textures(t_map *map)
 			return (1);
 	}
 	if (open_texture(map) == 1)
-		return (error_ret("Error\nInvalid texture file\n", 1));
+		return (1);
 	return (0);
 }
 
@@ -113,7 +113,7 @@ int	first_read(char *str, t_map *map)
 	if (fill_buffer(str, lines, map) != 0)
 		return (error_ret("Error\n fatal error\n", 1));
 	if (parse_textures(map) != 0)
-		return (error_ret(NULL, 1));
+		return (error_ret("Error\nInvalid texture file\n", 1));
 	return (0);
 }
 
