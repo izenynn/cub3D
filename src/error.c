@@ -35,6 +35,7 @@ int	perror_ret(const char *s, int ret_code)
 /* return with custom error code */
 int	error_ret(const char *s, int ret_code)
 {
-	write(STDERR_FILENO, s, ft_strlen(s));
+	if (s)
+		write(STDERR_FILENO, s, ft_strlen(s));
 	return (ret_code);
 }
