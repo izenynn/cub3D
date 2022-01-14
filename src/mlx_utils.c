@@ -18,7 +18,7 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 
 	if (y >= WIN_H || x >= WIN_W || y < 0 || x < 0)
 		return ;
-	pixel = (y * img.sz_l) + (x * (img.bpp / 8));
+	pixel = (y * img.line_len) + (x * (img.bpp / 8));
 	if (img.endian == 1)
 	{
 		img.addr[pixel + 0] = (color >> 24);

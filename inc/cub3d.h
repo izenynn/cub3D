@@ -24,6 +24,9 @@
 /* open() */
 # include <fcntl.h>
 
+/* math */
+#include <math.h>
+
 /* minilibx */
 # include <mlx.h>
 
@@ -44,9 +47,16 @@
 
 /* minimap scale --> ?:1 */
 # define MINIMAP_SCALE 10
+/* minimap border offset % */
+# define MM_OFFSET 2
 
 /* other useful macros */
+# define Y 0
+# define X 1
 # define WHITE 0xFFFFFF
+# define MINIMAP_FLOOR 0xFECEA8
+# define MINIMAP_WALL 0x2A363B
+# define MINIMAP_DOOR 0x99B898
 
 /* minilibx keymaps */
 # ifdef OSX
@@ -69,28 +79,10 @@
 #  define KEY_K 40
 #  define KEY_O 31
 #  define KEY_L 37
-# elif LINUX
-#  define KEY_ESC 65307
-#  define KEY_UP 65362
-#  define KEY_DOWN 65364
-#  define KEY_LEFT 65361
-#  define KEY_RIGHT 65363
-#  define KEY_W 119
-#  define KEY_S 115
-#  define KEY_A 97
-#  define KEY_D 100
-#  define KEY_P 112
-#  define KEY_MINUS 45
-#  define KEY_PLUS 61
-#  define KEY_R 114
-#  define KEY_U 117
-#  define KEY_J 106
-#  define KEY_I 105
-#  define KEY_K 107
-#  define KEY_O 111
-#  define KEY_L 108
 # else
-#  define LINUX
+#  ifndef LINUX
+#   define LINUX
+#  endif
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
 #  define KEY_DOWN 65364
@@ -114,15 +106,16 @@
 
 /* s_map: map struct
  *
- * res[2]	=> resolution of the window defined on the map file
- * *NO, *SO, *WE, *EA	=> path to the different wall textures
- * *S		=> sprite texture path
- * *fRGB	=> floor rgb colors
- * *cRGB	=> ceiling rgb colors
+ * res[2]	-> resolution of the window defined on the map file
+ * *NO, *SO, *WE, *EA	-> path to the different wall textures
+ * *S		-> sprite texture path
+ * *fRGB	-> floor rgb colors
+ * *cRGB	-> ceiling rgb colors
  */
 typedef struct s_map
 {
 	char	**buffer;
+	char	**map;
 	int		width;
 	int		height;
 	int		res[2];
@@ -135,12 +128,20 @@ typedef struct s_map
 	char	*crgb;
 }	t_map;
 
+/* s_img: minilibx image struct
+ *
+ * *img		-> pointer to the image
+ * *addr	-> pointer to the pixels data
+ * bpp		-> bits per pixel
+ * line_len -> len of a line of pixeles in *addr
+ * endian	-> SO endian type (0 = small endian, 1 = big endian)
+ */
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		sz_l;
+	int		line_len;
 	int		endian;
 }	t_img;
 

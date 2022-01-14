@@ -27,16 +27,20 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open doors: F");
 }
 
+/* draw minimap on upper right corner */
 static void draw_minimap(t_vars *vars)
 {
 	(void)vars;
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->minimap.img,
+			WIN_W - (vars->minimap.line_len / vars->minimap.bpp * 8) - 15, 15);
 }
 
+/* draw all on screen */
 void	draw(t_vars *vars)
 {
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
 	// TODO draw
-	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	draw_minimap(vars);
 	draw_menu(vars);
 }
