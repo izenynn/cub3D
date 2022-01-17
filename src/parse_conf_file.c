@@ -26,6 +26,7 @@ static int	fill_buffer(char *file, int lines, t_map *map)
 		return (1);
 	while (++i < lines)
 		map->buffer[i] = ft_get_next_line(fd);
+	map->buffer[i] = NULL;
 	close(fd);
 	return (0);
 }
@@ -92,6 +93,7 @@ int read_colour(t_map **map, int i)
 	{
 		aux = ft_substr((*map)->buffer[i], 2, ft_strlen((*map)->buffer[i]) - 1);
 		split = ft_split(aux, ',');
+		free(aux);
 		if (process_colour(map, i, split) == 1)
 			return (1);
 	}
@@ -99,8 +101,6 @@ int read_colour(t_map **map, int i)
 		return (1);
 	if (split)
 		free_split(split);
-	if (aux)
-		free(aux);
 	return (0);
 }
 
@@ -168,6 +168,16 @@ int	parse_textures(t_map *map)
 	return (i);
 }
 
+int free_struct(t_map *map, int ret)
+{
+	free_split(map->buffer);
+	free(map->we);
+	free(map->so);
+	free(map->no);
+	free(map->ea);
+	exit(ret);
+}
+
 int	first_read(char *str, t_map *map)
 {
 	char	*aux;
@@ -191,7 +201,7 @@ int	first_read(char *str, t_map *map)
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
 	if (parse_map(&map) != 0)
-		return (1);
+		return (free_struct(map, 1));
 	return (0);
 }
 
