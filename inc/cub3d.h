@@ -122,6 +122,7 @@
  */
 typedef struct s_map
 {
+	char 	**map;
 	char	**buffer;
 	int		width;
 	int		height;
@@ -134,6 +135,9 @@ typedef struct s_map
 	int 	frgb;
 	int 	crgb;
 	int 	aux;
+	int 	lines;
+	int 	index;
+	int		count;
 }	t_map;
 
 typedef struct s_img
@@ -157,6 +161,9 @@ typedef struct s_vars
 /* parse_conf_file.c */
 int		first_read(char *str, t_map *map);
 int		check_format(char *str);
+
+/* parse_map.c */
+int		parse_map(t_map **map);
 
 /* error_utils.c */
 void	perror_exit(const char *s);

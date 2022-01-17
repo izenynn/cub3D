@@ -22,6 +22,8 @@ void	init_map(t_map	*map)
 	map->ea = NULL;
 	map->crgb = 0;
 	map->frgb = 0;
+	map->lines = 0;
+	map->count = 0;
 }
 
 int	main(int argc, char *argv[])

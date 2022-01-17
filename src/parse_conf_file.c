@@ -66,7 +66,7 @@ int is_dptr_digit(char **s)
 int process_colour(t_map **map, int i, char **sp)
 {
 	int tmp[3];
-printf("%s\n", sp[0]);
+
 	if (dptr_len(sp) != 3)
 		return (1);
 	if (is_dptr_digit(sp) == 1)
@@ -172,27 +172,25 @@ int	first_read(char *str, t_map *map)
 {
 	char	*aux;
 	int		fd;
-	int		lines;
 
-	lines = 0;
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 		return (perror_ret(str, 1));
 	aux = ft_get_next_line(fd);
 	while (aux)
 	{
-		++lines;
+		++map->lines;
 		free(aux);
 		aux = ft_get_next_line(fd);
 	}
 	close(fd);
-	if (lines == 0)
+	if (map->lines == 0)
 		return (error_ret("Error\n empty map\n", 1));
-	if (fill_buffer(str, lines, map) < 0)
+	if (fill_buffer(str, map->lines, map) < 0)
 		return (error_ret("Error\n fatal error\n", 1));
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
-	if (parse_map(&map) < 0)
+	if (parse_map(&map) != 0)
 		return (1);
 	return (0);
 }
@@ -206,7 +204,7 @@ int	check_format(char *str)
 	if (ft_strncmp(tmp, "buc.", 4) != 0)
 	{
 		free(tmp);
-		return (error_ret("Error: invalid map format\n", 1));
+		return (error_ret("Error\ninvalid map format\n", 1));
 	}
 	free(tmp);
 	return (0);

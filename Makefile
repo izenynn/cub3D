@@ -100,7 +100,7 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 SRC_FILES =		main.c				error.c				utils.c
 
 # SOURCES PARSE
-SRC_FILES +=	parse_conf_file.c
+SRC_FILES +=	parse_conf_file.c	parse_map.c
 
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
