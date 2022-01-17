@@ -20,6 +20,8 @@ void	init_map(t_map	*map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	map->crgb = 0;
+	map->frgb = 0;
 }
 
 int	main(int argc, char *argv[])
@@ -29,11 +31,11 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	if (argc != 2)
 		return (error_ret("Usage: ./cub3D map.cub\n", 1));
-	//if (check_format(argv[1]) != 0)
-	//	return (1);
-	//init_map(&vars.map);
-	//if (first_read(argv[1], &vars.map) != 0)
-	//	return (1);
+	if (check_format(argv[1]) != 0)
+		return (1);
+	init_map(&vars.map);
+	if (first_read(argv[1], &vars.map) != 0)
+		return (1);
 	mlx_main(&vars);
 	return (0);
 }

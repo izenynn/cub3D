@@ -131,8 +131,9 @@ typedef struct s_map
 	char	*we;
 	char	*ea;
 	char	*s;
-	char	*frgb;
-	char	*crgb;
+	int 	frgb;
+	int 	crgb;
+	int 	aux;
 }	t_map;
 
 typedef struct s_img
@@ -153,7 +154,7 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
-/* parse_map.c */
+/* parse_conf_file.c */
 int		first_read(char *str, t_map *map);
 int		check_format(char *str);
 
