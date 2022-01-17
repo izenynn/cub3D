@@ -1,5 +1,9 @@
 #include "cub3d.h"
 
+/*
+ * TODO: Si encuentro un espacio (' ') por ejemplo en la linea 7 posicion 4, vuelvo a la linea 6 y compruebo que en la posicion 3, 4 y 5 haya 1 o espacios.
+ */
+
 int skip_spaces(char *line, int i)
 {
 	if (!line)
@@ -8,10 +12,7 @@ int skip_spaces(char *line, int i)
 		i++;
 	return (i);
 }
-/*
- * Aqui solo se entra en la primera linea del mapa y la ultima, quizas, en caso de encontrar un espacio, habria que
- * mirar en la siguiente o anterior linea a ver si hay un 1 cerrando el perimetro correctamente
- */
+
 int check_top_and_bot(char *line)
 {
 	int i;
@@ -97,10 +98,3 @@ int parse_map(t_map **map)
 	fill_map(map);
 	return (0);
 }
-
-/*
- *
- * Primera linea del MAPA -> Tiene que ser todo 1; Puede tener espacios de por medio, con la ultima pasa lo mismo, aplicamos el mismo proceso.
- * comprobar que todas las lineas esten cerradas = line[0] == 1 && line[strlen(line) - 1] == 1
- *
- */
