@@ -14,7 +14,6 @@
 
 int	mlx_main(t_vars *vars)
 {
-	printf("Starting minilibx...\n");
 	if (initialise_vars(vars))
 	{
 		free_all(vars);
@@ -23,7 +22,7 @@ int	mlx_main(t_vars *vars)
 	initialise_mlx(vars);
 	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
 	mlx_hook(vars->win, 17, 1L << 17, close_win, vars);
-	draw(vars);
+	mlx_loop_hook(vars->win, game_loop, vars);
 	mlx_loop(vars->mlx);
 	free_all(vars);
 	return (0);

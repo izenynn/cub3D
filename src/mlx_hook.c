@@ -21,8 +21,8 @@ int	close_win(t_vars *vars)
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	if (keycode == KEY_ESC)
-		close_win(vars);
+	//if (keycode == KEY_ESC)
+	//	close_win(vars);
 	if (keycode == KEY_R)
 		reset_vars(vars);
 	/*if (keycode == KEY_W || keycode == KEY_S

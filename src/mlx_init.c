@@ -26,6 +26,6 @@ void	initialise_mlx(t_vars *vars)
 	vars->img.img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	vars->img.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.bpp, &vars->img.sz_l, &vars->img.endian);
-	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");
+	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "cub3D");
 	initialise_minimap(vars);
 }
