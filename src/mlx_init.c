@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:37:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 14:17:35 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:11:45 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static void	initialise_minimap(t_vars *vars)
 	int	map[2];
 	int	pixel[2];
 	int	offset[2];
-	int	max;
 
-	max = fmax(WIN_W, WIN_H);
 	offset[X] = 0;
 	offset[Y] = 0;
 	if (WIN_W > WIN_H)
