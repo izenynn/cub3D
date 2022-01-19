@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:04:36 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:52:17 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:21:50 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	draw(t_vars *vars)
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
 	// TODO draw
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+
 	draw_minimap(vars);
 	draw_menu(vars);
 }

@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:37:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/19 09:11:45 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:20:00 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	initialise_minimap(t_vars *vars)
 		offset[Y] = WIN_W / MINIMAP_SCALE - WIN_H / MINIMAP_SCALE;
 	else
 		offset[X] = WIN_H / MINIMAP_SCALE - WIN_W / MINIMAP_SCALE;
-	printf("y: %d, x: %d\n", offset[Y], offset[X]);
 	//
 	vars->minimap.img = mlx_new_image(vars->mlx,
 		fmax(WIN_W, WIN_H) / MINIMAP_SCALE, fmax(WIN_W, WIN_H) / MINIMAP_SCALE);
@@ -72,6 +71,6 @@ void	initialise_mlx(t_vars *vars)
 	vars->img.img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	vars->img.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.bpp, &vars->img.line_len, &vars->img.endian);
-	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");
+	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "cub3D");
 	initialise_minimap(vars);
 }

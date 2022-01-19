@@ -183,6 +183,9 @@ void	initialise_mlx(t_vars *vars);
 /* mlx_utils.c */
 void	img_pixel_put(t_img img, int x, int y, int color);
 
+/* mlx_loop.c */
+int		game_loop(void *vars);
+
 /* draw.c */
 void	draw(t_vars *vars);
 

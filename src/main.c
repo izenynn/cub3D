@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:06 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:28:54 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:18:35 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	if (argc != 2)
 		return (error_ret("Usage: ./cub3D map.cub\n", 1));
+	printf("Parsing...\n");
 	//if (check_format(argv[1]) != 0)
 	//	return (1);
 	//init_map(&vars.map);
@@ -59,6 +60,7 @@ int	main(int argc, char *argv[])
 	vars.map.map[9] = ft_strdup("1111111       1");
 	vars.map.map[10] = NULL;
 	//
+	printf("Starting minilibx...\n");
 	mlx_main(&vars);
 	return (0);
 }
