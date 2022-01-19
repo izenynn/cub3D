@@ -119,19 +119,21 @@
  * *S		=> sprite texture path
  * *fRGB	=> floor rgb colors
  * *cRGB	=> ceiling rgb colors
+ * *p_pos	=> Player position -> [0] = x, [1] = y;
  */
 typedef struct s_map
 {
+	float	p_pos[2];
 	char 	**map;
 	char	**buffer;
-	int		width;
-	int		height;
-	int		res[2];
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
 	char	*s;
+	int		width;
+	int		height;
+	int		res[2];
 	int 	frgb;
 	int 	crgb;
 	int 	aux;
@@ -163,9 +165,6 @@ int		first_read(char *str, t_map *map);
 int		init_parse(t_map *map, char *str);
 
 /* parse_config.c */
-int		read_colour(t_map **map, int i);
-int		read_texture(t_map **map, int i);
-int		open_texture(t_map *map);
 int		parse_textures(t_map *map);
 
 /* parse_map.c */
@@ -174,6 +173,7 @@ int		free_struct(t_map *map, int ret);
 int		is_dptr_digit(char **s);
 int		create_trgb(int t, int r, int g, int b);
 int		process_colour(t_map **map, int i, char **sp);
+int last_map_check(t_map **map);
 
 /* parse_utils.c */
 int		check_format(char *str);
@@ -192,6 +192,7 @@ int		initialise_vars(t_vars *vars);
 
 /* utils_2.c */
 int		dptr_len(char **s);
+void	init_map(t_map	*map);
 
 /* mlx_main.c */
 int		mlx_main(t_vars *vars);

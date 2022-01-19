@@ -14,8 +14,9 @@
 
 static int	fill_buffer(char *file, int lines, t_map *map)
 {
-	int	fd;
-	int	i;
+	char	*s;
+	int		fd;
+	int		i;
 
 	i = -1;
 	map->buffer = (char **)malloc(sizeof(char *) * (lines + 1));
@@ -25,7 +26,11 @@ static int	fill_buffer(char *file, int lines, t_map *map)
 	if (fd < 0)
 		return (1);
 	while (++i < lines)
-		map->buffer[i] = ft_get_next_line(fd);
+	{
+		s = ft_get_next_line(fd);
+		map->buffer[i] = ft_substr(s, 0, ft_strlen(s) - 1);
+		free(s);
+	}
 	map->buffer[i] = NULL;
 	close(fd);
 	return (0);
@@ -59,6 +64,8 @@ int init_parse(t_map *map, char *str)
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
 	if (parse_map(&map) != 0)
+		return (free_struct(map, 1));
+	if (last_map_check(&map) != 0)
 		return (free_struct(map, 1));
 	return (0);
 }

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int read_colour(t_map **map, int i)
+static int read_colour(t_map **map, int i)
 {
 	char *aux;
 	char **split;
@@ -20,7 +20,7 @@ int read_colour(t_map **map, int i)
 	return (0);
 }
 
-int	read_texture(t_map **map, int i)
+static int	read_texture(t_map **map, int i)
 {
 	char	*aux;
 
@@ -49,7 +49,7 @@ int	read_texture(t_map **map, int i)
 	return (0);
 }
 
-int	open_texture(t_map *map)
+/*static int	open_texture(t_map *map)
 {
 	int	fd[4];
 
@@ -64,7 +64,7 @@ int	open_texture(t_map *map)
 	close(fd[2]);
 	close(fd[3]);
 	return (0);
-}
+}*/
 
 int	parse_textures(t_map *map)
 {
@@ -73,7 +73,7 @@ int	parse_textures(t_map *map)
 	i = -1;
 	while (map->buffer[++i] && (!map->no || !map->so || !map->we || !map->ea || !map->frgb || !map->crgb))
 	{
-		if (map->buffer[i][0] == '\n')
+		if (ft_strlen(map->buffer[i]) == 0)
 			continue ;
 		else if (read_texture(&map, i) == 1)
 			return (-1);
