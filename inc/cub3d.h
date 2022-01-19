@@ -158,12 +158,25 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
-/* parse_conf_file.c */
+/* main_parse.c */
 int		first_read(char *str, t_map *map);
-int		check_format(char *str);
+int		init_parse(t_map *map, char *str);
+
+/* parse_config.c */
+int		read_colour(t_map **map, int i);
+int		read_texture(t_map **map, int i);
+int		open_texture(t_map *map);
+int		parse_textures(t_map *map);
 
 /* parse_map.c */
 int		parse_map(t_map **map);
+int		free_struct(t_map *map, int ret);
+int		is_dptr_digit(char **s);
+int		create_trgb(int t, int r, int g, int b);
+int		process_colour(t_map **map, int i, char **sp);
+
+/* parse_utils.c */
+int		check_format(char *str);
 
 /* error_utils.c */
 void	perror_exit(const char *s);
@@ -176,6 +189,9 @@ void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
 void	reset_vars(t_vars *vars);
 int		initialise_vars(t_vars *vars);
+
+/* utils_2.c */
+int		dptr_len(char **s);
 
 /* mlx_main.c */
 int		mlx_main(t_vars *vars);

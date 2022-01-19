@@ -40,7 +40,6 @@ int line_handler(char *line, int index, t_map **map)
 	int i;
 
 	i = skip_spaces(line, 0);
-	//printf("LINE: %s\nindex %d\n map->lines%d\n", line,  index, (*map)->lines);
 	if (index == 0 || index == (*map)->lines)
 		return (check_top_and_bot(line));
 	else if (line && (line[i] != '1' || line[ft_strlen(line) - 2] != '1'))
@@ -64,7 +63,6 @@ void fill_map(t_map **map)
 	int i;
 
 	i = 0;
-	//printf("%d\n", (*map)->index);
 	while((*map)->index < ((*map)->lines) && (*map)->buffer[(*map)->index])
 	{
 		(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index], 0, ft_strlen((*map)->buffer[(*map)->index]) - 2);
@@ -80,19 +78,15 @@ int parse_map(t_map **map)
 	int i;
 
 	i = -1;
-	//printf("IN\n");
 	while ((*map)->buffer[(*map)->aux] && (*map)->buffer[(*map)->aux][0] == '\n')
 		(*map)->aux++;
 	(*map)->index = (*map)->aux;
 	while ((*map)->aux < ((*map)->lines - 1) && (*map)->buffer[(*map)->aux])
 	{
-	//	printf("aux = %d\n", (*map)->aux);
 		if (line_handler((*map)->buffer[(*map)->aux++], ++i, map) != 0)
 			return (1);
 	}
-	//printf("%d\n", i);
 	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 3));
-	//ft_bzero((void *)(*map)->map, sizeof((*map)->map));
 	if (!(*map)->map)
 		return (1);
 	fill_map(map);
