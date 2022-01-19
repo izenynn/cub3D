@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:55:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 13:00:58 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 09:04:46 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	close_win(t_vars *vars)
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	//if (keycode == KEY_ESC)
-	//	close_win(vars);
+	if (keycode == KEY_ESC)
+		close_win(vars);
 	if (keycode == KEY_R)
 		reset_vars(vars);
 	/*if (keycode == KEY_W || keycode == KEY_S
