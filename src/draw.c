@@ -59,7 +59,7 @@ static void	raycast(t_vars *vars)
 		}
 		else
 		{
-			ray.dir_y = 1;
+			ray.dir_x = 1;
 			ray.side_dist_x = (ray.map_x + 1.0 - vars->p.pos_x) * ray.delta_dist_x;
 		}
 		if (ray.dir_y < 0)
@@ -88,6 +88,7 @@ static void	raycast(t_vars *vars)
 				ray.side = 1;
 			}
 
+			printf("x: %d, y: %d\n", ray.map_x, ray.map_y);
 			if (vars->map.map[ray.map_y][ray.map_x] == WALL)
 				ray.hit = 1;
 		}	

@@ -104,7 +104,8 @@ SRC_FILES +=	parse_map.c
 
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
-				mlx_utils.c			mlx_loop.c			draw.c
+				mlx_utils.c			mlx_loop.c			draw.c				\
+				mlx_controls.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
