@@ -53,6 +53,8 @@ int	main(int argc, char *argv[])
 	vars.p.plane_y = 0.66;
 	vars.map.height = 10;
 	vars.map.width = 15;
+	//vars.map.frgb = 0xFFFF0000;
+	//vars.map.frgb = 0xFF0000FF;
 	vars.map.map = (char **)malloc(sizeof(char *) * 11);
 	vars.map.map[0] = ft_strdup("1111 1111111111");
 	vars.map.map[1] = ft_strdup(" 10111000000001");

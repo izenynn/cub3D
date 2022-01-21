@@ -12,6 +12,26 @@
 
 #include "cub3d.h"
 
+static void	draw_ver_line(t_vars *vars, int x, int draw_start, int draw_end, int color)
+{
+	int	y;
+
+	y = -1;
+	while (++y < WIN_H)
+	{
+		if (y < draw_start)
+			//img_pixel_put(vars->img, x, y, vars->map.crgb);
+			img_pixel_put(vars->img, x, y, 0xFFFF0000);
+		if (y >= draw_start && y < draw_end)
+		{
+			img_pixel_put(vars->img, x, y, color);
+		}
+		if (y >= draw_end)
+			//img_pixel_put(vars->img, x, y, vars->map.crgb);
+			img_pixel_put(vars->img, x, y, 0x00FF00FF);
+	}
+}
+
 static void	raycast(t_vars *vars)
 {
 	int		x;
@@ -53,7 +73,44 @@ static void	raycast(t_vars *vars)
 			ray.side_dist_y = (ray.map_y + 1.0 - vars->p.pos_y) * ray.delta_dist_y;
 		}
 
-		;
+		while (ray.hit == 0)
+		{
+			if (ray.side_dist_x < ray.side_dist_y)
+			{
+				ray.side_dist_x += ray.delta_dist_x;
+				ray.map_x += ray.step_x;
+				ray.side = 0;
+			}
+			else
+			{
+				ray.side_dist_y += ray.delta_dist_y;
+				ray.map_y += ray.step_y;
+				ray.side = 1;
+			}
+
+			if (vars->map.map[ray.map_y][ray.map_x] == WALL)
+				ray.hit = 1;
+		}	
+
+		if (ray.side == 0)
+			ray.perp_wall_dist = ray.side_dist_x - ray.delta_dist_x;
+		else
+			ray.perp_wall_dist = ray.side_dist_y - ray.delta_dist_y;
+
+		ray.line_height = (int)(WIN_H / ray.perp_wall_dist);
+
+		ray.draw_start = -ray.line_height / 2 + WIN_H / 2;
+		if (ray.draw_start < 0)
+			ray.draw_start = 0;
+		ray.draw_end = ray.line_height / 2 + WIN_H / 2;
+		if (ray.draw_end >= WIN_H)
+			ray.draw_end = WIN_H - 1;
+
+		int color = 0xFF00FF00;
+
+		if (ray.side == 1)
+			color = color / 2;
+		draw_ver_line(vars, x, ray.draw_start, ray.draw_end, color);
 	}
 }
 
@@ -85,7 +142,7 @@ static void draw_minimap(t_vars *vars)
 void	draw(t_vars *vars)
 {
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
-	// TODO draw
+	raycast(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 
 	draw_minimap(vars);

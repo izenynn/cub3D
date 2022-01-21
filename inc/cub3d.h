@@ -51,6 +51,7 @@
 # define MM_OFFSET 2
 
 /* other useful macros */
+# define WALL '1'
 # define Y 0
 # define X 1
 # define WHITE 0xFFFFFF
@@ -179,6 +180,9 @@ typedef struct s_ray {
 	int		step_y;
 	int		hit;
 	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }	t_ray;
 
 /* parse_map.c */

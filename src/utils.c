@@ -29,8 +29,9 @@ void	free_vars(t_vars *vars)
 
 void	free_all(t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_image(vars->mlx, vars->minimap.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_window(vars->mlx, vars->win);
 	free_vars(vars);
 }
 
