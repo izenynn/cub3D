@@ -173,7 +173,8 @@ int		free_struct(t_map *map, int ret);
 int		is_dptr_digit(char **s);
 int		create_trgb(int t, int r, int g, int b);
 int		process_colour(t_map **map, int i, char **sp);
-int last_map_check(t_map **map);
+int 	last_map_check(t_map **map);
+int		check_surroundings(t_map **map, int i, int j);
 
 /* parse_utils.c */
 int		check_format(char *str);

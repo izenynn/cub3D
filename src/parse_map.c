@@ -12,14 +12,50 @@ int skip_spaces(char *line, int i)
 int check_above(t_map **map, int i, int j)
 {
 	if ((*map)->map[i - 1][j - 1] != '1' || (*map)->map[i - 1][j] != '1' || (*map)->map[i - 1][j + 1] != '1')
-		return (1);
+	{
+		if ((*map)->map[i - 1][j - 1] == ' ')
+		{
+			if (check_surroundings(map, i + 1, j - 1) != 0)
+				return (1);
+		}
+		else if ((*map)->map[i - 1][j] == ' ')
+		{
+			if (check_surroundings(map, i + 1, j) != 0)
+				return (1);
+		}
+		else if ((*map)->map[i - 1][j + 1] == ' ')
+		{
+			if (check_surroundings(map, i - 1, j + 1) != 0)
+				return (1);
+		}
+		else
+			return (1);
+	}
 	return (0);
 }
 
 int check_below(t_map **map, int i, int j)
 {
 	if ((*map)->map[i + 1][j - 1] != '1' || (*map)->map[i + 1][j] != '1' || (*map)->map[i + 1][j + 1] != '1')
-		return (1);
+	{
+		if ((*map)->map[i + 1][j - 1] == ' ')
+		{
+			if (check_surroundings(map, i + 1, j - 1) != 0)
+				return (1);
+		}
+		else if ((*map)->map[i + 1][j] == ' ')
+		{
+			if (check_surroundings(map, i + 1, j) != 0)
+				return (1);
+		}
+		else if ((*map)->map[i + 1][j + 1] == ' ')
+		{
+			if (check_surroundings(map, i + 1, j + 1) != 0)
+				return (1);
+		}
+		else
+			return (1);
+	}
 	return (0);
 }
 
@@ -29,11 +65,13 @@ int check_surroundings(t_map **map, int i, int j)
 	char	c[2];
 
 	map_len = dptr_len((*map)->map);
+	if (i > map_len - 1)
+		return (0);
 	c[0] = (*map)->map[i][j + 1];
 	c[1] = (*map)->map[i][j - 1];
 	if (c[0] != '1' || c[1] != '1')
 		return (1);
-	if (i == map_len)
+	if (i == map_len - 1)
 	{
 		if (check_above(map, i, j) != 0)
 			return (1);
