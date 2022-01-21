@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:06 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/19 09:18:35 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 10:36:35 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ int	main(int argc, char *argv[])
 	vars.map.map[4] = ft_strdup("11111111");
 	vars.map.map[5] = NULL;*/
 	//
+	vars.p.pos_x = 9;
+	vars.p.pos_y = 3;
+	vars.p.dir_x = -1;
+	vars.p.dir_y = 0;
+	vars.p.plane_x = 0;
+	vars.p.plane_y = 0.66;
 	vars.map.height = 10;
 	vars.map.width = 15;
 	vars.map.map = (char **)malloc(sizeof(char *) * 11);

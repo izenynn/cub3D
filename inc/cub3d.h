@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:20:37 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 14:26:11 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:34:25 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@
  * *fRGB	-> floor rgb colors
  * *cRGB	-> ceiling rgb colors
  */
-typedef struct s_map
-{
+typedef struct s_map {
 	char	**buffer;
 	char	**map;
 	int		width;
@@ -136,8 +135,7 @@ typedef struct s_map
  * line_len -> len of a line of pixeles in *addr
  * endian	-> SO endian type (0 = small endian, 1 = big endian)
  */
-typedef struct s_img
-{
+typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -145,14 +143,43 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_vars
-{
+/* s_p: player struct */
+typedef struct s_p {
+	float	pos_x;
+	float	pos_y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
+}	t_p;
+
+/* s_vars: program struct */
+typedef struct s_vars {
 	t_map	map;
+	t_p		p;
 	t_img	img;
 	t_img	minimap;
 	void	*mlx;
 	void	*win;
 }	t_vars;
+
+typedef struct s_ray {
+	int		map_x;
+	int		map_y;
+	float	cam_x;
+	float	cam_y;
+	float	dir_x;
+	float	dir_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+}	t_ray;
 
 /* parse_map.c */
 int		first_read(char *str, t_map *map);
