@@ -168,9 +168,9 @@ thread: $(NAME)
 $(LFT_NAME): $(LFT)
 	@printf "${MAG}"
 	cp $(LFT) $(LFT_NAME)
-	@printf "${NOCOL}"
+	@printf "${NOCOL}\n"
 $(LFT):
-	@printf "\n${YEL}LIBFT:${NOCOL}\n"
+	@printf "${YEL}LIBFT:${NOCOL}\n"
 	@printf "${MAG}"
 	$(MAKE) all -sC $(LFT_DIR)
 	@printf "${NOCOL}"
@@ -178,9 +178,9 @@ $(LFT):
 $(LMLX_NAME): $(LMLX)
 	@printf "${MAG}"
 	cp $(LMLX) $(LMLX_NAME)
-	@printf "${NOCOL}"
+	@printf "${NOCOL}\n"
 $(LMLX):
-	@printf "\n${YEL}MINILIBX:${NOCOL}\n"
+	@printf "${YEL}MINILIBX:${NOCOL}\n"
 	@printf "${MAG}"
 	$(MAKE) all -sC $(LMLX_DIR) 2> /dev/null
 	@printf "${NOCOL}"

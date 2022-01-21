@@ -144,7 +144,6 @@ void	draw(t_vars *vars)
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
 	raycast(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-
 	draw_minimap(vars);
 	draw_menu(vars);
 }
