@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 	init_map(&vars.map);
 	if (first_read(argv[1], &vars.map) != 0)
 		return (1);
-	if (init_parse(&vars.map, argv[1]) != 0)
+	if (init_parser(&vars.map, argv[1]) != 0)
 		return (1);
 	mlx_main(&vars);
 	return (0);

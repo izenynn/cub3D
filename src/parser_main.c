@@ -55,7 +55,7 @@ int	first_read(char *str, t_map *map)
 	return (0);
 }
 
-int init_parse(t_map *map, char *str)
+int init_parser(t_map *map, char *str)
 {
 	if (map->lines == 0)
 		return (error_ret("Error\n empty map\n", 1));

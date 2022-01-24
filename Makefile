@@ -101,8 +101,8 @@ SRC_FILES =		main.c				error.c				utils.c				\
 				utils_2.c
 
 # SOURCES PARSE
-SRC_FILES +=	main_parse.c		parse_map.c			parse_config.c		\
-				parse_utils.c
+SRC_FILES +=	parser_main.c		parse_map.c			parse_config.c		\
+				parser_utils.c
 
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\

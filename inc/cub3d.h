@@ -162,7 +162,7 @@ typedef struct s_vars
 
 /* main_parse.c */
 int		first_read(char *str, t_map *map);
-int		init_parse(t_map *map, char *str);
+int		init_parser(t_map *map, char *str);
 
 /* parse_config.c */
 int		parse_textures(t_map *map);
