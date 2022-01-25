@@ -12,6 +12,8 @@ void	init_map(t_map	*map)
 	map->frgb = 0;
 	map->lines = 0;
 	map->count = 0;
+	map->p_pos[0] = -1;
+	map->p_pos[1] = -1;
 }
 
 int dptr_len(char **s)

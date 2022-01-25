@@ -58,9 +58,9 @@ int	first_read(char *str, t_map *map)
 int init_parser(t_map *map, char *str)
 {
 	if (map->lines == 0)
-		return (error_ret("Error\n empty map\n", 1));
+		return (error_ret("Error\nempty map\n", 1));
 	if (fill_buffer(str, map->lines, map) < 0)
-		return (error_ret("Error\n fatal error\n", 1));
+		return (error_ret("Error\nfatal error\n", 1));
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
 	if (parse_map(&map) != 0)
