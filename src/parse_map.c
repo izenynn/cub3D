@@ -9,103 +9,51 @@ int skip_spaces(char *line, int i)
 	return (i);
 }
 
-/*int check_above(t_map **map, int i, int j)
-{
-	if ((*map)->map[i - 1][j - 1] != '1' || (*map)->map[i - 1][j] != '1' || (*map)->map[i - 1][j + 1] != '1')
-	{
-		if ((*map)->map[i - 1][j - 1] == ' ')
-		{
-			if (check_surroundings(map, i + 1, j - 1) != 0)
-				return (error_ret("paco12\n", 1));
-		}
-		else if ((*map)->map[i - 1][j] == ' ')
-		{
-			if (check_surroundings(map, i + 1, j) != 0)
-				return (error_ret("paco11\n", 1));
-		}
-		else if ((*map)->map[i - 1][j + 1] == ' ')
-		{
-			if (check_surroundings(map, i - 1, j + 1) != 0)
-				return (error_ret("paco10\n", 1));
-		}
-		else
-			return (error_ret("paco9\n", 1));
-	}
-	return (0);
-}
-
-int check_below(t_map **map, int i, int j)
-{
-	if ((*map)->map[i + 1][j - 1] != '1' || (*map)->map[i + 1][j] != '1' || (*map)->map[i + 1][j + 1] != '1')
-	{
-		if ((*map)->map[i + 1][j - 1] == ' ')
-		{
-			if (check_surroundings(map, i + 1, j - 1) != 0)
-				return (error_ret("paco8\n", 1));
-		}
-		else if ((*map)->map[i + 1][j] == ' ')
-		{
-			if (check_surroundings(map, i + 1, j) != 0)
-				return (error_ret("paco7\n", 1));
-		}
-		else if ((*map)->map[i + 1][j + 1] == ' ')
-		{
-			if (check_surroundings(map, i + 1, j + 1) != 0)
-				return (error_ret("paco6\n", 1));
-		}
-		else
-			return (error_ret("paco5\n", 1));
-	}
-	return (0);
-}
-
-int check_surroundings(t_map **map, int i, int j)
-{
-	int		map_len;
-	char	c[2];
-
-	map_len = dptr_len((*map)->map);
-	if (i > map_len - 1)
-		return (0);
-	c[0] = (*map)->map[i][j + 1];
-	c[1] = (*map)->map[i][j - 1];
-	if (c[0] != '1' || c[1] != '1')
-	{
-		printf("C[0] = %c | c[1] = %c [ I -> %d | J -> %d ] LINE -> [ %s ]", c[0], c[1], i, j, (*map)->map[i]);
-		return (error_ret("paco\n", 1));
-	}
-	if (i == map_len - 1)
-	{
-		if (check_above(map, i, j) != 0)
-			return (error_ret("paco2\n", 1));
-	}
-	else if (i == 0)
-	{
-		if (check_below(map, i, j) != 0)
-			return (error_ret("paco3\n", 1));
-	}
-	else
-	{
-		if (check_above(map, i, j) != 0 || check_below(map, i, j) != 0)
-			return (error_ret("paco4\n", 1));
-	}
-	return (0);
-}*/
-
 int above_and_below(t_map **map, int i, int j, int x)
 {
+	int		og;
 	char *tmp;
+	//int ret;
 
-
-	if (i <= 0)
+	og = j;
+	//if (i >= dptr_len((*map)->map) || i <= 0)
+	//	return (-1);
+	//tmp = (*map)->map[i];
+	//printf("|[%s]|\n",(*map)->map[i]);
+	//printf("%d -> [j-> %d | x-> %d]\n",i, j, x);
+	if (i >= dptr_len((*map)->map) || i <= 0)
 		return (-1);
-	tmp = (*map)->map[i - 1];
+	tmp = (*map)->map[i];
 	while (j < x)
 	{
-		if (tmp[j] != '1')
+		if (tmp[j] != '1' && tmp[j] != ' ')
+		{
+			printf("(%c)\n", tmp[j]);
 			return (-2);
+		}
 		j++;
 	}
+	if (j > og)
+		return (j);
+	return (0);
+	/*while (j <= x)
+	{
+		j++;
+		printf("[%c | %d]\n", tmp[j], tmp[j]);
+		if (tmp[j] != '1')
+		{
+			if (tmp[j] == ' ')
+			{
+				ret = check_surroundings(map, i, j);
+				if (ret == -2) {
+					return (-2);
+				}
+			}
+			else {
+				return (-2);
+			}
+		}
+	}*/
 	return (0);
 }
 
@@ -131,16 +79,18 @@ int check_surroundings(t_map **map, int i, int j)
 	int x;
 	int ret;
 
-	x = 0;
-	while ((*map)->map[i][j] == ' ' && ++j)
+	x = j;
+	while ((*map)->map[i][x] == ' ')
 		x++;
 	ret = above_and_below(map, i + 1, j, x);
 	if (ret == -2)
-		return (1);
+		return (-1);
 	ret = above_and_below(map, i - 1, j, x);
 	if (ret == -2)
-		return (1);
-	return (0);
+		return (-1);
+	if (x > 1)
+		return (x);
+	return (j);
 }
 
 int last_map_check(t_map **map)
@@ -148,7 +98,7 @@ int last_map_check(t_map **map)
 	int i;
 	int j;
 
-	i = 1;
+	i = 0;
 	while ((*map)->map[++i])
 	{
 		j = skip_spaces((*map)->map[i], 0);
@@ -161,8 +111,11 @@ int last_map_check(t_map **map)
 				(*map)->p_pos[1] = (float)i;
 			}
 			if ((*map)->map[i][j] == ' ')
-				if (check_surroundings(map, i, j) != 0)
+			{
+				j = check_surroundings(map, i, j);
+				if (j == -1)
 					return (error_ret("Error\nMap is not surrounded by 1's\n", 1));
+			}
 		}
 	}
 	if ((*map)->p_pos[0] == -1 || (*map)->p_pos[1] == -1)
@@ -220,10 +173,16 @@ void fill_map(t_map **map)
 	int i;
 
 	i = 0;
+	while ((*map)->buffer[(*map)->index])
+	{
+		if (ft_strncmp((*map)->buffer[(*map)->index], "\0", 1) != 0)
+			break ;
+		(*map)->index++;
+	}
 	while((*map)->index < ((*map)->lines) && (*map)->buffer[(*map)->index])
 	{
-		(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index], 0, ft_strlen((*map)->buffer[(*map)->index]));
-		(*map)->index++;
+			(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index], 0, ft_strlen((*map)->buffer[(*map)->index]));
+			(*map)->index++;
 	}
 	i = 0;
 	printf("[------------MAP------------]\n");
