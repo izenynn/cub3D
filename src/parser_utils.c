@@ -1,9 +1,9 @@
 #include "cub3d.h"
 
-int is_dptr_digit(char **s)
+int	is_dptr_digit(char **s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (s[++i])
@@ -21,9 +21,9 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int process_colour(t_map **map, int i, char **sp)
+int	process_colour(t_map **map, int i, char **sp)
 {
-	int tmp[3];
+	int	tmp[3];
 
 	if (dptr_len(sp) != 3)
 		return (1);
@@ -32,7 +32,8 @@ int process_colour(t_map **map, int i, char **sp)
 	tmp[0] = ft_atoi(sp[0]);
 	tmp[1] = ft_atoi(sp[1]);
 	tmp[2] = ft_atoi(sp[2]);
-	if (tmp[0] < 0 || tmp[0] > 256 || tmp[1] < 0 || tmp[1] > 256 || tmp[2] < 0 || tmp[2] > 256)
+	if (tmp[0] < 0 || tmp[0] > 256 || tmp[1] < 0 || tmp[1] > 256
+		|| tmp[2] < 0 || tmp[2] > 256)
 		return (3);
 	if (ft_strncmp((*map)->buffer[i], "F", 1) == 0)
 		(*map)->frgb = create_trgb(255, tmp[0], tmp[1], tmp[2]);
@@ -41,7 +42,7 @@ int process_colour(t_map **map, int i, char **sp)
 	return (0);
 }
 
-int free_struct(t_map *map, int ret)
+int	free_struct(t_map *map, int ret)
 {
 	free_split(map->buffer);
 	free(map->we);

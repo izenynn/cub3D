@@ -1,9 +1,9 @@
 #include "cub3d.h"
 
-static int read_colour(t_map **map, int i)
+static int	read_colour(t_map **map, int i)
 {
-	char *aux;
-	char **split;
+	char	*aux;
+	char	**split;
 
 	if (ft_strncmp((*map)->buffer[i], "F", 1) == 0 || ft_strncmp((*map)->buffer[i], "C", 1) == 0)
 	{
@@ -71,15 +71,18 @@ int	parse_textures(t_map *map)
 	int	i;
 
 	i = -1;
-	while (map->buffer[++i] && (!map->no || !map->so || !map->we || !map->ea || !map->frgb || !map->crgb))
+	while (map->buffer[++i] && (!map->no || !map->so || !map->we
+			|| !map->ea || !map->frgb || !map->crgb))
 	{
 		if (ft_strlen(map->buffer[i]) == 0)
 			continue ;
 		else if (read_texture(&map, i) == 1)
 			return (-1);
 	}
-	if (!map->no || !map->so || !map->we || !map->ea || !map->frgb || !map->crgb)
-		return (error_ret("Error\nMissing data on the config file", -1));
+	if (!map->no || !map->so
+		|| !map->we || !map->ea || !map->frgb || !map->crgb)
+		return (error_ret("Error\nMissing data on the config file",
+				-1));
 	//if (open_texture(map) == 1) /*  UNCOMMENT THIS AS SOON AS WE START WORKING WITH VALID TEXTURE FILES  */
 	//	return (-1);
 	map->aux = i;

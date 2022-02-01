@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/14 11:34:44 by                  ###   ########.fr       */
+/*   Updated: 2022/02/01 13:58:48 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	first_read(char *str, t_map *map)
 	return (0);
 }
 
-int init_parser(t_map *map, char *str)
+int	init_parser(t_map *map, char *str)
 {
 	if (map->lines == 0)
 		return (error_ret("Error\nempty map\n", 1));
@@ -67,5 +67,7 @@ int init_parser(t_map *map, char *str)
 		return (free_struct(map, 1));
 	if (last_map_check(&map) != 0)
 		return (free_struct(map, 1));
+	if (map->p_pos[0] == -1 || map->p_pos[1] == -1)
+		free_struct(map, 1);
 	return (0);
 }

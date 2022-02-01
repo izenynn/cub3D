@@ -16,9 +16,9 @@ void	init_map(t_map	*map)
 	map->p_pos[1] = -1;
 }
 
-int dptr_len(char **s)
+int	dptr_len(char **s)
 {
-	int i;
+	int	i;
 
 	if (!s)
 		return (0);

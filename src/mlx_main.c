@@ -6,15 +6,17 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:19:47 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 12:41:39 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:21:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-int mouse_hook(int keycode, t_vars *vars)
+int	mouse_hook(int x, int y, t_vars *vars)
 {
 	(void)vars;
-	printf("key: %d\n", keycode);
+	if (x < 0 || y < 0)
+		return (1);
+	printf("key: x -> %d | y -> %d\n", x, y);
 	return (0);
 }
 
@@ -30,10 +32,7 @@ int	mlx_main(t_vars *vars)
 	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
 	mlx_hook(vars->win, 17, 1L << 17, close_win, vars);
 	draw(vars);
-	mlx_mouse_hook(vars->win, mouse_hook, &vars);
-	int x,y;
-	mlx_mouse_get_pos(vars->mlx, vars->win, &x, &y);
-	printf("x-> %d | y-> %d\n", x, y);
+	mlx_hook(vars->win, 6, 1L << 4, mouse_hook, &vars); // MOUSE MOVE HOOK;
 	mlx_loop(vars->mlx);
 	free_all(vars);
 	return (0);

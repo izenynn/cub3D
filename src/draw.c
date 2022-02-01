@@ -27,7 +27,7 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open doors: F");
 }
 
-static void draw_minimap(t_vars *vars)
+static void	draw_minimap(t_vars *vars)
 {
 	(void)vars;
 }
