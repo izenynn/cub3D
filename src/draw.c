@@ -44,6 +44,7 @@ static void	raycast(t_vars *vars)
 		ray.dir_x = vars->p.dir_x + vars->p.plane_x * ray.cam_x;
 		ray.dir_y = vars->p.dir_y + vars->p.plane_y * ray.cam_x;
 
+		//printf("x: %f, y: %f\n", vars->p.pos_x, vars->p.pos_y);
 		ray.map_x = (int)vars->p.pos_x;
 		ray.map_y = (int)vars->p.pos_y;
 
@@ -88,7 +89,7 @@ static void	raycast(t_vars *vars)
 				ray.side = 1;
 			}
 
-			printf("x: %d, y: %d\n", ray.map_x, ray.map_y);
+			//printf("x: %d, y: %d\n", ray.map_x, ray.map_y);
 			if (vars->map.map[ray.map_y][ray.map_x] == WALL)
 				ray.hit = 1;
 		}	
