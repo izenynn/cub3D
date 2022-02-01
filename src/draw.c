@@ -21,14 +21,15 @@ static void	draw_ver_line(t_vars *vars, int x, int draw_start, int draw_end, int
 	{
 		if (y < draw_start)
 			//img_pixel_put(vars->img, x, y, vars->map.crgb);
-			img_pixel_put(vars->img, x, y, 0xFFFF0000);
+			img_pixel_put(vars->img, x, y, 0x581845);
 		if (y >= draw_start && y < draw_end)
 		{
+			//img_pixel_put(vars->img, x, y, 0xC70039);
 			img_pixel_put(vars->img, x, y, color);
 		}
 		if (y >= draw_end)
 			//img_pixel_put(vars->img, x, y, vars->map.crgb);
-			img_pixel_put(vars->img, x, y, 0x00FF00FF);
+			img_pixel_put(vars->img, x, y, 0xFFC30F);
 	}
 }
 
@@ -47,6 +48,7 @@ static void	raycast(t_vars *vars)
 		//printf("x: %f, y: %f\n", vars->p.pos_x, vars->p.pos_y);
 		ray.map_x = (int)vars->p.pos_x;
 		ray.map_y = (int)vars->p.pos_y;
+		//printf("x: %d, y: %d\n", ray.map_x, ray.map_y);
 
 		ray.delta_dist_x = (ray.dir_x == 0) ? 1e30 : fabs(1 / ray.dir_x);
 		ray.delta_dist_y = (ray.dir_y == 0) ? 1e30 : fabs(1 / ray.dir_y);
@@ -60,7 +62,7 @@ static void	raycast(t_vars *vars)
 		}
 		else
 		{
-			ray.dir_x = 1;
+			ray.step_x = 1;
 			ray.side_dist_x = (ray.map_x + 1.0 - vars->p.pos_x) * ray.delta_dist_x;
 		}
 		if (ray.dir_y < 0)
@@ -108,8 +110,7 @@ static void	raycast(t_vars *vars)
 		if (ray.draw_end >= WIN_H)
 			ray.draw_end = WIN_H - 1;
 
-		int color = 0xFF00FF00;
-
+		int color = 0xC70039;
 		if (ray.side == 1)
 			color = color / 2;
 		draw_ver_line(vars, x, ray.draw_start, ray.draw_end, color);
