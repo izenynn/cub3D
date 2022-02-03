@@ -13,9 +13,11 @@
 #include "cub3d.h"
 
 /* print perror and exit */
-void	perror_exit()
+void	perror_exit(const char *s)
 {
-	if (NAME != NULL)
+	if (s != NULL)
+		perror(s);
+	else if (NAME != NULL)
 		perror(NAME);
 	else
 		perror("error");
@@ -23,9 +25,11 @@ void	perror_exit()
 }
 
 /* return perror with custom error code */
-int	perror_ret(int ret_code)
+int	perror_ret(const char *s, int ret_code)
 {
-	if (NAME != NULL)
+	if (s != NULL)
+		perror(s);
+	else if (NAME != NULL)
 		perror(NAME);
 	else
 		perror("error");

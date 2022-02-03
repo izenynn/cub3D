@@ -223,8 +223,8 @@ int		first_read(char *str, t_map *map);
 int		check_format(char *str);
 
 /* error_utils.c */
-void	perror_exit();
-int		perror_ret(int ret_code);
+void	perror_exit(const char *s);
+int		perror_ret(const char *s, int ret_code);
 int		error_ret(const char *s, int ret_code);
 
 /* utils.c */

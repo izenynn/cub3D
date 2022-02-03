@@ -75,10 +75,6 @@ int	main(int argc, char *argv[])
 	//
 	printf("Starting minilibx...\n");
 	if (mlx_main(vars) != 0)
-	{
-		free(vars);
 		return (EXIT_FAILURE);
-	}
-	free(vars);
 	return (EXIT_SUCCESS);
 }

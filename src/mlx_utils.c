@@ -43,4 +43,20 @@ void	img_paste_pixel(t_img img, int x, int y, int pixel)
 		return ;
 	img_pixel = (y * img.line_len) + (x * (img.bpp / 8));
 	img.addr[img_pixel] = pixel;
+
+	/*int endian = 0;
+	if (endian == 1)
+	{
+		img.addr[img_pixel + 0] = (pixel >> 24);
+		img.addr[img_pixel + 1] = (pixel >> 16) & 0xFF;
+		img.addr[img_pixel + 2] = (pixel >> 8) & 0xFF;
+		img.addr[img_pixel + 3] = (pixel) & 0xFF;
+	}
+	else if (endian == 0)
+	{
+		img.addr[img_pixel + 0] = (pixel) & 0xFF;
+		img.addr[img_pixel + 1] = (pixel >> 8) & 0xFF;
+		img.addr[img_pixel + 2] = (pixel >> 16) & 0xFF;
+		img.addr[img_pixel + 3] = (pixel >> 24);
+	}*/
 }

@@ -36,7 +36,7 @@ static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 
 			pixel = (ray->tex_y * tex->img.line_len) + (ray->tex_x * (tex->img.bpp / 8));
 			//img_pixel_put(vars->img, x, y, tex->img.addr[pixel]);
-			img_paste_pixel(vars->img, x, y, tex->img.addr[pixel - 1]);
+			img_paste_pixel(vars->img, x, y, tex->img.addr[pixel]);
 		}
 		//if (y > ray->draw_end)
 		//	img_pixel_put(vars->img, x, y, vars->map.crgb);

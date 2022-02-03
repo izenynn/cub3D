@@ -24,7 +24,7 @@ void	free_split(char **split)
 
 void	free_vars(t_vars *vars)
 {
-	(void)vars;
+	free(vars);
 }
 
 void	free_all(t_vars *vars)
