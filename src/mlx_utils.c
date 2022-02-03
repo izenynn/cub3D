@@ -34,3 +34,13 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 		img.addr[pixel + 3] = (color >> 24);
 	}
 }
+
+void	img_paste_pixel(t_img img, int x, int y, int pixel)
+{
+	int	img_pixel;
+
+	if (y >= WIN_H || x >= WIN_W || y < 0 || x < 0)
+		return ;
+	img_pixel = (y * img.line_len) + (x * (img.bpp / 8));
+	img.addr[img_pixel] = pixel;
+}

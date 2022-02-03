@@ -15,28 +15,31 @@
 static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 {
 	int		y;
-	int		color;
+	int		pixel;
 	t_tex	*tex;
 
 	tex = &vars->tex[ray->texture_id];
 	y = -1;
 	while (++y < WIN_H)
 	{
-		if (y < ray->draw_start)
-			//img_pixel_put(vars->img, x, y, vars->map.crgb);
-			img_pixel_put(vars->img, x, y, 0x581845);
+		//if (y < ray->draw_start)
+		//	img_pixel_put(vars->img, x, y, vars->map.crgb);
 		if (y >= ray->draw_start && y <= ray->draw_end)
 		{
 			//img_pixel_put(vars->img, x, y, 0xC70039);
 			//img_pixel_put(vars->img, x, y, color);
 			ray->tex_y = (int)ray->tex_pos & (tex->h - 1);
 			ray->tex_pos += ray->step;
-			color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
-			img_pixel_put(vars->img, x, y, color);
+			//color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
+			//color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
+			//pixel = (y * img.line_len) + (x * (img.bpp / 8));
+
+			pixel = (ray->tex_y * tex->img.line_len) + (ray->tex_x * (tex->img.bpp / 8));
+			//img_pixel_put(vars->img, x, y, tex->img.addr[pixel]);
+			img_paste_pixel(vars->img, x, y, tex->img.addr[pixel - 1]);
 		}
-		if (y > ray->draw_end)
-			//img_pixel_put(vars->img, x, y, vars->map.crgb);
-			img_pixel_put(vars->img, x, y, 0xFFC30F);
+		//if (y > ray->draw_end)
+		//	img_pixel_put(vars->img, x, y, vars->map.crgb);
 	}
 }
 
@@ -136,14 +139,15 @@ static void	raycast(t_vars *vars)
 			ray.wall_x = vars->p.pos_y + ray.perp_wall_dist * ray.dir_y;
 		else
 			ray.wall_x = vars->p.pos_x + ray.perp_wall_dist * ray.dir_x;
+		ray.wall_x -= floor((ray.wall_x));
 		
 		ray.tex_x = (int)(ray.wall_x * (float)TEX_W);
 		if (ray.side == 0 && ray.dir_x > 0)
-			ray.tex_x = TEX_W - ray.tex_x - 1;
+			ray.tex_x = vars->tex[ray.texture_id].w - ray.tex_x - 1;
 		if (ray.side == 1 && ray.dir_y < 0)
-			ray.tex_x = TEX_W - ray.tex_x - 1;
+			ray.tex_x = vars->tex[ray.texture_id].w - ray.tex_x - 1;
 
-		ray.step = 1.0 * TEX_H / ray.line_height;
+		ray.step = 1.0 * vars->tex[ray.texture_id].h / ray.line_height;
 		ray.tex_pos = (ray.draw_start - WIN_H / 2 + ray.line_height / 2) * ray.step;
 
 		//int color = 0xC70039;

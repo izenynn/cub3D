@@ -14,6 +14,8 @@
 
 static int	load_xpm(t_vars *vars, t_tex *texture, char *xpm_path)
 {
+	if (xpm_path == NULL)
+		return (error_ret("xpm path is null", 1));
 	texture->img.img = mlx_xpm_file_to_image(vars->mlx, xpm_path,
 		&texture->w, &texture->h);
 	if (texture->img.img == NULL)

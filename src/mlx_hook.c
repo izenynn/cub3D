@@ -46,6 +46,6 @@ int	key_hook(int keycode, t_vars *vars)
 		else
 			vars->iso = 1;
 	}*/
-	draw(vars);
+	//draw(vars);
 	return (0);
 }
