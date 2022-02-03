@@ -46,7 +46,7 @@ void	img_paste_pixel(t_img img, int x, int y, int pixel)
 
 	(void)img_pixel;
 	char *dst = img.addr + (y * img.line_len) + (x * (img.bpp / 8));
-	*(int *)dst = pixel;
+	*(unsigned int *)dst = pixel;
 
 	/*int endian = 0;
 	if (endian == 1)
