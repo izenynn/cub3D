@@ -110,6 +110,22 @@ static void	raycast(t_vars *vars)
 		if (ray.draw_end >= WIN_H)
 			ray.draw_end = WIN_H - 1;
 
+		if (ray.side == 0)
+		{
+			if (ray.dir_x < 0)
+				ray.texture_id = 0;
+			else
+				ray.texture_id = 1;
+		}
+		else
+		{
+			if (ray.dir_y < 0)
+				ray.texture_id = 3;
+			else
+				ray.texture_id = 2;
+		}
+		//texture()
+
 		int color = 0xC70039;
 		if (ray.side == 1)
 			color = color / 2;

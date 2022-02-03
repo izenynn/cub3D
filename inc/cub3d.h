@@ -186,6 +186,7 @@ typedef struct s_ray {
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	int		texture_id;
 }	t_ray;
 
 /* parse_map.c */
@@ -222,6 +223,7 @@ int		game_loop(void *vars);
 
 /* mlx_controls.c */
 void	handle_move(int keycode, t_vars *vars);
+void	handle_sidemove(int keycode, t_vars *vars);
 void	handle_look(int keycode, t_vars *vars);
 
 /* draw.c */

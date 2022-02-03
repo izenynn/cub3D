@@ -22,13 +22,15 @@ int	close_win(t_vars *vars)
 int	key_hook(int keycode, t_vars *vars)
 {
 	//printf("key: %d\n", keycode);
-	//if (keycode == KEY_ESC)
-	//	close_win(vars);
-	if (keycode == KEY_R)
+	if (keycode == KEY_ESC)
+		return (0);//close_win(vars);
+	else if (keycode == KEY_R)
 		reset_vars(vars);
-	if (keycode == KEY_W || keycode == KEY_S)
+	else if (keycode == KEY_W || keycode == KEY_S)
 		handle_move(keycode, vars);
-	if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
+	else if (keycode == KEY_A || keycode == KEY_D)
+		handle_sidemove(keycode, vars);
+	else if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
 		handle_look(keycode, vars);
 	/*if (keycode == KEY_UP || keycode == KEY_DOWN)
 		handle_zoom(keycode, vars);
