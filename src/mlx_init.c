@@ -65,7 +65,7 @@ static void	initialise_minimap(t_vars *vars)
 	}
 }
 
-void	initialise_mlx(t_vars *vars)
+int	initialise_mlx(t_vars *vars)
 {
 	vars->mlx = mlx_init();
 	vars->img.img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
@@ -73,4 +73,7 @@ void	initialise_mlx(t_vars *vars)
 			&vars->img.bpp, &vars->img.line_len, &vars->img.endian);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "cub3D");
 	initialise_minimap(vars);
+	if (init_textures(vars) != 0)
+		return (1);
+	return (0);
 }

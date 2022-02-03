@@ -12,22 +12,29 @@
 
 #include "cub3d.h"
 
-static void	draw_ver_line(t_vars *vars, int x, int draw_start, int draw_end, int color)
+static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 {
-	int	y;
+	int		y;
+	int		color;
+	t_tex	*tex;
 
+	tex = &vars->tex[ray->texture_id];
 	y = -1;
 	while (++y < WIN_H)
 	{
-		if (y < draw_start)
+		if (y < ray->draw_start)
 			//img_pixel_put(vars->img, x, y, vars->map.crgb);
 			img_pixel_put(vars->img, x, y, 0x581845);
-		if (y >= draw_start && y < draw_end)
+		if (y >= ray->draw_start && y <= ray->draw_end)
 		{
 			//img_pixel_put(vars->img, x, y, 0xC70039);
+			//img_pixel_put(vars->img, x, y, color);
+			ray->tex_y = (int)ray->tex_pos & (tex->h - 1);
+			ray->tex_pos += ray->step;
+			color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
 			img_pixel_put(vars->img, x, y, color);
 		}
-		if (y >= draw_end)
+		if (y > ray->draw_end)
 			//img_pixel_put(vars->img, x, y, vars->map.crgb);
 			img_pixel_put(vars->img, x, y, 0xFFC30F);
 	}
@@ -125,11 +132,25 @@ static void	raycast(t_vars *vars)
 				ray.texture_id = 2;
 		}
 		//texture()
+		if (ray.side == 0)
+			ray.wall_x = vars->p.pos_y + ray.perp_wall_dist * ray.dir_y;
+		else
+			ray.wall_x = vars->p.pos_x + ray.perp_wall_dist * ray.dir_x;
+		
+		ray.tex_x = (int)(ray.wall_x * (float)TEX_W);
+		if (ray.side == 0 && ray.dir_x > 0)
+			ray.tex_x = TEX_W - ray.tex_x - 1;
+		if (ray.side == 1 && ray.dir_y < 0)
+			ray.tex_x = TEX_W - ray.tex_x - 1;
 
-		int color = 0xC70039;
-		if (ray.side == 1)
-			color = color / 2;
-		draw_ver_line(vars, x, ray.draw_start, ray.draw_end, color);
+		ray.step = 1.0 * TEX_H / ray.line_height;
+		ray.tex_pos = (ray.draw_start - WIN_H / 2 + ray.line_height / 2) * ray.step;
+
+		//int color = 0xC70039;
+		//if (ray.side == 1)
+		//	color = color / 2;
+		//draw_ver_line(vars, x, ray.draw_start, ray.draw_end);
+		draw_ver_line(vars, x, &ray);
 	}
 }
 

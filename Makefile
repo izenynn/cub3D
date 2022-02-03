@@ -50,6 +50,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+CFLAGS += -D NAME=\"$(NAME)\"
 CFLAGS += -D WIN_H=720 -D WIN_W=1280
 #CFLAGS += -D WIN_H=1080 -D WIN_W=1920
 
@@ -105,7 +106,7 @@ SRC_FILES +=	parse_map.c
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
 				mlx_utils.c			mlx_loop.c			draw.c				\
-				mlx_controls.c
+				mlx_controls.c		mlx_textures.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

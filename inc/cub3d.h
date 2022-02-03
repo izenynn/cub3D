@@ -37,6 +37,11 @@
 /* our own implementation of libc */
 # include <libft.h>
 
+/* program */
+# ifndef NAME
+#  define NAME "cub3d"
+# endif
+
 /* window resolution */
 # ifndef WIN_W
 #  define WIN_W 1280
@@ -49,6 +54,18 @@
 # define MINIMAP_SCALE 10
 /* minimap border offset % */
 # define MM_OFFSET 2
+
+/* textures */
+# if !defined TEX_W || !defined TEX_H
+#  define TEX_W 64
+#  define TEX_H 64
+# endif
+# if !defined NO || !defined SO || !defined WE || !defined EA
+#  define NO 0
+#  define SO 1
+#  define WE 2
+#  define EA 3
+# endif
 
 /* other useful macros */
 # define FLOOR '0'
@@ -147,6 +164,12 @@ typedef struct s_img {
 	int		endian;
 }	t_img;
 
+typedef struct s_tex {
+	t_img	img;
+	int		h;
+	int		w;
+}	t_tex;
+
 /* s_p: player struct */
 typedef struct s_p {
 	float	pos_x;
@@ -163,6 +186,7 @@ typedef struct s_vars {
 	t_p		p;
 	t_img	img;
 	t_img	minimap;
+	t_tex	tex[4];
 	void	*mlx;
 	void	*win;
 }	t_vars;
@@ -187,6 +211,11 @@ typedef struct s_ray {
 	int		draw_start;
 	int		draw_end;
 	int		texture_id;
+	int		tex_x;
+	int		tex_y;
+	float	wall_x;
+	float	step;
+	float	tex_pos;
 }	t_ray;
 
 /* parse_map.c */
@@ -194,8 +223,8 @@ int		first_read(char *str, t_map *map);
 int		check_format(char *str);
 
 /* error_utils.c */
-void	perror_exit(const char *s);
-int		perror_ret(const char *s, int ret_code);
+void	perror_exit();
+int		perror_ret(int ret_code);
 int		error_ret(const char *s, int ret_code);
 
 /* utils.c */
@@ -213,7 +242,7 @@ int		close_win(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
 
 /* mlx_init.c */
-void	initialise_mlx(t_vars *vars);
+int		initialise_mlx(t_vars *vars);
 
 /* mlx_utils.c */
 void	img_pixel_put(t_img img, int x, int y, int color);
@@ -225,6 +254,9 @@ int		game_loop(void *vars);
 void	handle_move(int keycode, t_vars *vars);
 void	handle_sidemove(int keycode, t_vars *vars);
 void	handle_look(int keycode, t_vars *vars);
+
+/* mlx_textures.c */
+int		init_textures(t_vars *vars);
 
 /* draw.c */
 void	draw(t_vars *vars);

@@ -12,29 +12,36 @@
 
 #include "cub3d.h"
 
-/* exit printint perror */
-void	perror_exit(const char *s)
+/* print perror and exit */
+void	perror_exit()
 {
-	if (s == NULL)
-		perror("minishell");
+	if (NAME != NULL)
+		perror(NAME);
 	else
-		perror(s);
+		perror("error");
 	exit(EXIT_FAILURE);
 }
 
-/* return with custom error code */
-int	perror_ret(const char *s, int ret_code)
+/* return perror with custom error code */
+int	perror_ret(int ret_code)
 {
-	if (s == NULL)
-		perror("minishell");
+	if (NAME != NULL)
+		perror(NAME);
 	else
-		perror(s);
+		perror("error");
 	return (ret_code);
 }
 
-/* return with custom error code */
+/* return custom error with custom error code */
 int	error_ret(const char *s, int ret_code)
 {
+	if (NAME != NULL)
+	{
+		write(STDERR_FILENO, NAME, ft_strlen(NAME));
+	}
+	else
+		write(STDERR_FILENO, "error", 5);
+	write(STDERR_FILENO, ": ", 2);
 	if (s)
 		write(STDERR_FILENO, s, ft_strlen(s));
 	return (ret_code);
