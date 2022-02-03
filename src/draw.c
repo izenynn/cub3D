@@ -12,10 +12,20 @@
 
 #include "cub3d.h"
 
+int		get_pixel_color(t_img *img, int x, int y)
+{
+	int		color;
+	char	*dst;
+
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	color = *(unsigned int*)dst;
+	return (color);
+}
+
 static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 {
 	int		y;
-	int		pixel;
+	int		color;
 	t_tex	*tex;
 
 	tex = &vars->tex[ray->texture_id];
@@ -34,8 +44,10 @@ static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 			//color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
 			//pixel = (y * img.line_len) + (x * (img.bpp / 8));
 
-			pixel = (ray->tex_y * tex->img.line_len) + (ray->tex_x * (tex->img.bpp / 8));
-			img_paste_pixel(vars->img, x, y, tex->img.addr[pixel]);
+			//pixel = tex->img.addr[(ray->tex_y * tex->img.line_len) + (ray->tex_x * (tex->img.bpp / 8))];
+			color = get_pixel_color(&tex->img, ray->tex_x, ray->tex_y);
+			//printf("color: %x\n", color);
+			img_paste_pixel(vars->img, x, y, color);
 		}
 		//if (y > ray->draw_end)
 		//	img_pixel_put(vars->img, x, y, vars->map.crgb);

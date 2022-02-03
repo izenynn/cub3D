@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	vars->map.height = 10;
 	vars->map.width = 15;
 	vars->map.no = ft_strdup("./textures/eagle.xpm");
-	vars->map.so = ft_strdup("./textures/wall_2.xpm");
+	vars->map.so = ft_strdup("./textures/wood.xpm");
 	vars->map.we = ft_strdup("./textures/wall_3.xpm");
 	vars->map.ea = ft_strdup("./textures/wall_4.xpm");
 	//vars->map.frgb = 0xFFFF0000;
