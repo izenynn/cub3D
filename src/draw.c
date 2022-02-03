@@ -145,7 +145,7 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 15, WHITE, "Controls:");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Reset: R");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Move: W, A, S, D");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Look: mouse");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Look: Mouse / Arrows");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open doors: F");
 }
 
