@@ -185,12 +185,40 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open doors: F");
 }
 
+void	draw_player(t_vars *vars, int x, int y, float side_len)
+{
+	float	x1;
+	float	y1;
+
+	y1 = -1;
+	while (++y1 < side_len)
+	{
+		x1 = -1;
+		while (++x1 < side_len)
+			img_pixel_put(vars->mm_player, x + x1, y + y1, 0xFF0000);
+	}
+}
+
 /* draw minimap on upper right corner */
 static void draw_minimap(t_vars *vars)
 {
-	(void)vars;
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->minimap.img,
-			WIN_W - (vars->minimap.line_len / vars->minimap.bpp * 8) - 15, 15);
+	int	screen_pos[2];
+	int	it[2];
+
+	it[Y] = -1;
+	while (++it[Y] < fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
+	{
+		it[X] = -1;
+		while (++it[X] < fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
+			img_pixel_put(vars->mm_player, it[X], it[Y], get_pixel_color(&vars->minimap, it[X], it[Y]));
+	}
+	screen_pos[X] = (vars->mm_offset[X] / 2) + (vars->p.pos_x *
+		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
+	screen_pos[Y] = (vars->mm_offset[Y] / 2) + (vars->p.pos_y *
+		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
+	draw_player(vars, screen_pos[X] - 3.75, screen_pos[Y] - 3.75, 7.5);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->mm_player.img,
+			WIN_W - (vars->mm_player.line_len / vars->mm_player.bpp * 8) - 15, 15);
 }
 
 /* draw all on screen */

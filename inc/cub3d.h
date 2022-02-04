@@ -192,6 +192,8 @@ typedef struct s_vars {
 	t_p		p;
 	t_img	img;
 	t_img	minimap;
+	t_img	mm_player;
+	int		mm_offset[2];
 	t_tex	tex[4];
 	void	*mlx;
 	void	*win;

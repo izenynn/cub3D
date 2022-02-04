@@ -40,6 +40,7 @@ void	free_map(t_map *map)
 void	free_all(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
+	mlx_destroy_image(vars->mlx, vars->mm_player.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[0].img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[1].img.img);
