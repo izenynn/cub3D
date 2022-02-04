@@ -48,14 +48,18 @@ int	main(int argc, char *argv[])
 	vars->map.map[14] = NULL;
 	vars->map.door = ft_strdup("./textures/door.xpm");
 	vars->map.sprite = ft_strdup("./textures/barrel.xpm");
-	vars->sprites = (t_sprite **)malloc(sizeof(t_sprite *) * 3);
+	vars->sprites = (t_sprite **)malloc(sizeof(t_sprite *) * 4);
 	vars->sprites[0] = (t_sprite *)malloc(sizeof(t_sprite));
-	vars->sprites[0]->x = 9;
+	vars->sprites[0]->x = 3;
 	vars->sprites[0]->y = 9;
 	vars->sprites[1] = (t_sprite *)malloc(sizeof(t_sprite));
-	vars->sprites[1]->x = 7;
-	vars->sprites[1]->y = 7;
-	vars->sprites[2] = NULL;
+	vars->sprites[1]->x = 4;
+	vars->sprites[1]->y = 10;
+	vars->sprites[2] = (t_sprite *)malloc(sizeof(t_sprite));
+	vars->sprites[2]->x = 3;
+	vars->sprites[2]->y = 11;
+	vars->sprites[3] = NULL;
+	vars->sprite_cnt = 3;
 	// ============= NO MAS HARDCODEADA ==============
 	if (mlx_main(vars) != 0)
 		return (EXIT_FAILURE);

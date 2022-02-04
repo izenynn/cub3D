@@ -211,6 +211,7 @@ typedef struct s_vars {
 	t_tex		tex[5];
 	t_tex		sprite; // TODO texture array with all the frames
 	t_sprite	**sprites;
+	int			sprite_cnt;
 	void		*mlx;
 	void		*win;
 	int			door_hit[2];
@@ -242,6 +243,9 @@ typedef struct s_ray {
 	float	wall_x;
 	float	step;
 	float	tex_pos;
+	float	z_buffer[WIN_W];
+	int		*sprite_order;
+	float	*sprite_dist;
 }	t_ray;
 
 /* parse_map.c */
