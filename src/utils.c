@@ -27,12 +27,23 @@ void	free_vars(t_vars *vars)
 	free(vars);
 }
 
+void	free_map(t_map *map)
+{
+	free_split(map->map);
+	free_split(map->buffer);
+	free(map->no);
+	free(map->so);
+	free(map->we);
+	free(map->ea);
+}
+
 void	free_all(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	// TODO free map struct
+	free_map(&vars->map);
 	free_vars(vars);
 }
 

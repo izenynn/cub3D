@@ -143,10 +143,8 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*s;
 	int		width;
 	int		height;
-	int		res[2];
 	int 	frgb;
 	int 	crgb;
 	int 	aux;
