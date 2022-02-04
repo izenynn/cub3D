@@ -61,6 +61,7 @@ void	reset_vars(t_vars *vars)
 int	initialise_vars(t_vars *vars)
 {
 	reset_vars(vars);
+	vars->frame = 0;
 	player_init(vars);
 	return (0);
 }

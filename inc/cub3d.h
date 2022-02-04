@@ -194,6 +194,7 @@ typedef struct s_p {
 
 /* s_vars: program struct */
 typedef struct s_vars {
+	int		frame;
 	t_map	map;
 	t_p		p;
 	t_img	img;
