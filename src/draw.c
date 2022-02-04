@@ -146,8 +146,8 @@ static void	raycast(t_vars *vars)
 		// texture
 		if (vars->map.map[ray.map_y][ray.map_x] == DOOR_CLOSE)
 			ray.texture_id = TEX_DOOR;
-		else if ((ray.map_y >= 1 && vars->map.map[ray.map_y - 1][ray.map_x] == DOOR_OPEN)
-			|| (ray.map_x >= 1 && vars->map.map[ray.map_y][ray.map_x - 1] == DOOR_OPEN))
+		else if ((ray.map_y >= 1 && ray.side == 1 && ray.dir_y >= 0 && vars->map.map[ray.map_y - 1][ray.map_x] == DOOR_OPEN)
+			|| (ray.map_x >= 1 && ray.side == 0 && ray.dir_x >= 0 && vars->map.map[ray.map_y][ray.map_x - 1] == DOOR_OPEN))
 			ray.texture_id = TEX_DOOR;
 		else if (ray.side == 0)
 		{

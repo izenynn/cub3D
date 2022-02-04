@@ -31,20 +31,20 @@ int	main(int argc, char *argv[])
 	write(STDOUT_FILENO, "Starting minilibx\n", 18);
 	// ============== HARDCODEADA ================
 	vars->map.map = (char **)malloc(sizeof(char *) * 15);
-	vars->map.map[0] = ft_strdup("        1111111111111111111111111");
-	vars->map.map[1] = ft_strdup("        1000000000110000000000001");
-	vars->map.map[2] = ft_strdup("        1011000001110000000000001");
-	vars->map.map[3] = ft_strdup("        1001000000000000000000001");
-	vars->map.map[4] = ft_strdup("111111111011000001110000000000001");
-	vars->map.map[5] = ft_strdup("100000000011000001110111111O11111");
-	vars->map.map[6] = ft_strdup("11110111111111011100000010001");
-	vars->map.map[7] = ft_strdup("11110111111111011101010010001");
-	vars->map.map[8] = ft_strdup("11000000110101011100000010001");
-	vars->map.map[9] = ft_strdup("10000000000000001100000010001");
-	vars->map.map[10] = ft_strdup("10000000000000001101010010001");
-	vars->map.map[11] = ft_strdup("1100000111010101111101101000111");
-	vars->map.map[12] = ft_strdup("11110111 1110101 1011110C0001");
-	vars->map.map[13] = ft_strdup("11111111 1111111 111111111111");
+	vars->map.map[0]  = ft_strdup("        1111111111111111111111111");
+	vars->map.map[1]  = ft_strdup("        1000000000110000000000001");
+	vars->map.map[2]  = ft_strdup("        1011000001110000000000001");
+	vars->map.map[3]  = ft_strdup("        1001000000000000000000001");
+	vars->map.map[4]  = ft_strdup("111111111011000001110000000000001");
+	vars->map.map[5]  = ft_strdup("100000000011000001110111100000111");
+	vars->map.map[6]  = ft_strdup("1111011111111101110000001110111");
+	vars->map.map[7]  = ft_strdup("111101111111110111010100101O101");
+	vars->map.map[8]  = ft_strdup("1100000011010101110000001000001");
+	vars->map.map[9]  = ft_strdup("1000000000000000110000001000011");
+	vars->map.map[10] = ft_strdup("10000000000000001101010010000O1");
+	vars->map.map[11] = ft_strdup("110000011101010111110110100001111");
+	vars->map.map[12] = ft_strdup("11110111 1110101 1011110C000001");
+	vars->map.map[13] = ft_strdup("11111111 1111111 11111111111111");
 	vars->map.map[14] = NULL;
 	vars->map.door = ft_strdup("./textures/door.xpm");
 	// ============= NO MAS HARDCODEADA ==============
