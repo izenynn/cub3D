@@ -74,7 +74,18 @@ int	main(int argc, char *argv[])
 		return (1);
 	write(STDOUT_FILENO, "Starting minilibx\n", 18);
 	//
-	/*vars->map.height = 10;
+	/*vars->p.pos_x = 9;
+	vars->p.pos_y = 3;
+	vars->p.dir_x = -1;
+	vars->p.dir_y = 0;
+	vars->p.plane_x = 0;
+	vars->p.plane_y = 0.66;
+	vars->map.no = ft_strdup("./textures/eagle.xpm");
+	vars->map.so = ft_strdup("./textures/wood.xpm");
+	vars->map.we = ft_strdup("./textures/wall_3.xpm");
+	vars->map.ea = ft_strdup("./textures/wall_4.xpm");
+	//
+	vars->map.height = 10;
 	vars->map.width = 15;
 	vars->map.map = (char **)malloc(sizeof(char *) * 11);
 	vars->map.map[0] = ft_strdup("1111 1111111111");
@@ -89,8 +100,8 @@ int	main(int argc, char *argv[])
 	vars->map.map[9] = ft_strdup("1111111       1");
 	vars->map.map[10] = NULL;*/
 	//
-	vars->map.height = 10;
-	vars->map.width = 19;
+	//vars->map.height = 10;
+	//vars->map.width = 19;
 	if (mlx_main(vars) != 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

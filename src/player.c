@@ -18,22 +18,22 @@ int	player_init(t_vars *vars)
 {
 	if (vars->map.start_orientation == 'N')
 	{
-		set_dir(&vars->p, 0.0, -1.0);
+		set_dir(&vars->p, -1, 0);
 		set_plane(&vars->p, 0.0, 0.66);
 	}
 	else if (vars->map.start_orientation == 'S')
 	{
-		set_dir(&vars->p, 0.0, 1.0);
+		set_dir(&vars->p, 1, 0);
 		set_plane(&vars->p, 0.0, -0.66);
 	}
 	else if (vars->map.start_orientation == 'W')
 	{
-		set_dir(&vars->p, -1.0, 0.0);
+		set_dir(&vars->p, 0, -1);
 		set_plane(&vars->p, -0.66, 0.0);
 	}
 	else if (vars->map.start_orientation == 'E')
 	{
-		set_dir(&vars->p, 1.0, 0.0);
+		set_dir(&vars->p, 0, 1);
 		set_plane(&vars->p, 0.66, 0.0);
 	}
 	vars->p.pos_x = (float)vars->map.p_pos[0] + 0.5;
