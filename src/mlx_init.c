@@ -45,6 +45,8 @@ static void	initialise_minimap(t_vars *vars)
 	map[Y] = -1;
 	while (++map[Y] < vars->map.height)
 	{
+		if (vars->map.map[map[Y]] == NULL)
+			break ;
 		map[X] = -1;
 		while (++map[X] < vars->map.width)
 		{
