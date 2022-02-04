@@ -20,7 +20,6 @@ static void	initialise_minimap(t_vars *vars)
 	int	pixel[2];
 	int	offset[2];
 
-	printf("w: %d, h: %d\n", vars->map.width, vars->map.height);
 	offset[X] = 0;
 	offset[Y] = 0;
 	if (WIN_W > WIN_H)
