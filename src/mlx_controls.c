@@ -16,6 +16,8 @@ void	handle_move(int keycode, t_vars *vars)
 	}
 	else if (keycode == KEY_S)
 	{
+		//printf("pos_x: %d, pos_x speed: %d\n", (int)p->pos_x, (int)(p->pos_x + p->dir_x * SPEED));
+		//printf("pos_y: %d, pos_y speed: %d\n", (int)p->pos_y, (int)(p->pos_y + p->dir_y * SPEED));
 		if (map[(int)p->pos_y][(int)(p->pos_x - p->dir_x * SPEED)] == FLOOR)
 			p->pos_x -= p->dir_x * SPEED;
 		if (map[(int)(p->pos_y - p->dir_y * SPEED)][(int)p->pos_x] == FLOOR)

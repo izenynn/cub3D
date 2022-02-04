@@ -98,15 +98,17 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 # **************************************************************************** #
 
 # SOURCES MAIN
-SRC_FILES =		main.c				error.c				utils.c
+SRC_FILES =		main.c				error.c				utils.c				\
+				utils_2.c
 
 # SOURCES PARSE
-SRC_FILES +=	parse_map.c
+SRC_FILES +=	parser_main.c		parse_map.c			parse_config.c		\
+				parser_utils.c
 
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
 				mlx_utils.c			mlx_loop.c			draw.c				\
-				mlx_controls.c		mlx_textures.c
+				mlx_controls.c		mlx_textures.c		player.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

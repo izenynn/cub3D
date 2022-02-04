@@ -32,8 +32,8 @@ static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 	y = -1;
 	while (++y < WIN_H)
 	{
-		//if (y < ray->draw_start)
-		//	img_pixel_put(vars->img, x, y, vars->map.crgb);
+		if (y < ray->draw_start)
+			img_pixel_put(vars->img, x, y, vars->map.crgb);
 		if (y >= ray->draw_start && y <= ray->draw_end)
 		{
 			//img_pixel_put(vars->img, x, y, 0xC70039);
@@ -49,8 +49,8 @@ static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 			//printf("color: %x\n", color);
 			img_paste_pixel(vars->img, x, y, color);
 		}
-		//if (y > ray->draw_end)
-		//	img_pixel_put(vars->img, x, y, vars->map.crgb);
+		if (y > ray->draw_end)
+			img_pixel_put(vars->img, x, y, vars->map.frgb);
 	}
 }
 

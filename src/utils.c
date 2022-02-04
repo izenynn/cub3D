@@ -32,6 +32,7 @@ void	free_all(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
+	// TODO free map struct
 	free_vars(vars);
 }
 
@@ -43,5 +44,6 @@ void	reset_vars(t_vars *vars)
 int	initialise_vars(t_vars *vars)
 {
 	reset_vars(vars);
+	player_init(vars);
 	return (0);
 }

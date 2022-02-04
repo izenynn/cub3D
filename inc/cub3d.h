@@ -132,20 +132,28 @@
  * *S		-> sprite texture path
  * *fRGB	-> floor rgb colors
  * *cRGB	-> ceiling rgb colors
+ * *p_pos	=> Player position -> [0] = x, [1] = y;
  */
-typedef struct s_map {
+typedef struct s_map
+{
+	float	p_pos[2];
+	char 	**map;
 	char	**buffer;
-	char	**map;
-	int		width;
-	int		height;
-	int		res[2];
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
 	char	*s;
-	char	*frgb;
-	char	*crgb;
+	int		width;
+	int		height;
+	int		res[2];
+	int 	frgb;
+	int 	crgb;
+	int 	aux;
+	int 	lines;
+	int 	index;
+	int		count;
+	char	start_orientation;
 }	t_map;
 
 /* s_img: minilibx image struct
@@ -219,7 +227,24 @@ typedef struct s_ray {
 }	t_ray;
 
 /* parse_map.c */
+
+/* main_parse.c */
 int		first_read(char *str, t_map *map);
+int		init_parser(t_map *map, char *str);
+
+/* parse_config.c */
+int		parse_textures(t_map *map);
+
+/* parse_map.c */
+int		parse_map(t_map **map);
+int		free_struct(t_map *map, int ret);
+int		is_dptr_digit(char **s);
+int		create_trgb(int t, int r, int g, int b);
+int		process_colour(t_map **map, int i, char **sp);
+int 	last_map_check(t_map **map);
+int		check_surroundings(t_map **map, int i, int j);
+
+/* parse_utils.c */
 int		check_format(char *str);
 
 /* error_utils.c */
@@ -233,6 +258,10 @@ void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
 void	reset_vars(t_vars *vars);
 int		initialise_vars(t_vars *vars);
+
+/* utils_2.c */
+int		dptr_len(char **s);
+void	init_map(t_map	*map);
 
 /* mlx_main.c */
 int		mlx_main(t_vars *vars);
@@ -258,6 +287,9 @@ void	handle_look(int keycode, t_vars *vars);
 
 /* mlx_textures.c */
 int		init_textures(t_vars *vars);
+
+/* player.c */
+int		player_init(t_vars *vars);
 
 /* draw.c */
 void	draw(t_vars *vars);
