@@ -187,7 +187,6 @@ int	parse_map(t_map **map)
 		if ((int)ft_strlen((*map)->buffer[(*map)->aux]) > (*map)->width)
 			(*map)->width = (int)ft_strlen((*map)->buffer[(*map)->aux]);
 		(*map)->aux++;
-		printf("i: %d\n", i);
 	}
 	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 1));
 	(*map)->height = i + 1;
