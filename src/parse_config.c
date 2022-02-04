@@ -83,7 +83,7 @@ int	parse_textures(t_map *map)
 		|| !map->we || !map->ea || !map->frgb || !map->crgb)
 		return (error_ret("Error\nMissing data on the config file",
 				-1));
-	if (open_texture(map) == 1) /*  UNCOMMENT THIS AS SOON AS WE START WORKING WITH VALID TEXTURE FILES  */
+	if (open_texture(map) == 1)
 		return (-1);
 	map->aux = i;
 	return (i);

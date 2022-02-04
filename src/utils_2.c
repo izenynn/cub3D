@@ -4,6 +4,7 @@ void	init_map(t_map	*map)
 {
 	map->buffer = NULL;
 	map->width = 0;
+	map->height = 0;
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
