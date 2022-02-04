@@ -50,7 +50,7 @@ static void	initialise_minimap(t_vars *vars)
 	{
 		int x = -1;
 		while (++x < fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
-			img_pixel_put(vars->minimap, x, y, MINIMAP_WALL);
+			img_pixel_put(&vars->minimap, x, y, MINIMAP_WALL);
 	}
 
 	map[Y] = -1;
@@ -69,10 +69,13 @@ static void	initialise_minimap(t_vars *vars)
 				pixel[X] = map[X] * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE) / fmax(vars->map.width, vars->map.height);
 				while (pixel[X] < (map[X] + 1) * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE) / fmax(vars->map.width, vars->map.height))
 				{
-					if (vars->map.map[map[Y]][map[X]] == '0')
-						img_pixel_put(vars->minimap, pixel[X] + (vars->mm_offset[X] / 2), pixel[Y] + (vars->mm_offset[Y] / 2), MINIMAP_FLOOR);
+					if (vars->map.map[map[Y]][map[X]] == FLOOR)
+						img_pixel_put(&vars->minimap, pixel[X] + (vars->mm_offset[X] / 2), pixel[Y] + (vars->mm_offset[Y] / 2), MINIMAP_FLOOR);
+					else if (vars->map.map[map[Y]][map[X]] == DOOR_CLOSE
+						|| vars->map.map[map[Y]][map[X]] == DOOR_OPEN)
+						img_pixel_put(&vars->minimap, pixel[X] + (vars->mm_offset[X] / 2), pixel[Y] + (vars->mm_offset[Y] / 2), MINIMAP_DOOR);
 					else
-						img_pixel_put(vars->minimap, pixel[X] + (vars->mm_offset[X] / 2), pixel[Y] + (vars->mm_offset[Y] / 2), MINIMAP_WALL);
+						img_pixel_put(&vars->minimap, pixel[X] + (vars->mm_offset[X] / 2), pixel[Y] + (vars->mm_offset[Y] / 2), MINIMAP_WALL);
 					pixel[X]++;
 				}
 				pixel[Y]++;

@@ -29,13 +29,15 @@ static int	load_xpm(t_vars *vars, t_tex *texture, char *xpm_path)
 
 int	init_textures(t_vars *vars)
 {
-	if (load_xpm(vars, &vars->tex[NO], vars->map.no) != 0)
+	if (load_xpm(vars, &vars->tex[TEX_NO], vars->map.no) != 0)
 		return (1);
-	if (load_xpm(vars, &vars->tex[SO], vars->map.so) != 0)
+	if (load_xpm(vars, &vars->tex[TEX_SO], vars->map.so) != 0)
 		return (1);
-	if (load_xpm(vars, &vars->tex[WE], vars->map.we) != 0)
+	if (load_xpm(vars, &vars->tex[TEX_WE], vars->map.we) != 0)
 		return (1);
-	if (load_xpm(vars, &vars->tex[EA], vars->map.ea) != 0)
+	if (load_xpm(vars, &vars->tex[TEX_EA], vars->map.ea) != 0)
+		return (1);
+	if (load_xpm(vars, &vars->tex[TEX_DOOR], vars->map.door) != 0)
 		return (1);
 	return (0);
 }

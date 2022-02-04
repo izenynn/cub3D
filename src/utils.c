@@ -35,6 +35,7 @@ void	free_map(t_map *map)
 	free(map->so);
 	free(map->we);
 	free(map->ea);
+	free(map->door);
 }
 
 void	free_all(t_vars *vars)
@@ -42,10 +43,11 @@ void	free_all(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
 	mlx_destroy_image(vars->mlx, vars->mm_player.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[0].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[1].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[2].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[3].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_NO].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_SO].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_WE].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_EA].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_DOOR].img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	free_map(&vars->map);
 	free_vars(vars);
