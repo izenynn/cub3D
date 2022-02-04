@@ -39,5 +39,7 @@ int	init_textures(t_vars *vars)
 		return (1);
 	if (load_xpm(vars, &vars->tex[TEX_DOOR], vars->map.door) != 0)
 		return (1);
+	if (load_xpm(vars, &vars->sprite, vars->map.sprite) != 0)
+		return (1);
 	return (0);
 }

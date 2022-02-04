@@ -48,6 +48,7 @@ void	free_all(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_WE].img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_EA].img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_DOOR].img.img);
+	mlx_destroy_image(vars->mlx, vars->sprite.img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	free_map(&vars->map);
 	free_vars(vars);

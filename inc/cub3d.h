@@ -144,11 +144,12 @@ typedef struct s_map
 	float	p_pos[2];
 	char 	**map;
 	char	**buffer;
-	char	*door;
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	*door;
+	char	*sprite;
 	int		width;
 	int		height;
 	int 	frgb;
@@ -176,6 +177,12 @@ typedef struct s_img {
 	int		endian;
 }	t_img;
 
+typedef struct s_sprite
+{
+	int		x;
+	int		y;
+}	t_sprite;
+
 typedef struct s_tex {
 	t_img	img;
 	int		h;
@@ -194,17 +201,19 @@ typedef struct s_p {
 
 /* s_vars: program struct */
 typedef struct s_vars {
-	int		frame;
-	t_map	map;
-	t_p		p;
-	t_img	img;
-	t_img	minimap;
-	t_img	mm_player;
-	int		mm_offset[2];
-	t_tex	tex[5];
-	void	*mlx;
-	void	*win;
-	int		door_hit[2];
+	int			frame;
+	t_map		map;
+	t_p			p;
+	t_img		img;
+	t_img		minimap;
+	t_img		mm_player;
+	int			mm_offset[2];
+	t_tex		tex[5];
+	t_tex		sprite; // TODO texture array with all the frames
+	t_sprite	**sprites;
+	void		*mlx;
+	void		*win;
+	int			door_hit[2];
 }	t_vars;
 
 typedef struct s_ray {
