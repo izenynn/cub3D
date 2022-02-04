@@ -164,7 +164,7 @@ void	fill_map(t_map **map)
 			(*map)->index++;
 	}
 	i = 0;
-	printf("[------------MAP------------]\n");
+	printf("[---------------MAP---------------]\n");
 	while ((*map)->map[i])
 		printf("[%s]\n", (*map)->map[i++]);
 	printf("[---------------EOF---------------]\n");
@@ -179,15 +179,16 @@ int	parse_map(t_map **map)
 		&& (*map)->buffer[(*map)->aux][0] == '\n')
 		(*map)->aux++;
 	(*map)->index = (*map)->aux;
-	while ((*map)->aux < ((*map)->lines - 1) && (*map)->buffer[(*map)->aux])
+	while ((*map)->aux <= ((*map)->lines) && (*map)->buffer[(*map)->aux])
 	{
-		if (line_handler((*map)->buffer[(*map)->aux++], ++i, map) != 0)
+		if (line_handler((*map)->buffer[(*map)->aux], ++i, map) != 0)
 			return (1);
 		if ((int)ft_strlen((*map)->buffer[(*map)->aux]) > (*map)->width)
-			(*map)->width = (int)ft_strlen((*map)->buffer[(*map)->aux++]);
+			(*map)->width = (int)ft_strlen((*map)->buffer[(*map)->aux]);
+		(*map)->aux++;
 	}
-	(*map)->height = i;
-	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 3));
+	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 1));
+	(*map)->height = i + 1;
 	if (!(*map)->map)
 		return (1);
 	fill_map(map);

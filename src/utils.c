@@ -41,6 +41,10 @@ void	free_all(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[0].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[1].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[2].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[3].img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	// TODO free map struct
 	free_map(&vars->map);
