@@ -179,7 +179,6 @@ int	parse_map(t_map **map)
 		&& (*map)->buffer[(*map)->aux][0] == '\n')
 		(*map)->aux++;
 	(*map)->index = (*map)->aux;
-	(*map)->height = (*map)->index;
 	while ((*map)->aux < ((*map)->lines - 1) && (*map)->buffer[(*map)->aux])
 	{
 		if (line_handler((*map)->buffer[(*map)->aux++], ++i, map) != 0)
@@ -187,6 +186,7 @@ int	parse_map(t_map **map)
 		if ((int)ft_strlen((*map)->buffer[(*map)->aux]) > (*map)->width)
 			(*map)->width = (int)ft_strlen((*map)->buffer[(*map)->aux++]);
 	}
+	(*map)->height = i;
 	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 3));
 	if (!(*map)->map)
 		return (1);
