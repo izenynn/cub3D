@@ -29,17 +29,21 @@ static int	load_xpm(t_vars *vars, t_tex *texture, char *xpm_path)
 
 int	init_textures(t_vars *vars)
 {
-	if (load_xpm(vars, &vars->tex[TEX_NO], vars->map.no) != 0)
+	if (load_xpm(vars, &vars->tex[TEX_NO], vars->map.no) != 0
+		|| load_xpm(vars, &vars->tex[TEX_SO], vars->map.so) != 0
+		|| load_xpm(vars, &vars->tex[TEX_WE], vars->map.we) != 0
+		|| load_xpm(vars, &vars->tex[TEX_EA], vars->map.ea) != 0
+		|| load_xpm(vars, &vars->tex[TEX_DOOR], vars->map.door) != 0)
 		return (1);
-	if (load_xpm(vars, &vars->tex[TEX_SO], vars->map.so) != 0)
-		return (1);
-	if (load_xpm(vars, &vars->tex[TEX_WE], vars->map.we) != 0)
-		return (1);
-	if (load_xpm(vars, &vars->tex[TEX_EA], vars->map.ea) != 0)
-		return (1);
-	if (load_xpm(vars, &vars->tex[TEX_DOOR], vars->map.door) != 0)
-		return (1);
-	if (load_xpm(vars, &vars->sprite, vars->map.sprite) != 0)
-		return (1);
+	if (vars->sprite != NULL)
+	{
+		if (load_xpm(vars, &vars->sprite[0], vars->map.sprite[0]) != 0
+			|| load_xpm(vars, &vars->sprite[1], vars->map.sprite[1]) != 0
+			|| load_xpm(vars, &vars->sprite[2], vars->map.sprite[2]) != 0
+			|| load_xpm(vars, &vars->sprite[3], vars->map.sprite[3]) != 0
+			|| load_xpm(vars, &vars->sprite[4], vars->map.sprite[4]) != 0
+			|| load_xpm(vars, &vars->sprite[5], vars->map.sprite[5]) != 0)
+			return (1);
+	}
 	return (0);
 }

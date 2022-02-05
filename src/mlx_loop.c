@@ -14,8 +14,8 @@
 
 int	game_loop(void *vars)
 {
-	if (++((t_vars *)vars)->frame > 60)
-		((t_vars *)vars)->frame = 1;
+	if (++((t_vars *)vars)->frame >= 60)
+		((t_vars *)vars)->frame = 0;
 	draw((t_vars *)vars);
 	return (0);
 }
