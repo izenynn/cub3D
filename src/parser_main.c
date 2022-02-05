@@ -54,6 +54,35 @@ int	first_read(char *str, t_map *map)
 	close(fd);
 	return (0);
 }
+int parse_sprites(t_map *map)
+{
+	char	**aux;
+	int		i;
+	int		id;
+
+	map->sprites = (char ***)ft_calloc(map->sprite_cnt + 1, sizeof(char **));
+	map->spaux = (t_spaux *)ft_calloc(map->sprite_cnt + 1, sizeof(t_spaux));
+	if (!map->sprites || !map->spaux)
+		return (-1);
+	i = map->sprite_index;
+	id = 0;
+	while (map->buffer[i])
+	{
+		if (ft_strncmp(map->buffer[i], ES, ft_strlen(ES)) == 0)
+			break ;
+		aux = ft_split(map->buffer[i], ' ');
+		if (aux[1])
+			map->sprites[id] = ft_split(aux[1], ' ');
+		else
+			return (-1);
+		map->spaux[id].id = id;
+		map->spaux[id].type = aux[0];
+		id++;
+		i++;
+		free_split(aux);
+	}
+	return (0);
+}
 
 int	init_parser(t_map *map, char *str)
 {
@@ -63,6 +92,7 @@ int	init_parser(t_map *map, char *str)
 		return (error_ret("Error\nfatal error\n", 1));
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
+
 	if (parse_map(&map) != 0)
 		return (free_struct(map, 1));
 	if (last_map_check(&map) != 0)

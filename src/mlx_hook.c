@@ -32,20 +32,7 @@ int	key_hook(int keycode, t_vars *vars)
 		handle_sidemove(keycode, vars);
 	else if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
 		handle_look(keycode, vars);
-	/*if (keycode == KEY_UP || keycode == KEY_DOWN)
-		handle_zoom(keycode, vars);
-	if (keycode == KEY_U || keycode == KEY_J || keycode == KEY_I
-		|| keycode == KEY_K || keycode == KEY_O || keycode == KEY_L)
-		handle_rot(keycode, vars);
-	if (keycode == KEY_MINUS || keycode == KEY_PLUS)
-		handle_flattening(keycode, vars);
-	if (keycode == KEY_P)
-	{
-		if (vars->iso)
-			vars->iso = 0;
-		else
-			vars->iso = 1;
-	}*/
-	//draw(vars);
+	else if (keycode == KEY_E)
+		handle_door(vars);
 	return (0);
 }

@@ -17,7 +17,6 @@ int	mouse_hook(int x, int y, t_vars *vars)
 	(void)vars;
 	if (x < 0 || y < 0)
 		return (1);
-	printf("key: x -> %d | y -> %d\n", x, y);
 	return (0);
 }
 

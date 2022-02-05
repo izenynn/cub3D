@@ -60,24 +60,27 @@
 #  define TEX_W 64
 #  define TEX_H 64
 # endif
-# if !defined NO || !defined SO || !defined WE || !defined EA
-#  define NO 0
-#  define SO 1
-#  define WE 2
-#  define EA 3
+# if !defined NO || !defined SO || !defined WE || !defined EA || !defined DOOR
+#  define TEX_NO 0
+#  define TEX_SO 1
+#  define TEX_WE 2
+#  define TEX_EA 3
+#  define TEX_DOOR 4
 # endif
 
 /* other useful macros */
 # define FLOOR '0'
 # define WALL '1'
+# define DOOR_OPEN 'O'
+# define DOOR_CLOSE 'C'
 # define SPEED 0.1
 # define ROT_SPEED 0.1
 # define Y 0
 # define X 1
 # define WHITE 0xFFFFFF
-# define MINIMAP_FLOOR 0xFECEA8
-# define MINIMAP_WALL 0x2A363B
-# define MINIMAP_DOOR 0x99B898
+# define MINIMAP_WALL 0x1E2328
+# define MINIMAP_FLOOR 0x3B3F46
+# define MINIMAP_DOOR 0xF5B301
 
 /* minilibx keymaps */
 # ifdef OSX
@@ -100,6 +103,7 @@
 #  define KEY_K 40
 #  define KEY_O 31
 #  define KEY_L 37
+#  define KEY_E 41 // TODO e keycode on mac
 # else
 #  ifndef LINUX
 #   define LINUX
@@ -123,6 +127,7 @@
 #  define KEY_K 107
 #  define KEY_O 111
 #  define KEY_L 108
+#  define KEY_E 101
 # endif
 
 /* PARSER DEFINES */
@@ -158,6 +163,7 @@ typedef struct s_map
 	char	*we;
 	char	*ea;
 	char 	*door;
+	char	**sprite;
 	int		width;
 	int		height;
 	int 	frgb;
@@ -190,8 +196,14 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_tex
+typedef struct s_sprite
 {
+	int		x;
+	int		y;
+	int		id;
+}	t_sprite;
+
+typedef struct s_tex {
 	t_img	img;
 	int		h;
 	int		w;
@@ -209,15 +221,21 @@ typedef struct s_p
 }	t_p;
 
 /* s_vars: program struct */
-typedef struct s_vars
-{
-	t_map	map;
-	t_p		p;
-	t_img	img;
-	t_img	minimap;
-	t_tex	tex[4];
-	void	*mlx;
-	void	*win;
+typedef struct s_vars {
+	int			frame;
+	t_map		map;
+	t_p			p;
+	t_img		img;
+	t_img		minimap;
+	t_img		mm_player;
+	int			mm_offset[2];
+	t_tex		tex[5];
+	t_tex		sprite[6]; // TODO texture array with all the frames
+	t_sprite	**sprites;
+	int			sprite_cnt;
+	void		*mlx;
+	void		*win;
+	int			door_hit[2];
 }	t_vars;
 
 typedef struct s_ray
@@ -236,6 +254,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		hit;
+	int		hit_door;
 	int		side;
 	int		line_height;
 	int		draw_start;
@@ -246,6 +265,9 @@ typedef struct s_ray
 	float	wall_x;
 	float	step;
 	float	tex_pos;
+	float	z_buffer[WIN_W];
+	int		*sprite_order;
+	float	*sprite_dist;
 }	t_ray;
 
 /* parse_map.c */
@@ -296,8 +318,8 @@ int		key_hook(int keycode, t_vars *vars);
 int		initialise_mlx(t_vars *vars);
 
 /* mlx_utils.c */
-void	img_pixel_put(t_img img, int x, int y, int color);
-void	img_paste_pixel(t_img img, int x, int y, int pixel);
+void	img_pixel_put(t_img *img, int x, int y, int color);
+void	img_paste_pixel(t_img *img, int x, int y, int pixel);
 
 /* mlx_loop.c */
 int		game_loop(void *vars);
@@ -306,6 +328,7 @@ int		game_loop(void *vars);
 void	handle_move(int keycode, t_vars *vars);
 void	handle_sidemove(int keycode, t_vars *vars);
 void	handle_look(int keycode, t_vars *vars);
+void	handle_door(t_vars *vars);
 
 /* mlx_textures.c */
 int		init_textures(t_vars *vars);

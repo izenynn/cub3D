@@ -35,18 +35,32 @@ void	free_map(t_map *map)
 	free(map->so);
 	free(map->we);
 	free(map->ea);
+	free(map->door);
 }
 
 void	free_all(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->minimap.img);
+	mlx_destroy_image(vars->mlx, vars->mm_player.img);
 	mlx_destroy_image(vars->mlx, vars->img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[0].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[1].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[2].img.img);
-	mlx_destroy_image(vars->mlx, vars->tex[3].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_NO].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_SO].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_WE].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_EA].img.img);
+	mlx_destroy_image(vars->mlx, vars->tex[TEX_DOOR].img.img);
+
+	// vars->sprite will be null if a sprite is not especified in the map
+	if (vars->sprite != NULL)
+	{
+		mlx_destroy_image(vars->mlx, vars->sprite[0].img.img);
+		mlx_destroy_image(vars->mlx, vars->sprite[1].img.img);
+		mlx_destroy_image(vars->mlx, vars->sprite[2].img.img);
+		mlx_destroy_image(vars->mlx, vars->sprite[3].img.img);
+		mlx_destroy_image(vars->mlx, vars->sprite[4].img.img);
+		mlx_destroy_image(vars->mlx, vars->sprite[5].img.img);
+	}
+
 	mlx_destroy_window(vars->mlx, vars->win);
-	// TODO free map struct
 	free_map(&vars->map);
 	free_vars(vars);
 }
@@ -59,6 +73,7 @@ void	reset_vars(t_vars *vars)
 int	initialise_vars(t_vars *vars)
 {
 	reset_vars(vars);
+	vars->frame = -1;
 	player_init(vars);
 	return (0);
 }

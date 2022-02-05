@@ -163,11 +163,6 @@ void	fill_map(t_map **map)
 				0, ft_strlen((*map)->buffer[(*map)->index]));
 			(*map)->index++;
 	}
-	i = 0;
-	printf("[---------------MAP---------------]\n");
-	while ((*map)->map[i])
-		printf("[%s]\n", (*map)->map[i++]);
-	printf("[---------------EOF---------------]\n");
 }
 
 int	parse_map(t_map **map)
