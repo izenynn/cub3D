@@ -260,14 +260,14 @@ static void	raycast(t_vars *vars)
 
 		for (int x = draw_start_x; x < draw_end_x; x++)
 		{
-			int tex_x = (int)((256 * (x - (-sprite_width / 2 + sprite_screen_x)) * vars->sprite[(int)(vars->frame / 10)].w / sprite_width) / 256);
+			int tex_x = (int)((256 * (x - (-sprite_width / 2 + sprite_screen_x)) * vars->sprite[vars->sprites[i]->id][(int)(vars->frame / 10)]->w / sprite_width) / 256);
 			if (transform_y > 0 && x > 0 && x < WIN_W && transform_y < ray.z_buffer[x])
 			{
 				for (int y = draw_start_y; y < draw_end_y; y++)
 				{
 					int d = (y) * 256 - WIN_H * 128 + sprite_height * 128;
-					int tex_y = ((d * vars->sprite[(int)(vars->frame / 10)].h) / sprite_height) / 256;
-					int color = get_pixel_color(&vars->sprite[(int)(vars->frame / 10)].img, tex_x, tex_y);
+					int tex_y = ((d * vars->sprite[vars->sprites[i]->id][(int)(vars->frame / 10)]->h) / sprite_height) / 256;
+					int color = get_pixel_color(&vars->sprite[vars->sprites[i]->id][(int)(vars->frame / 10)]->img, tex_x, tex_y);
 					if (color != 0x0)
 						img_paste_pixel(&vars->img, WIN_W - 1 - x, y, color);
 				}

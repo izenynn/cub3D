@@ -83,7 +83,6 @@ void	handle_look(int keycode, t_vars *vars)
 
 void	handle_door(t_vars *vars)
 {
-	write(1, "Door\n", 5);
 	if (vars->door_hit[X] == -1 || vars->door_hit[Y] == -1)
 		return ;
 	if (vars->map.map[vars->door_hit[Y]][vars->door_hit[X]] == DOOR_CLOSE

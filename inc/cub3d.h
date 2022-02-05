@@ -149,8 +149,7 @@ typedef struct s_map
 	char	*we;
 	char	*ea;
 	char	*door;
-	char	**sprite;
-	//char	***sprite;
+	char	***sprite;
 	int		width;
 	int		height;
 	int 	frgb;
@@ -182,7 +181,7 @@ typedef struct s_sprite
 {
 	int		x;
 	int		y;
-	//int		id; // corresponde a la posicion en el array de texturas
+	int		id; // corresponde a la posicion en el array de texturas
 }	t_sprite;
 
 typedef struct s_tex {
@@ -211,7 +210,7 @@ typedef struct s_vars {
 	t_img		mm_player;
 	int			mm_offset[2];
 	t_tex		tex[5];
-	t_tex		sprite[6]; // TODO texture array with all the frames
+	t_tex		***sprite; // TODO texture array with all the frames
 	t_sprite	**sprites;
 	int			sprite_cnt;
 	void		*mlx;
