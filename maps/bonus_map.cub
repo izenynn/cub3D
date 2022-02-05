@@ -8,8 +8,8 @@ F 220,100,0
 C 225,30,0
 
 BEGIN SPRITES
-BARREL "./textures/wall_1 ./textures/wall_1.xpm ./textures/wall_2.xpm ./textures/wall_3.xpm ./textures/wall_4.xpm"
-TORCH "./textures/slime_1.xpm ./textures/wall_1.xpm ./textures/wall_2.xpm ./textures/wall_3.xpm ./textures/wall_4.xpm"
+BARREL ./textures/wall_1.xpm;./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_3.xpm;./textures/wall_4.xpm
+TORCH ./textures/slime_1.xpm;./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_3.xpm;./textures/wall_4.xpm
 END SPRITES
 
 BEGIN POS

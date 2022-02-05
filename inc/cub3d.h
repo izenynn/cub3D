@@ -145,6 +145,13 @@
  * *p_pos	=> Player position -> [0] = x, [1] = y;
  */
 
+typedef struct s_sprite
+{
+	int		x;
+	int		y;
+	int		id;
+}	t_sprite;
+
 typedef struct s_spaux
 {
 	char	*type;
@@ -153,30 +160,30 @@ typedef struct s_spaux
 
 typedef struct s_map
 {
-	t_spaux *spaux;
-	char	start_orientation;
-	char 	**map;
-	char	**buffer;
-	char 	***sprites;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char 	*door;
-	char	**sprite;
-	int		width;
-	int		height;
-	int 	frgb;
-	int 	sprite_index;
-	int 	sprite_cnt;
-	int 	pos_index;
-	int 	pos_cnt;
-	int 	crgb;
-	int 	aux;
-	int 	lines;
-	int 	index;
-	int		count;
-	float	p_pos[2];
+	t_sprite	*sprite;
+	t_spaux 	*spaux;
+	char		start_orientation;
+	char 		**map;
+	char		**buffer;
+	char 		***sprites;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char 		*door;
+	int			width;
+	int			height;
+	int 		frgb;
+	int 		sprite_index;
+	int 		sprite_cnt;
+	int 		pos_index;
+	int 		pos_cnt;
+	int 		crgb;
+	int 		aux;
+	int 		lines;
+	int 		index;
+	int			count;
+	float		p_pos[2];
 }	t_map;
 
 /* s_img: minilibx image struct
@@ -195,13 +202,6 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
-
-typedef struct s_sprite
-{
-	int		x;
-	int		y;
-	int		id;
-}	t_sprite;
 
 typedef struct s_tex {
 	t_img	img;

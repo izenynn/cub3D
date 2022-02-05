@@ -7,6 +7,7 @@ void	init_map(t_map	*map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	map->door = NULL;
 	map->height = 0;
 	map->width = 0;
 	map->crgb = 0;

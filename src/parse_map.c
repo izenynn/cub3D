@@ -22,7 +22,6 @@ int	above_and_below(t_map **map, int i, int j, int x)
 	{
 		if (tmp[j] != '1' && tmp[j] != ' ')
 		{
-			printf("(%c)\n", tmp[j]);
 			return (-2);
 		}
 		j++;
@@ -104,6 +103,7 @@ int	check_top_and_bot(char *line)
 	int	i;
 
 	i = -1;
+
 	while (line[++i] && (line[i] != '\n' && line[i] != '\0'))
 	{
 		if (line[i] != '1' && line[i] != ' ')
@@ -129,13 +129,14 @@ int	line_handler(char *line, int index, t_map **map)
 	i = skip_spaces(line, 0);
 	if (index == 0 || index == (*map)->lines)
 		return (check_top_and_bot(line));
-	else if (line && (line[i] != '1' || line[ft_strlen(line) - 1] != '1'))
+	else if (line && (line[i] != '1' || line[ft_strlen(line + 1)] != '1'))
 		return (error_ret("Error\nMap not closed by 1's\n", 1));
 	while (line[++i] != '\n' && line[i] != '\0')
 	{
 		if (!(line[i] == '0' || line[i] == '1' || line[i] == 'N'
 				|| line[i] == ' ' || line[i] == 'E'
-				|| line[i] == 'W' || line[i] == 'S'))
+				|| line[i] == 'W' || line[i] == 'S'
+				|| line[i] == 'C' || line[i] == 'O'))
 			return (error_ret("Error\nInvalid character on the map\n", 1));
 		else
 		{
@@ -157,12 +158,16 @@ void	fill_map(t_map **map)
 			break ;
 		(*map)->index++;
 	}
-	while ((*map)->index < ((*map)->lines) && (*map)->buffer[(*map)->index])
+	while ((*map)->buffer[(*map)->index] && (*map)->index < ((*map)->lines))
 	{
 			(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
 				0, ft_strlen((*map)->buffer[(*map)->index]));
 			(*map)->index++;
 	}
+	(*map)->map[i] = NULL;
+	i = -1;
+	while ((*map)->map[++i])
+		printf("[%s]\n", (*map)->map[i]);
 }
 
 int	parse_map(t_map **map)
@@ -171,8 +176,9 @@ int	parse_map(t_map **map)
 
 	i = -1;
 	while ((*map)->buffer[(*map)->aux]
-		&& (*map)->buffer[(*map)->aux][0] == '\n')
+		&& (*map)->buffer[(*map)->aux][0] == '\0') {
 		(*map)->aux++;
+	}
 	(*map)->index = (*map)->aux;
 	while ((*map)->aux <= ((*map)->lines) && (*map)->buffer[(*map)->aux])
 	{
@@ -182,10 +188,10 @@ int	parse_map(t_map **map)
 			(*map)->width = (int)ft_strlen((*map)->buffer[(*map)->aux]);
 		(*map)->aux++;
 	}
-	(*map)->map = (char **)ft_calloc(1, sizeof(char *) * (i + 1));
-	(*map)->height = i + 1;
+	(*map)->map = (char **)ft_calloc((i + 2), sizeof(char *));
 	if (!(*map)->map)
 		return (1);
+	(*map)->height = i + 1;
 	fill_map(map);
 	return (0);
 }
