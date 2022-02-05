@@ -60,7 +60,7 @@
 #  define TEX_W 64
 #  define TEX_H 64
 # endif
-# if !defined NO || !defined SO || !defined WE || !defined EA
+# if !defined NO || !defined SO || !defined WE || !defined EA || !defined DOOR
 #  define TEX_NO 0
 #  define TEX_SO 1
 #  define TEX_WE 2
@@ -130,6 +130,11 @@
 #  define KEY_E 101
 # endif
 
+/* PARSER DEFINES */
+#	define BS "BEGIN SPRITES"
+#	define ES "END SPRITES"
+#	define BP "BEGIN POS"
+#	define EP "END POS"
 /* s_map: map struct
  *
  * res[2]	-> resolution of the window defined on the map file
@@ -139,11 +144,20 @@
  * *cRGB	-> ceiling rgb colors
  * *p_pos	=> Player position -> [0] = x, [1] = y;
  */
+
+typedef struct s_spaux
+{
+	char	*type;
+	int		id;
+}	t_spaux;
+
 typedef struct s_map
 {
-	float	p_pos[2];
+	t_spaux *spaux;
+	char	start_orientation;
 	char 	**map;
 	char	**buffer;
+	char 	***sprites;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -153,12 +167,16 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int 	frgb;
+	int 	sprite_index;
+	int 	sprite_cnt;
+	int 	pos_index;
+	int 	pos_cnt;
 	int 	crgb;
 	int 	aux;
 	int 	lines;
 	int 	index;
 	int		count;
-	char	start_orientation;
+	float	p_pos[2];
 }	t_map;
 
 /* s_img: minilibx image struct
@@ -169,7 +187,8 @@ typedef struct s_map
  * line_len -> len of a line of pixeles in *addr
  * endian	-> SO endian type (0 = small endian, 1 = big endian)
  */
-typedef struct s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -181,7 +200,7 @@ typedef struct s_sprite
 {
 	int		x;
 	int		y;
-	int		id; // corresponde a la posicion en el array de texturas
+	int		id;
 }	t_sprite;
 
 typedef struct s_tex {
@@ -191,7 +210,8 @@ typedef struct s_tex {
 }	t_tex;
 
 /* s_p: player struct */
-typedef struct s_p {
+typedef struct s_p
+{
 	float	pos_x;
 	float	pos_y;
 	float	dir_x;
@@ -218,7 +238,8 @@ typedef struct s_vars {
 	int			door_hit[2];
 }	t_vars;
 
-typedef struct s_ray {
+typedef struct s_ray
+{
 	int		map_x;
 	int		map_y;
 	float	cam_x;
