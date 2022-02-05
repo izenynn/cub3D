@@ -35,7 +35,7 @@ int	process_colour(t_map **map, int i, char **sp)
 	if (tmp[0] < 0 || tmp[0] > 256 || tmp[1] < 0 || tmp[1] > 256
 		|| tmp[2] < 0 || tmp[2] > 256)
 		return (3);
-	printf("h %s\n",(*map)->buffer[i]);
+	//printf("h %s\n",(*map)->buffer[i]);
 	if (ft_strncmp((*map)->buffer[i], "F", 1) == 0)
 		(*map)->frgb = create_trgb(0, tmp[0], tmp[1], tmp[2]);
 	else

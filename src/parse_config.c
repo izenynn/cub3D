@@ -9,7 +9,7 @@ static int	read_colour(t_map **map, int i)
 	{
 		aux = ft_substr((*map)->buffer[i], 5, ft_strlen((*map)->buffer[i]));
 		(*map)->door = aux;
-		free(aux);
+		//free(aux);
 		return (0);
 	}
 	else if (ft_strncmp((*map)->buffer[i], "F", 1) == 0 || ft_strncmp((*map)->buffer[i], "C", 1) == 0)

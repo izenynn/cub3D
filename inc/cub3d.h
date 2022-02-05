@@ -230,9 +230,8 @@ typedef struct s_vars {
 	t_img		mm_player;
 	int			mm_offset[2];
 	t_tex		tex[5];
-	t_tex		sprite[6]; // TODO texture array with all the frames
+	t_tex		***sprite; // TODO texture array with all the frames
 	t_sprite	**sprites;
-	int			sprite_cnt;
 	void		*mlx;
 	void		*win;
 	int			door_hit[2];

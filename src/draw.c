@@ -20,10 +20,10 @@ void	sort_sprites(t_ray *ray, t_vars *vars)
 	int		i;
 
 	i = -1;
-	while (++i < vars->sprite_cnt - 1)
+	while (++i < vars->map.sprite_cnt - 1)
 	{
 		sprite = -1;
-		while (++sprite < vars->sprite_cnt - 1)
+		while (++sprite < vars->map.sprite_cnt - 1)
 		{
 			if (ray->sprite_dist[sprite] < ray->sprite_dist[sprite + 1])
 			{
@@ -218,21 +218,21 @@ static void	raycast(t_vars *vars)
 
 	// SPRITE CASTING
 
-	ray.sprite_order = (int *)malloc(sizeof(int) * vars->sprite_cnt);
-	ray.sprite_dist = (float *)malloc(sizeof(float) * vars->sprite_cnt);
+	ray.sprite_order = (int *)malloc(sizeof(int) * vars->map.sprite_cnt);
+	ray.sprite_dist = (float *)malloc(sizeof(float) * vars->map.sprite_cnt);
 
-	for (int i = 0; i < vars->sprite_cnt; i++)
+	for (int i = 0; i < vars->map.sprite_cnt; i++)
 	{
 		ray.sprite_order[i] = i;
-		ray.sprite_dist[i] = ((vars->p.pos_x - vars->sprites[i]->x) * (vars->p.pos_x - vars->sprites[i]->x)
-			+ (vars->p.pos_y - vars->sprites[i]->y) * (vars->p.pos_y - vars->sprites[i]->y));
+		ray.sprite_dist[i] = ((vars->p.pos_x - vars->map.sprite[i].x) * (vars->p.pos_x - vars->map.sprite[i].x)
+			+ (vars->p.pos_y - vars->map.sprite[i].y) * (vars->p.pos_y - vars->map.sprite[i].y));
 	}
 	sort_sprites(&ray, vars);
 
-	for (int i = 0; i < vars->sprite_cnt; i++)
+	for (int i = 0; i < vars->map.sprite_cnt; i++)
 	{
-		float sprite_x = vars->sprites[ray.sprite_order[i]]->x - vars->p.pos_x;
-		float sprite_y = vars->sprites[ray.sprite_order[i]]->y - vars->p.pos_y;
+		float sprite_x = vars->map.sprite[ray.sprite_order[i]].x - vars->p.pos_x;
+		float sprite_y = vars->map.sprite[ray.sprite_order[i]].y - vars->p.pos_y;
 
 		float inv_det = 1.0 / (vars->p.plane_x * vars->p.dir_y - vars->p.plane_y * vars->p.dir_x);
 
@@ -260,14 +260,14 @@ static void	raycast(t_vars *vars)
 
 		for (int x = draw_start_x; x < draw_end_x; x++)
 		{
-			int tex_x = (int)((256 * (x - (-sprite_width / 2 + sprite_screen_x)) * vars->sprite[(int)(vars->frame / 10)].w / sprite_width) / 256);
+			int tex_x = (int)((256 * (x - (-sprite_width / 2 + sprite_screen_x)) * vars->sprite[vars->map.sprite[i].id][(int)(vars->frame / 10)]->w / sprite_width) / 256);
 			if (transform_y > 0 && x > 0 && x < WIN_W && transform_y < ray.z_buffer[x])
 			{
 				for (int y = draw_start_y; y < draw_end_y; y++)
 				{
 					int d = (y) * 256 - WIN_H * 128 + sprite_height * 128;
-					int tex_y = ((d * vars->sprite[(int)(vars->frame / 10)].h) / sprite_height) / 256;
-					int color = get_pixel_color(&vars->sprite[(int)(vars->frame / 10)].img, tex_x, tex_y);
+					int tex_y = ((d * vars->sprite[vars->map.sprite[i].id][(int)(vars->frame / 10)]->h) / sprite_height) / 256;
+					int color = get_pixel_color(&vars->sprite[vars->map.sprite[i].id][(int)(vars->frame / 10)]->img, tex_x, tex_y);
 					if (color != 0x0)
 						img_paste_pixel(&vars->img, WIN_W - 1 - x, y, color);
 				}
