@@ -53,7 +53,7 @@ void	free_all(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_DOOR].img.img);
 
 	i = -1;
-	while (vars->sprite[++i] != NULL)
+	while (vars->sprite != NULL && vars->sprite[++i] != NULL)
 	{
 		j = -1;
 		while (vars->sprite[i][++j] != NULL)
@@ -89,6 +89,7 @@ int	initialise_vars(t_vars *vars)
 {
 	reset_vars(vars);
 	vars->frame = -1;
+	vars->sprite = NULL;
 	player_init(vars);
 	return (0);
 }
