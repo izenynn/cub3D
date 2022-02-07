@@ -317,6 +317,7 @@ int		key_hook(int keycode, t_vars *vars);
 int		initialise_mlx(t_vars *vars);
 
 /* mlx_utils.c */
+int		get_pixel_color(t_img *img, int x, int y);
 void	img_pixel_put(t_img *img, int x, int y, int color);
 void	img_paste_pixel(t_img *img, int x, int y, int pixel);
 
@@ -337,5 +338,8 @@ int		player_init(t_vars *vars);
 
 /* draw.c */
 void	draw(t_vars *vars);
+
+/* raycast_sprite.c */
+void	raycast_sprite(t_vars *vars, t_ray *ray);
 
 #endif

@@ -59,8 +59,11 @@ void	free_all(t_vars *vars)
 		while (vars->sprite[i][++j] != NULL)
 		{
 			mlx_destroy_image(vars->mlx, vars->sprite[i][j]->img.img);
+			free(vars->sprite[i][j]);
 		}
+		free(vars->sprite[i]);
 	}
+	free(vars->sprite);
 	// vars->sprite will be null if a sprite is not especified in the map
 	//if (vars->sprite != NULL)
 	//{
