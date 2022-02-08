@@ -86,3 +86,4 @@ void	raycast_sprite(t_vars *vars, t_ray *ray)
 		}
 	}
 }
+

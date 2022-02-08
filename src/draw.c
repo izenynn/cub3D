@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:04:36 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/19 15:04:54 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:48:24 by acostal-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ static void	draw_minimap(t_vars *vars)
 		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
 	screen_pos[Y] = (vars->mm_offset[Y] / 2) + (vars->p.pos_y *
 		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
-	side_len = 7.5;
+	side_len = 7;
 	screen_pos[X] -= side_len / 2;
 	screen_pos[Y] -= side_len / 2;
 	draw_square(&vars->mm_player, screen_pos, side_len, 0xFF0000);
