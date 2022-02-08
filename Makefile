@@ -98,7 +98,7 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 # **************************************************************************** #
 
 # SOURCES MAIN
-SRC_FILES =		main.c				error.c				utils.c				\
+SRC_FILES =		main.c				error.c				utils_1.c				\
 				utils_2.c
 
 # SOURCES PARSE
@@ -116,6 +116,14 @@ SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
+
+DEP_FILES = $(SRC_FILES:%.c=%.d)
+
+DEP = $(addprefix $(OBJ_PATH)/, $(DEP_FILES))
+
+# **************************************************************************** #
+#                                CROSS COMPILE                                 #
+# **************************************************************************** #
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -142,9 +150,8 @@ endif
 #                                    RULES                                     #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re norme
-
 # ALL
+PHONY := all
 all: $(NAME)
 
 # NAME
@@ -157,6 +164,7 @@ $(NAME): $(LFT_NAME) $(LMLX_NAME) $(OBJ)
 	@printf "${CYN}type \"./cub3D\" to start!${NOCOL}\n"
 
 # SANITIZE ADDRESS
+PHONY += sanitize
 ifeq ($(UNAME_S),Linux)
 sanitize: CFLAGS += -pedantic -g3 -fsanitize=address -fsanitize=leak -fsanitize=undefined -fsanitize=bounds -fsanitize=null
 endif
@@ -166,6 +174,7 @@ endif
 sanitize: $(NAME)
 
 # SANITIZE THREAD
+PHONY += thread
 thread: CFLAGS += -g3 -fsanitize=thread
 thread: $(NAME)
 
@@ -203,6 +212,7 @@ $(OBJ_PATH):
 	@printf "${NOCOL}"
 
 # CLEAN
+PHONY += clean
 clean:
 	@printf "${RED}"
 	$(MAKE) clean -sC $(LFT_DIR)
@@ -213,6 +223,7 @@ clean:
 	@printf "${NOCOL}"
 
 # FULL CLEAN
+PHONY += fclean
 fclean: clean
 	@printf "${RED}"
 	$(MAKE) fclean -sC $(LFT_DIR)
@@ -223,9 +234,11 @@ fclean: clean
 	@printf "${NOCOL}"
 
 # RE
+PHONY += re
 re: fclean all
 
 # NORMINETTE
+PHONY += norme
 norme:
 	@printf "\n${GRN}##########${YEL} NORMINETTE ${GRN}##########${NOCOL}\n"
 	@printf "\n${GRN}LIBFT:${BLU}\n\n"
@@ -234,3 +247,8 @@ norme:
 	@norminette $(INC_PATH)
 	@norminette $(SRC_PATH)
 	@printf "${NOCOL}"
+
+# PREREQUISITES
+-include $(DEP)
+
+.PHONY: $(PHONY)

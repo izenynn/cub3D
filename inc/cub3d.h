@@ -25,7 +25,7 @@
 # include <fcntl.h>
 
 /* math */
-#include <math.h>
+# include <math.h>
 
 /* minilibx */
 # include <mlx.h>
@@ -133,10 +133,10 @@
 # endif
 
 /* PARSER DEFINES */
-#	define BS "BEGIN SPRITES"
-#	define ES "END SPRITES"
-#	define BP "BEGIN POS"
-#	define EP "END POS"
+# define BS "BEGIN SPRITES"
+# define ES "END SPRITES"
+# define BP "BEGIN POS"
+# define EP "END POS"
 /* s_map: map struct
  *
  * res[2]	-> resolution of the window defined on the map file
@@ -163,27 +163,27 @@ typedef struct s_spaux
 typedef struct s_map
 {
 	t_sprite	*sprite;
-	t_spaux 	*spaux;
+	t_spaux		*spaux;
 	char		start_orientation;
-	char 		**map;
+	char		**map;
 	char		**buffer;
-	char 		***sprites;
+	char		***sprites;
 	char		*no;
 	char		*so;
 	char		*we;
 	char		*ea;
-	char 		*door;
+	char		*door;
 	int			width;
 	int			height;
-	int 		frgb;
-	int 		sprite_index;
-	int 		sprite_cnt;
-	int 		pos_index;
-	int 		pos_cnt;
-	int 		crgb;
-	int 		aux;
-	int 		lines;
-	int 		index;
+	int			frgb;
+	int			sprite_index;
+	int			sprite_cnt;
+	int			pos_index;
+	int			pos_cnt;
+	int			crgb;
+	int			aux;
+	int			lines;
+	int			index;
 	int			count;
 	float		p_pos[2];
 }	t_map;
@@ -232,7 +232,7 @@ typedef struct s_vars {
 	t_img		mm_player;
 	int			mm_offset[2];
 	t_tex		tex[5];
-	t_tex		***sprite; // TODO texture array with all the frames
+	t_tex		***sprite;
 	t_sprite	**sprites;
 	void		*mlx;
 	void		*win;
@@ -286,7 +286,7 @@ int		free_struct(t_map *map, int ret);
 int		is_dptr_digit(char **s);
 int		create_trgb(int t, int r, int g, int b);
 int		process_colour(t_map **map, int i, char **sp);
-int 	last_map_check(t_map **map);
+int		last_map_check(t_map **map);
 int		check_surroundings(t_map **map, int i, int j);
 
 /* parse_utils.c */
