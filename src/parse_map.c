@@ -103,8 +103,6 @@ int	check_top_and_bot(char *line)
 	int	i;
 
 	i = -1;
-	printf("[%s]\n", line);
-	printf("%c -> %d\n", *line, *line);
 	while (line[++i])
 	{
 		if (line[i] != '1' && line[i] != ' ')
@@ -127,7 +125,6 @@ int	line_handler(char *line, int index, t_map **map)
 {
 	int	i;
 
-	printf("INDEX [%d]\n", index);
 	i = skip_spaces(line, 0);
 	if (index == 0 || index == (*map)->lines)
 		return (check_top_and_bot(line));

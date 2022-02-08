@@ -100,11 +100,13 @@ static void	project_and_draw(t_vars *vars, t_ray *ray, t_sprite_sp *s, int i)
 	draw_sprite(vars, ray, s);
 }
 
-void	raycast_sprite(t_vars *vars, t_ray *ray)
+void	raycast_sprite(t_vars *vars)
 {
 	int			i;
+	t_ray		*ray;
 	t_sprite_sp	*s;
 
+	ray = vars->ray;
 	s = (t_sprite_sp *)malloc(sizeof(t_sprite_sp));
 	ray->sprite_order = (int *)malloc(sizeof(int) * vars->map->sprite_cnt);
 	ray->sprite_dist = (float *)malloc(sizeof(float) * vars->map->sprite_cnt);

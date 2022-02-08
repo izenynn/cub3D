@@ -85,15 +85,11 @@ static void	draw_crosshair(t_vars *vars)
 /* draw all on screen */
 void	draw(t_vars *vars)
 {
-	t_ray	*ray;
-
 	vars->door_hit[X] = -1;
 	vars->door_hit[Y] = -1;
-	ray = (t_ray *)malloc(sizeof(t_ray));
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
-	raycast_wall(vars, ray);
-	raycast_sprite(vars, ray);
-	free(ray);
+	raycast_wall(vars);
+	raycast_sprite(vars);
 	draw_crosshair(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	draw_minimap(vars);
