@@ -26,17 +26,9 @@ static void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 			img_pixel_put(&vars->img, WIN_W - 1 - x, y, vars->map.crgb);
 		if (y >= ray->draw_start && y <= ray->draw_end)
 		{
-			//img_pixel_put(vars->img, x, y, 0xC70039);
-			//img_pixel_put(vars->img, x, y, color);
 			ray->tex_y = (int)ray->tex_pos & (tex->h - 1);
 			ray->tex_pos += ray->step;
-			//color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
-			//color = tex->img.addr[tex->h * ray->tex_y + ray->tex_x];
-			//pixel = (y * img.line_len) + (x * (img.bpp / 8));
-
-			//pixel = tex->img.addr[(ray->tex_y * tex->img.line_len) + (ray->tex_x * (tex->img.bpp / 8))];
 			color = get_pixel_color(&tex->img, ray->tex_x, ray->tex_y);
-			//printf("color: %x\n", color);
 			img_paste_pixel(&vars->img, WIN_W - 1 - x, y, color);
 		}
 		if (y > ray->draw_end)
@@ -246,7 +238,6 @@ static void	draw_cross(t_vars *vars)
 	side_len = 10;
 	coords[X] = WIN_W / 2 - side_len / 2;
 	coords[Y] = WIN_H / 2 - side_len / 2;
-
 	draw_square(&vars->img, coords, side_len, CROSSHAIR_COLOR);
 }
 

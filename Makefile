@@ -114,12 +114,7 @@ SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c			\
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
-
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
-
-DEP_FILES = $(SRC_FILES:%.c=%.d)
-
-DEP = $(addprefix $(OBJ_PATH)/, $(DEP_FILES))
 
 # **************************************************************************** #
 #                                CROSS COMPILE                                 #
@@ -205,6 +200,12 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@printf "${NOCOL}"
 
+# DEP
+$(OBJ_PATH)/%.d: $(SRC_PATH)/%.c | $(OBJ_PATH)
+	@set -e; rm -f $@
+	$(CC) -M $(CFLAGS) $< > $@.$$$$
+	rm -f $@.$$$$
+
 # OBJ DIRS
 $(OBJ_PATH):
 	@printf "${MAG}"
@@ -247,8 +248,5 @@ norme:
 	@norminette $(INC_PATH)
 	@norminette $(SRC_PATH)
 	@printf "${NOCOL}"
-
-# PREREQUISITES
--include $(DEP)
 
 .PHONY: $(PHONY)

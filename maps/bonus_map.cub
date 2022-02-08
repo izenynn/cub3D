@@ -4,8 +4,8 @@ WE ./textures/wall_3.xpm
 EA ./textures/wall_4.xpm
 DOOR ./textures/door.xpm
 
-F 0,255,0
-C 255,0,0
+C 225,0,0
+F 0,0,255
 
 BEGIN SPRITES
 SLIME ./textures/slime_1.xpm;./textures/slime_2.xpm;./textures/slime_3.xpm;./textures/slime_4.xpm;./textures/slime_5.xpm;./textures/slime_6.xpm

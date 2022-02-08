@@ -64,17 +64,6 @@ void	free_all(t_vars *vars)
 		free(vars->sprite[i]);
 	}
 	free(vars->sprite);
-	// vars->sprite will be null if a sprite is not especified in the map
-	//if (vars->sprite != NULL)
-	//{
-	//	mlx_destroy_image(vars->mlx, vars->sprite[0].img.img);
-	//	mlx_destroy_image(vars->mlx, vars->sprite[1].img.img);
-	//	mlx_destroy_image(vars->mlx, vars->sprite[2].img.img);
-	//	mlx_destroy_image(vars->mlx, vars->sprite[3].img.img);
-	//	mlx_destroy_image(vars->mlx, vars->sprite[4].img.img);
-	//	mlx_destroy_image(vars->mlx, vars->sprite[5].img.img);
-	//}
-
 	mlx_destroy_window(vars->mlx, vars->win);
 	free_map(&vars->map);
 	free_vars(vars);
