@@ -317,6 +317,9 @@ int		key_hook(int keycode, t_vars *vars);
 /* mlx_init.c */
 int		initialise_mlx(t_vars *vars);
 
+/* minimap.c */
+void	initialise_minimap(t_vars *vars);
+
 /* mlx_utils.c */
 int		get_pixel_color(t_img *img, int x, int y);
 void	img_pixel_put(t_img *img, int x, int y, int color);
