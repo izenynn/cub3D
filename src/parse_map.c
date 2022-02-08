@@ -159,11 +159,11 @@ void	fill_map(t_map **map)
 	}
 	while ((*map)->buffer[(*map)->index] && (*map)->index < ((*map)->lines))
 	{
-			(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
+		if (!*(*map)->buffer[(*map)->index])
+			break ;
+		(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
 				0, ft_strlen((*map)->buffer[(*map)->index]));
-			(*map)->index++;
-			if (*(*map)->buffer[(*map)->index] == '\0')
-				break ;
+		(*map)->index++;
 	}
 	(*map)->map[i] = NULL;
 }
