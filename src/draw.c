@@ -70,7 +70,8 @@ static void	draw_minimap(t_vars *vars)
 		WIN_W - (vars->mm_player.line_len / vars->mm_player.bpp * 8) - 15, 15);
 }
 
-static void	draw_cross(t_vars *vars)
+/* draw crosshair on screen center */
+static void	draw_crosshair(t_vars *vars)
 {
 	int	side_len;
 	int	coords[2];
@@ -93,7 +94,7 @@ void	draw(t_vars *vars)
 	raycast_wall(vars, ray);
 	raycast_sprite(vars, ray);
 	free(ray);
-	draw_cross(vars);
+	draw_crosshair(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	draw_minimap(vars);
 	draw_menu(vars);
