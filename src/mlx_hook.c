@@ -14,6 +14,7 @@
 
 int	close_win(t_vars *vars)
 {
+	free_map(vars->map);
 	free_all(vars);
 	ft_putstr_fd("Quit\n", STDOUT_FILENO);
 	exit(EXIT_SUCCESS);

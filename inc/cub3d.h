@@ -294,7 +294,7 @@ typedef struct s_sprite_sp {
 	int		id;
 	int		frame;
 }	t_sprite_sp;
-
+void	free_map(t_map *map);
 /* parse_map.c */
 
 /* parser_main.c */

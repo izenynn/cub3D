@@ -24,8 +24,22 @@ void	free_split(char **split)
 
 void	free_map(t_map *map)
 {
+	int i;
+
+	i = -1;
 	free_split(map->map);
 	free_split(map->buffer);
+	if (map->sprites)
+	{
+		while (map->sprites[++i])
+			free_split(map->sprites[i]);
+		free(map->sprites);
+	}
+	i = -1;
+	while (++i <= map->sprite_cnt)
+		free(map->spaux[i].type);
+	free(map->sprite);
+	free(map->spaux);
 	free(map->no);
 	free(map->so);
 	free(map->we);
