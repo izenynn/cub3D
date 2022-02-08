@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/01 13:58:48 by                  ###   ########.fr       */
+/*   Updated: 2022/02/08 13:06:41 by acostal-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ int parse_sprites(t_map *map)
 			break ;
 		aux = ft_split(map->buffer[i], ' ');
 		if (aux[1])
+		{
 			map->sprites[id] = ft_split(aux[1], ';');
+			if (dptr_len(map->sprites[id]) != 6)
+					return (error_ret("Error\nAnimations need 6 textures\n", -1));
+		}
 		else
 			return (-1);
 		map->spaux[id].id = id;
@@ -130,7 +134,7 @@ int	init_parser(t_map *map, char *str)
 	if (parse_textures(map) < 0)
 		return (error_ret("Error\nInvalid texture file\n", 1));
 	if (parse_sprites(map) == -1 || store_pos(map))
-		return (error_ret("Error\nFATAL -> MALLOC FAILED\n", 1));
+		return (1);
 	if (parse_map(&map) != 0)
 		return (free_struct(map, 1));
 	if (last_map_check(&map) != 0)
