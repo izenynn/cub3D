@@ -21,6 +21,7 @@ int	main(int argc, char *argv[])
 		return (error_ret("Usage: ./cub3D map.cub\n", 1));
 	vars = (t_vars *)malloc(sizeof(t_vars));
 	vars->map = (t_map *)malloc(sizeof(t_map));
+	vars->ray = (t_ray *)malloc(sizeof(t_ray));
 	ft_putstr_fd("Parsing...\n", STDOUT_FILENO);
 	if (check_format(argv[1]) != 0)
 		return (1);

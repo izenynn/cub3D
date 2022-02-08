@@ -222,23 +222,7 @@ typedef struct s_p
 	float	plane_y;
 }	t_p;
 
-/* s_vars: program struct */
-typedef struct s_vars {
-	int			frame;
-	t_map		*map;
-	t_p			p;
-	t_img		img;
-	t_img		minimap;
-	t_img		mm_player;
-	int			mm_offset[2];
-	t_tex		tex[5];
-	t_tex		***sprite;
-	t_sprite	**sprites;
-	void		*mlx;
-	void		*win;
-	int			door_hit[2];
-}	t_vars;
-
+/* s_ray: ray casting struct */
 typedef struct s_ray
 {
 	int		map_x;
@@ -270,6 +254,24 @@ typedef struct s_ray
 	int		*sprite_order;
 	float	*sprite_dist;
 }	t_ray;
+
+/* s_vars: program struct */
+typedef struct s_vars {
+	int			frame;
+	t_map		*map;
+	t_p			p;
+	t_img		img;
+	t_img		minimap;
+	t_img		mm_player;
+	int			mm_offset[2];
+	t_tex		tex[5];
+	t_tex		***sprite;
+	t_sprite	**sprites;
+	void		*mlx;
+	void		*win;
+	int			door_hit[2];
+	t_ray		*ray;
+}	t_vars;
 
 /* sprite support struct */
 typedef struct s_sprite_sp {
@@ -371,13 +373,13 @@ int		player_init(t_vars *vars);
 void	draw(t_vars *vars);
 
 /* raycast_wall.c */
-void	raycast_wall(t_vars *vars, t_ray *ray);
+void	raycast_wall(t_vars *vars);
 
 /* raycast_wall_utils.c */
 void	init_ray(t_vars *vars, t_ray *ray, int x);
 
 /* raycast_sprite.c */
-void	raycast_sprite(t_vars *vars, t_ray *ray);
+void	raycast_sprite(t_vars *vars);
 void	init_step_and_sidedist(t_vars *vars, t_ray *ray);
 void	calculate_texture_id(t_vars *vars, t_ray *ray);
 void	draw_ver_line(t_vars *vars, int x, t_ray *ray);

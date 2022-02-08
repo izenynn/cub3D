@@ -81,10 +81,12 @@ static void	calculate_texture_data(t_vars *vars, t_ray *ray)
 		= (ray->draw_start - WIN_H / 2 + ray->line_height / 2) * ray->step;
 }
 
-void	raycast_wall(t_vars *vars, t_ray *ray)
+void	raycast_wall(t_vars *vars)
 {
+	t_ray	*ray;
 	int		x;
 
+	ray = vars->ray;
 	x = -1;
 	while (++x < WIN_W)
 	{
