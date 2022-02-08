@@ -24,8 +24,6 @@ int	key_hook(int keycode, t_vars *vars)
 	//printf("key: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		return (0);//close_win(vars);
-	else if (keycode == KEY_R)
-		reset_vars(vars);
 	else if (keycode == KEY_W || keycode == KEY_S)
 		handle_move(keycode, vars);
 	else if (keycode == KEY_A || keycode == KEY_D)

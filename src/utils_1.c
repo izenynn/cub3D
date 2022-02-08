@@ -22,12 +22,6 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	free_vars(t_vars *vars)
-{
-	free_map(&vars->map);
-	free(vars);
-}
-
 void	free_map(t_map *map)
 {
 	free_split(map->map);
@@ -37,6 +31,12 @@ void	free_map(t_map *map)
 	free(map->we);
 	free(map->ea);
 	free(map->door);
+}
+
+void	free_vars(t_vars *vars)
+{
+	free_map(&vars->map);
+	free(vars);
 }
 
 void	free_all(t_vars *vars)

@@ -297,11 +297,10 @@ void	perror_exit(const char *s);
 int		perror_ret(const char *s, int ret_code);
 int		error_ret(const char *s, int ret_code);
 
-/* utils.c */
+/* utils_1.c */
 void	free_split(char **split);
 void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
-void	reset_vars(t_vars *vars);
 int		initialise_vars(t_vars *vars);
 
 /* utils_2.c */
