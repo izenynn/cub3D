@@ -31,7 +31,7 @@ int	mlx_main(t_vars *vars)
 		return (1);
 	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
 	mlx_hook(vars->win, 17, 1L << 17, close_win, vars);
-	mlx_hook(vars->win, 6, 1L << 4, mouse_hook, &vars); // MOUSE MOVE HOOK;
+	mlx_hook(vars->win, 6, 1L << 4, mouse_hook, &vars);
 	mlx_loop_hook(vars->mlx, game_loop, vars);
 	mlx_loop(vars->mlx);
 	free_all(vars);
