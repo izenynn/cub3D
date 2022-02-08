@@ -12,30 +12,6 @@
 
 #include "cub3d.h"
 
-static int	fill_buffer(char *file, int lines, t_map *map)
-{
-	char	*s;
-	int		fd;
-	int		i;
-
-	i = -1;
-	map->buffer = (char **)malloc(sizeof(char *) * (lines + 1));
-	if (!map->buffer)
-		return (1);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	while (++i < lines)
-	{
-		s = ft_get_next_line(fd);
-		map->buffer[i] = ft_substr(s, 0, ft_strlen(s) - 1);
-		free(s);
-	}
-	map->buffer[i] = NULL;
-	close(fd);
-	return (0);
-}
-
 int	first_read(t_map *map, char *str)
 {
 	char	*aux;
@@ -104,14 +80,12 @@ int store_pos(t_map *map)
 	while (map->buffer[i])
 	{
 		j = -1;
-		//printf("[paco-> %s]\n", map->buffer[i]);
 		while (++j < map->sprite_cnt)
 		{
 			if (ft_strncmp(map->buffer[i], map->spaux[j].type, ft_strlen(map->spaux[j].type)) == 0)
 			{
 				aux = ft_substr(map->buffer[i], ft_strlen(map->spaux[j].type) + 1, ft_strlen(map->buffer[i]));
 				aux2 = ft_split(aux, ',');
-				//printf("%s %s\n", aux2[0], aux2[1]);
 				map->sprite[cnt].x = ft_atoi(aux2[0]);
 				map->sprite[cnt].y = ft_atoi(aux2[1]);
 				map->sprite[cnt++].id = map->spaux[j].id;
@@ -139,10 +113,6 @@ int	init_parser(t_map *map, char *str)
 		return (free_struct(map, 1));
 	if (last_map_check(&map) != 0)
 		return (free_struct(map, 1));
-	//printf("%s\n%s\n%s\n%s\n\n\n", map->no, map->so, map->we, map->ea);
-	//printf("%s\n%s\n", map->sprites[0][0], map->sprites[0][1]);
-	//printf("%s\n%s\n", map->sprites[1][0], map->sprites[1][1]);
-	//printf("x %d y%d id %d  \n", map->sprite[1].x, map->sprite[1].y, map->sprite[1].id);
 	if (map->p_pos[0] == -1 || map->p_pos[1] == -1)
 		free_struct(map, 1);
 	return (0);

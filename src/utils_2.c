@@ -45,3 +45,21 @@ int	dptr_len(char **s)
 		i++;
 	return (i);
 }
+
+int	skip_spaces(char *line, int i)
+{
+	if (!line)
+		return (0);
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (i);
+}
+
+int	counter(char c, t_map **map)
+{
+	if (c == 'E' || c == 'S' || c == 'W' || c == 'N')
+		(*map)->count++;
+	if ((*map)->count > 1)
+		return (1);
+	return (0);
+}
