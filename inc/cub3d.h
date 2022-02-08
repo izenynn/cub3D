@@ -304,42 +304,48 @@ typedef struct s_sprite_sp {
 	int		id;
 	int		frame;
 }	t_sprite_sp;
-void	free_map(t_map *map);
-/* parse_map.c */
+/* buffer_fillers.c */
+void	fill_map(t_map **map);
+int		fill_buffer(char *file, int lines, t_map *map);
 
 /* parser_main.c */
 int		first_read(t_map *map, char *str);
-int		init_parser(t_map *map, char *str);
 
+int		init_parser(t_map *map, char *str);
 /* parse_config.c */
 int		parse_textures(t_map *map);
-
 /* parse_map.c */
 int		parse_map(t_map **map);
+
+/* parse_map2.c*/
+int	above_and_below(t_map **map, int i, int j, int x);
+int	check_surroundings(t_map **map, int i, int j);
+int	last_map_check(t_map **map);
+
+/* parse_utils.c */
+int		check_format(char *str);
 int		free_struct(t_map *map, int ret);
 int		is_dptr_digit(char **s);
 int		create_trgb(int t, int r, int g, int b);
 int		process_colour(t_map **map, int i, char **sp);
-int		last_map_check(t_map **map);
-int		check_surroundings(t_map **map, int i, int j);
-
-/* parse_utils.c */
-int		check_format(char *str);
 
 /* error_utils.c */
 void	perror_exit(const char *s);
+
 int		perror_ret(const char *s, int ret_code);
 int		error_ret(const char *s, int ret_code);
-
 /* utils_1.c */
 void	free_split(char **split);
 void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
+void	free_map(t_map *map);
 int		initialise_vars(t_vars *vars);
 
 /* utils_2.c */
+int		counter(char c, t_map **map);
 int		dptr_len(char **s);
 void	init_map(t_map	*map);
+int		skip_spaces(char *line, int i);
 
 /* mlx_main.c */
 int		mlx_main(t_vars *vars);
