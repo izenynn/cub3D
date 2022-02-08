@@ -24,6 +24,7 @@ void	free_split(char **split)
 
 void	free_vars(t_vars *vars)
 {
+	free_map(&vars->map);
 	free(vars);
 }
 
@@ -51,7 +52,6 @@ void	free_all(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_WE].img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_EA].img.img);
 	mlx_destroy_image(vars->mlx, vars->tex[TEX_DOOR].img.img);
-
 	i = -1;
 	while (vars->sprite != NULL && vars->sprite[++i] != NULL)
 	{
@@ -65,18 +65,11 @@ void	free_all(t_vars *vars)
 	}
 	free(vars->sprite);
 	mlx_destroy_window(vars->mlx, vars->win);
-	free_map(&vars->map);
-	free_vars(vars);
-}
-
-void	reset_vars(t_vars *vars)
-{
-	(void)vars;
+	free(vars);
 }
 
 int	initialise_vars(t_vars *vars)
 {
-	reset_vars(vars);
 	vars->frame = -1;
 	vars->sprite = NULL;
 	player_init(vars);
