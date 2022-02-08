@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	handle_move(int keycode, t_vars *vars, float speed)
+static void	handle_move(int keycode, t_vars *vars, float speed)
 {
 	t_p		*p;
 	char	**m;
@@ -39,7 +39,7 @@ void	handle_move(int keycode, t_vars *vars, float speed)
 	}
 }
 
-void	handle_sidemove(int keycode, t_vars *vars, float speed)
+static void	handle_sidemove(int keycode, t_vars *vars, float speed)
 {
 	t_p		*p;
 	char	**m;
@@ -64,7 +64,7 @@ void	handle_sidemove(int keycode, t_vars *vars, float speed)
 	}
 }
 
-void	handle_look(int keycode, t_vars *vars, float speed)
+static void	handle_look(int keycode, t_vars *vars, float speed)
 {
 	t_p		*p;
 	float	old_dir_x;
@@ -88,6 +88,31 @@ void	handle_look(int keycode, t_vars *vars, float speed)
 		old_plane_x = p->plane_x;
 		p->plane_x = p->plane_x * cos(speed) - p->plane_y * sin(speed);
 		p->plane_y = old_plane_x * sin(speed) + p->plane_y * cos(speed);
+	}
+}
+
+void	handle_keys(t_vars *vars)
+{
+	if (vars->keys.w != vars->keys.s)
+	{
+		if (vars->keys.w == TRUE)
+			handle_move(KEY_W, vars, DEFAULT_SPEED);
+		else if (vars->keys.s == TRUE)
+			handle_move(KEY_S, vars, DEFAULT_SPEED);
+	}
+	if (vars->keys.a != vars->keys.d)
+	{
+		if (vars->keys.a == TRUE)
+			handle_sidemove(KEY_A, vars, DEFAULT_SPEED);
+		else if (vars->keys.d == TRUE)
+			handle_sidemove(KEY_D, vars, DEFAULT_SPEED);
+	}
+	if (vars->keys.right_arrow != vars->keys.left_arrow)
+	{
+		if (vars->keys.right_arrow == TRUE)
+			handle_look(KEY_RIGHT, vars, DEFAULT_ROT_SPEED);
+		else if (vars->keys.left_arrow == TRUE)
+			handle_look(KEY_LEFT, vars, DEFAULT_ROT_SPEED);
 	}
 }
 

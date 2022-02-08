@@ -21,17 +21,40 @@ int	close_win(t_vars *vars)
 	return (0);
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_press_hook(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC)
 		close_win(vars);
-	else if (keycode == KEY_W || keycode == KEY_S)
-		handle_move(keycode, vars, DEFAULT_SPEED);
-	else if (keycode == KEY_A || keycode == KEY_D)
-		handle_sidemove(keycode, vars, DEFAULT_SPEED);
-	else if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
-		handle_look(keycode, vars, DEFAULT_SPEED);
+	else if (keycode == KEY_W)
+		vars->keys.w = TRUE;
+	else if (keycode == KEY_A)
+		vars->keys.a = TRUE;
+	else if (keycode == KEY_S)
+		vars->keys.s = TRUE;
+	else if (keycode == KEY_D)
+		vars->keys.d = TRUE;
+	else if (keycode == KEY_RIGHT)
+		vars->keys.right_arrow = TRUE;
+	else if (keycode == KEY_LEFT)
+		vars->keys.left_arrow = TRUE;
 	else if (keycode == KEY_E)
 		handle_door(vars);
+	return (0);
+}
+
+int	key_relase_hook(int keycode, t_vars *vars)
+{
+	if (keycode == KEY_W)
+		vars->keys.w = FALSE;
+	else if (keycode == KEY_A)
+		vars->keys.a = FALSE;
+	else if (keycode == KEY_S)
+		vars->keys.s = FALSE;
+	else if (keycode == KEY_D)
+		vars->keys.d = FALSE;
+	else if (keycode == KEY_RIGHT)
+		vars->keys.right_arrow = FALSE;
+	else if (keycode == KEY_LEFT)
+		vars->keys.left_arrow = FALSE;
 	return (0);
 }

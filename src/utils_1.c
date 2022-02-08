@@ -87,6 +87,12 @@ int	initialise_vars(t_vars *vars)
 {
 	vars->frame = -1;
 	vars->sprite = NULL;
+	vars->keys.w = FALSE;
+	vars->keys.s = FALSE;
+	vars->keys.a = FALSE;
+	vars->keys.d = FALSE;
+	vars->keys.right_arrow = FALSE;
+	vars->keys.left_arrow = FALSE;
 	player_init(vars);
 	return (0);
 }

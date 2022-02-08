@@ -73,8 +73,8 @@
 # define WALL '1'
 # define DOOR_OPEN 'O'
 # define DOOR_CLOSE 'C'
-# define DEFAULT_SPEED 0.1
-# define DEFAULT_ROT_SPEED 0.1
+# define DEFAULT_SPEED 0.04
+# define DEFAULT_ROT_SPEED 0.025
 # define Y 0
 # define X 1
 # define TEXT_COLOR 0xFFFFFF
@@ -255,6 +255,15 @@ typedef struct s_ray
 	float	*sprite_dist;
 }	t_ray;
 
+typedef struct s_keys {
+	t_bool	w;
+	t_bool	a;
+	t_bool	s;
+	t_bool	d;
+	t_bool	right_arrow;
+	t_bool	left_arrow;
+}	t_keys;
+
 /* s_vars: program struct */
 typedef struct s_vars {
 	int			frame;
@@ -271,6 +280,7 @@ typedef struct s_vars {
 	void		*win;
 	int			door_hit[2];
 	t_ray		*ray;
+	t_keys		keys;
 }	t_vars;
 
 /* sprite support struct */
@@ -336,7 +346,8 @@ int		mlx_main(t_vars *vars);
 
 /* mlx_hook.c */
 int		close_win(t_vars *vars);
-int		key_hook(int keycode, t_vars *vars);
+int		key_press_hook(int keycode, t_vars *vars);
+int		key_relase_hook(int keycode, t_vars *vars);
 
 /* mlx_init.c */
 int		initialise_mlx(t_vars *vars);
@@ -358,9 +369,7 @@ void	img_paste_pixel(t_img *img, int x, int y, int pixel);
 int		game_loop(void *vars);
 
 /* mlx_controls.c */
-void	handle_move(int keycode, t_vars *vars, float speed);
-void	handle_sidemove(int keycode, t_vars *vars, float speed);
-void	handle_look(int keycode, t_vars *vars, float speed);
+void	handle_keys(t_vars *vars);
 void	handle_door(t_vars *vars);
 
 /* mlx_textures.c */
