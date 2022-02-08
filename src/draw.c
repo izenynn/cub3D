@@ -191,11 +191,11 @@ static void	draw_menu(t_vars *vars)
 	mlx = vars->mlx;
 	win = vars->win;
 	y = 0;
-	mlx_string_put(mlx, win, 15, y += 15, WHITE, "Controls:");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Reset: R");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Move: W, A, S, D");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Look: Mouse / Arrows");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Open / Close doors: E");
+	mlx_string_put(mlx, win, 15, y += 15, TEXT_COLOR, "Controls:");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Reset: R");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Move: W, A, S, D");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Look: Mouse / Arrows");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Open / Close doors: E");
 }
 
 void	draw_square(t_img *img, int coords[2], float side_len, int color)
@@ -233,23 +233,21 @@ static void	draw_minimap(t_vars *vars)
 	side_len = 5;
 	screen_pos[X] -= side_len / 2;
 	screen_pos[Y] -= side_len / 2;
-	draw_square(&vars->mm_player, screen_pos, side_len, 0xFF0000);
+	draw_square(&vars->mm_player, screen_pos, side_len, MINIMAP_PLAYER);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->mm_player.img,
 			WIN_W - (vars->mm_player.line_len / vars->mm_player.bpp * 8) - 15, 15);
 }
 
 static void	draw_cross(t_vars *vars)
 {
-	int color;
 	int side_len;
 	int coords[2];
 
-	color = 0xFFFFFF;
 	side_len = 10;
 	coords[X] = WIN_W / 2 - side_len / 2;
 	coords[Y] = WIN_H / 2 - side_len / 2;
 
-	draw_square(&vars->img, coords, side_len, color);
+	draw_square(&vars->img, coords, side_len, CROSSHAIR_COLOR);
 }
 
 /* draw all on screen */
