@@ -271,6 +271,26 @@ typedef struct s_ray
 	float	*sprite_dist;
 }	t_ray;
 
+/* sprite support struct */
+typedef struct s_sprite_sp {
+	float	sprite_x;
+	float	sprite_y;
+	float	inv_det;
+	float	transform_x;
+	float	transform_y;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		sprite_width;
+	int		draw_start_x;
+	int		draw_end_x;
+	int		tex_x;
+	int		d;
+	int		tex_y;
+	int		color;
+}	t_sprite_sp;
+
 /* parse_map.c */
 
 /* main_parse.c */
