@@ -230,7 +230,7 @@ static void	draw_minimap(t_vars *vars)
 		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
 	screen_pos[Y] = (vars->mm_offset[Y] / 2) + (vars->p.pos_y *
 		((vars->minimap.line_len / vars->minimap.bpp * 8) / fmax(vars->map.width, vars->map.height)));
-	side_len = 7;
+	side_len = 5;
 	screen_pos[X] -= side_len / 2;
 	screen_pos[Y] -= side_len / 2;
 	draw_square(&vars->mm_player, screen_pos, side_len, 0xFF0000);
@@ -259,8 +259,8 @@ void	draw(t_vars *vars)
 	vars->door_hit[Y] = -1;
 	ft_bzero(vars->img.addr, WIN_H * WIN_W * (vars->img.bpp / 8));
 	raycast(vars);
+	draw_cross(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	draw_minimap(vars);
-	draw_cross(vars);
 	draw_menu(vars);
 }

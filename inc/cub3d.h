@@ -103,7 +103,7 @@
 #  define KEY_K 40
 #  define KEY_O 31
 #  define KEY_L 37
-#  define KEY_E 41 // TODO e keycode on mac
+#  define KEY_E 14
 # else
 #  ifndef LINUX
 #   define LINUX
