@@ -51,7 +51,8 @@ static void	handle_sidemove(int keycode, t_vars *vars, float speed)
 		if (m[(int)p->pos_y][(int)(p->pos_x - p->plane_x * speed)] == DOOR_OPEN
 			|| m[(int)p->pos_y][(int)(p->pos_x - p->plane_x * speed)] == FLOOR)
 			p->pos_x -= p->plane_x * speed;
-		if (m[(int)(p->pos_y - p->plane_y * speed)][(int)p->pos_x] == FLOOR)
+		if (m[(int)(p->pos_y - p->plane_y * speed)][(int)p->pos_x] == DOOR_OPEN
+			|| m[(int)(p->pos_y - p->plane_y * speed)][(int)p->pos_x] == FLOOR)
 			p->pos_y -= p->plane_y * speed;
 	}
 	else if (keycode == KEY_A)
@@ -59,7 +60,8 @@ static void	handle_sidemove(int keycode, t_vars *vars, float speed)
 		if (m[(int)p->pos_y][(int)(p->pos_x + p->plane_x * speed)] == DOOR_OPEN
 			|| m[(int)p->pos_y][(int)(p->pos_x + p->plane_x * speed)] == FLOOR)
 			p->pos_x += p->plane_x * speed;
-		if (m[(int)(p->pos_y + p->plane_y * speed)][(int)p->pos_x] == FLOOR)
+		if (m[(int)(p->pos_y + p->plane_y * speed)][(int)p->pos_x] == DOOR_OPEN
+			|| m[(int)(p->pos_y + p->plane_y * speed)][(int)p->pos_x] == FLOOR)
 			p->pos_y += p->plane_y * speed;
 	}
 }
