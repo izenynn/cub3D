@@ -15,21 +15,21 @@
 int	close_win(t_vars *vars)
 {
 	free_all(vars);
+	ft_putstr_fd("Quit\n", STDOUT_FILENO);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	//printf("key: %d\n", keycode);
 	if (keycode == KEY_ESC)
-		return (0);//close_win(vars);
+		close_win(vars);
 	else if (keycode == KEY_W || keycode == KEY_S)
-		handle_move(keycode, vars);
+		handle_move(keycode, vars, DEFAULT_SPEED);
 	else if (keycode == KEY_A || keycode == KEY_D)
-		handle_sidemove(keycode, vars);
+		handle_sidemove(keycode, vars, DEFAULT_SPEED);
 	else if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
-		handle_look(keycode, vars);
+		handle_look(keycode, vars, DEFAULT_SPEED);
 	else if (keycode == KEY_E)
 		handle_door(vars);
 	return (0);

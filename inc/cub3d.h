@@ -73,8 +73,8 @@
 # define WALL '1'
 # define DOOR_OPEN 'O'
 # define DOOR_CLOSE 'C'
-# define SPEED 0.1
-# define ROT_SPEED 0.1
+# define DEFAULT_SPEED 0.1
+# define DEFAULT_ROT_SPEED 0.1
 # define Y 0
 # define X 1
 # define TEXT_COLOR 0xFFFFFF
@@ -326,9 +326,9 @@ void	img_paste_pixel(t_img *img, int x, int y, int pixel);
 int		game_loop(void *vars);
 
 /* mlx_controls.c */
-void	handle_move(int keycode, t_vars *vars);
-void	handle_sidemove(int keycode, t_vars *vars);
-void	handle_look(int keycode, t_vars *vars);
+void	handle_move(int keycode, t_vars *vars, float speed);
+void	handle_sidemove(int keycode, t_vars *vars, float speed);
+void	handle_look(int keycode, t_vars *vars, float speed);
 void	handle_door(t_vars *vars);
 
 /* mlx_textures.c */
