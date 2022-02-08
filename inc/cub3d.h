@@ -365,6 +365,9 @@ int		player_init(t_vars *vars);
 /* draw.c */
 void	draw(t_vars *vars);
 
+/* raycast_wall.c */
+void	raycast_wall(t_vars *vars, t_ray *ray);
+
 /* raycast_sprite.c */
 void	raycast_sprite(t_vars *vars, t_ray *ray);
 
