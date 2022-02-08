@@ -103,8 +103,9 @@ int	check_top_and_bot(char *line)
 	int	i;
 
 	i = -1;
-
-	while (line[++i] && (line[i] != '\n' && line[i] != '\0'))
+	printf("[%s]\n", line);
+	printf("%c -> %d\n", *line, *line);
+	while (line[++i])
 	{
 		if (line[i] != '1' && line[i] != ' ')
 			return (error_ret("Error\nFirst or last"
@@ -126,12 +127,13 @@ int	line_handler(char *line, int index, t_map **map)
 {
 	int	i;
 
+	printf("INDEX [%d]\n", index);
 	i = skip_spaces(line, 0);
 	if (index == 0 || index == (*map)->lines)
 		return (check_top_and_bot(line));
-	else if (line && (line[i] != '1' || line[ft_strlen(line + 1)] != '1'))
+	else if (*line && (line[i] != '1' || line[ft_strlen(line) - 1] != '1'))
 		return (error_ret("Error\nMap not closed by 1's\n", 1));
-	while (line[++i] != '\n' && line[i] != '\0')
+	while (*line && line[++i] != '\n' && line[i] != '\0')
 	{
 		if (!(line[i] == '0' || line[i] == '1' || line[i] == 'N'
 				|| line[i] == ' ' || line[i] == 'E'
@@ -163,11 +165,10 @@ void	fill_map(t_map **map)
 			(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
 				0, ft_strlen((*map)->buffer[(*map)->index]));
 			(*map)->index++;
+			if (*(*map)->buffer[(*map)->index] == '\0')
+				break ;
 	}
 	(*map)->map[i] = NULL;
-	//i = -1;
-	//while ((*map)->map[++i])
-	//	printf("[%s]\n", (*map)->map[i]);
 }
 
 int	parse_map(t_map **map)
