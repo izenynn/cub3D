@@ -23,10 +23,10 @@ static void	minimap_pixel_put(t_vars *vars, int pixel[2], int color)
 
 static int	get_square_color(t_vars *vars, int map[2])
 {
-	if (vars->map.map[map[Y]][map[X]] == FLOOR)
+	if (vars->map->map[map[Y]][map[X]] == FLOOR)
 		return (MINIMAP_FLOOR);
-	else if (vars->map.map[map[Y]][map[X]] == DOOR_CLOSE
-		|| vars->map.map[map[Y]][map[X]] == DOOR_OPEN)
+	else if (vars->map->map[map[Y]][map[X]] == DOOR_CLOSE
+		|| vars->map->map[map[Y]][map[X]] == DOOR_OPEN)
 		return (MINIMAP_DOOR);
 	else
 		return (MINIMAP_WALL);
@@ -40,15 +40,15 @@ static void	draw_minimap_square(t_vars *vars, int map[2])
 	int	color;
 
 	draw_end_y = (map[Y] + 1) * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
-		/ fmax(vars->map.width, vars->map.height);
+		/ fmax(vars->map->width, vars->map->height);
 	pixel[Y] = map[Y] * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
-		/ fmax(vars->map.width, vars->map.height);
+		/ fmax(vars->map->width, vars->map->height);
 	while (pixel[Y] < draw_end_y)
 	{
 		draw_end_x = (map[X] + 1) * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
-			/ fmax(vars->map.width, vars->map.height);
+			/ fmax(vars->map->width, vars->map->height);
 		pixel[X] = map[X] * (fmax(WIN_W, WIN_H) / MINIMAP_SCALE)
-			/ fmax(vars->map.width, vars->map.height);
+			/ fmax(vars->map->width, vars->map->height);
 		while (pixel[X] < draw_end_x)
 		{
 			color = get_square_color(vars, map);
@@ -64,14 +64,14 @@ static void	draw_minimap(t_vars *vars)
 	int	map[2];
 
 	map[Y] = -1;
-	while (++map[Y] < vars->map.height)
+	while (++map[Y] < vars->map->height)
 	{
-		if (vars->map.map[map[Y]] == NULL)
+		if (vars->map->map[map[Y]] == NULL)
 			break ;
 		map[X] = -1;
-		while (++map[X] < vars->map.width)
+		while (++map[X] < vars->map->width)
 		{
-			if (vars->map.map[map[Y]][map[X]] == '\0')
+			if (vars->map->map[map[Y]][map[X]] == '\0')
 				break ;
 			draw_minimap_square(vars, map);
 		}

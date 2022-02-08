@@ -36,7 +36,7 @@ static int	fill_buffer(char *file, int lines, t_map *map)
 	return (0);
 }
 
-int	first_read(char *str, t_map *map)
+int	first_read(t_map *map, char *str)
 {
 	char	*aux;
 	int		fd;

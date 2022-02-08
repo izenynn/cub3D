@@ -14,11 +14,11 @@
 
 static void	check_if_ray_hit_wall(t_vars *vars, t_ray *ray, int x)
 {
-	if (vars->map.map[ray->map_y][ray->map_x] == WALL
-		|| vars->map.map[ray->map_y][ray->map_x] == DOOR_CLOSE)
+	if (vars->map->map[ray->map_y][ray->map_x] == WALL
+		|| vars->map->map[ray->map_y][ray->map_x] == DOOR_CLOSE)
 		ray->hit = 1;
-	if (vars->map.map[ray->map_y][ray->map_x] == DOOR_CLOSE
-		|| vars->map.map[ray->map_y][ray->map_x] == DOOR_OPEN)
+	if (vars->map->map[ray->map_y][ray->map_x] == DOOR_CLOSE
+		|| vars->map->map[ray->map_y][ray->map_x] == DOOR_OPEN)
 	{
 		ray->hit_door = 1;
 		if (x == WIN_W / 2)

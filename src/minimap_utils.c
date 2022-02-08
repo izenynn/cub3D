@@ -16,12 +16,12 @@ void	calculate_inner_map_offset(t_vars *vars)
 {
 	vars->mm_offset[X] = 0;
 	vars->mm_offset[Y] = 0;
-	if (vars->map.width > vars->map.height)
-		vars->mm_offset[Y] = (vars->map.width - vars->map.height)
-			* (fmax(WIN_W, WIN_H) / MINIMAP_SCALE / vars->map.width);
-	else if (vars->map.height > vars->map.width)
-		vars->mm_offset[X] = (vars->map.height - vars->map.width)
-			* (fmax(WIN_W, WIN_H) / MINIMAP_SCALE / vars->map.height);
+	if (vars->map->width > vars->map->height)
+		vars->mm_offset[Y] = (vars->map->width - vars->map->height)
+			* (fmax(WIN_W, WIN_H) / MINIMAP_SCALE / vars->map->width);
+	else if (vars->map->height > vars->map->width)
+		vars->mm_offset[X] = (vars->map->height - vars->map->width)
+			* (fmax(WIN_W, WIN_H) / MINIMAP_SCALE / vars->map->height);
 }
 
 void	init_mlx_image(t_vars *vars)

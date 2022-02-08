@@ -59,12 +59,12 @@ void	init_step_and_sidedist(t_vars *vars, t_ray *ray)
 
 void	calculate_texture_id(t_vars *vars, t_ray *ray)
 {
-	if (vars->map.map[ray->map_y][ray->map_x] == DOOR_CLOSE)
+	if (vars->map->map[ray->map_y][ray->map_x] == DOOR_CLOSE)
 		ray->texture_id = TEX_DOOR;
 	else if ((ray->map_y >= 1 && ray->side == 1 && ray->dir_y >= 0
-			&& vars->map.map[ray->map_y - 1][ray->map_x] == DOOR_OPEN)
+			&& vars->map->map[ray->map_y - 1][ray->map_x] == DOOR_OPEN)
 		|| (ray->map_x >= 1 && ray->side == 0 && ray->dir_x >= 0
-			&& vars->map.map[ray->map_y][ray->map_x - 1] == DOOR_OPEN))
+			&& vars->map->map[ray->map_y][ray->map_x - 1] == DOOR_OPEN))
 		ray->texture_id = TEX_DOOR;
 	else if (ray->side == 0)
 	{
@@ -93,7 +93,7 @@ void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 	while (++y < WIN_H)
 	{
 		if (y < ray->draw_start)
-			img_pixel_put(&vars->img, WIN_W - 1 - x, y, vars->map.crgb);
+			img_pixel_put(&vars->img, WIN_W - 1 - x, y, vars->map->crgb);
 		if (y >= ray->draw_start && y <= ray->draw_end)
 		{
 			ray->tex_y = (int)ray->tex_pos & (tex->h - 1);
@@ -102,6 +102,6 @@ void	draw_ver_line(t_vars *vars, int x, t_ray *ray)
 			img_paste_pixel(&vars->img, WIN_W - 1 - x, y, color);
 		}
 		if (y > ray->draw_end)
-			img_pixel_put(&vars->img, WIN_W - 1 - x, y, vars->map.frgb);
+			img_pixel_put(&vars->img, WIN_W - 1 - x, y, vars->map->frgb);
 	}
 }

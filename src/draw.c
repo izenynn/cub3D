@@ -58,10 +58,10 @@ static void	draw_minimap(t_vars *vars)
 	}
 	screen_pos[X] = (vars->mm_offset[X] / 2) + (vars->p.pos_x
 			* ((vars->minimap.line_len / vars->minimap.bpp * 8)
-				/ fmax(vars->map.width, vars->map.height)));
+				/ fmax(vars->map->width, vars->map->height)));
 	screen_pos[Y] = (vars->mm_offset[Y] / 2) + (vars->p.pos_y
 			* ((vars->minimap.line_len / vars->minimap.bpp * 8)
-				/ fmax(vars->map.width, vars->map.height)));
+				/ fmax(vars->map->width, vars->map->height)));
 	side_len = 5;
 	screen_pos[X] -= side_len / 2;
 	screen_pos[Y] -= side_len / 2;
