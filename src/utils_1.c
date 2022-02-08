@@ -24,7 +24,7 @@ void	free_split(char **split)
 
 void	free_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	free_split(map->map);
