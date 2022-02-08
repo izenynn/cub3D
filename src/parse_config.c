@@ -9,7 +9,6 @@ static int	read_colour(t_map **map, int i)
 	{
 		aux = ft_substr((*map)->buffer[i], 5, ft_strlen((*map)->buffer[i]));
 		(*map)->door = aux;
-		//free(aux);
 		return (0);
 	}
 	else if (ft_strncmp((*map)->buffer[i], "F", 1) == 0 || ft_strncmp((*map)->buffer[i], "C", 1) == 0)
@@ -18,7 +17,7 @@ static int	read_colour(t_map **map, int i)
 		split = ft_split(aux, ',');
 		free(aux);
 		if (process_colour(map, i, split) == 1)
-			return (-1);
+			return (error_ret("Error\nInvalid Colour\n", -1));
 	}
 	else
 		return (1);
@@ -79,7 +78,7 @@ int init_sprites(t_map *map, int i)
 	{
 		map->sprite_index = i;
 		i++;
-		while (map->buffer[i])
+		while (map->buffer[i] != NULL)
 		{
 			if (ft_strncmp(map->buffer[i], ES, ft_strlen(ES)) == 0)
 				break ;
@@ -91,7 +90,7 @@ int init_sprites(t_map *map, int i)
 	else if (ft_strncmp(map->buffer[i], BP, ft_strlen(BP)) == 0)
 	{
 		map->pos_index = i;
-		while (map->buffer[i])
+		while (map->buffer[i] != NULL)
 		{
 			if (ft_strncmp(map->buffer[i], EP, ft_strlen(EP)) == 0)
 				break ;
@@ -120,9 +119,11 @@ int	parse_textures(t_map *map)
 			if (ret == 1)
 			{
 				i = init_sprites(map, i);
+				if (i >= dptr_len(map->buffer))
+					return (error_ret("Error\nParser didn't find END POS or END SPRITES\n", -1));
 				if (i == -1 || (ft_strncmp(map->buffer[i], ES, ft_strlen(ES)) != 0
 								&& ft_strncmp(map->buffer[i], EP, ft_strlen(EP)) != 0))
-					return (-1);
+					return (error_ret("Error\nInvalid data on cfg\n", -1));
 			}
 			else if (ret == 0)
 				continue ;

@@ -132,7 +132,7 @@ int	init_parser(t_map *map, char *str)
 	if (fill_buffer(str, map->lines, map) < 0)
 		return (error_ret("Error\nfatal error\n", 1));
 	if (parse_textures(map) < 0)
-		return (error_ret("Error\nInvalid texture file\n", 1));
+		return (1);
 	if (parse_sprites(map) == -1 || store_pos(map))
 		return (1);
 	if (parse_map(&map) != 0)
