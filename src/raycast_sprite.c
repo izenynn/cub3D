@@ -20,10 +20,10 @@ static void	sort_sprites(t_vars *vars, t_ray *ray)
 	int		i;
 
 	i = -1;
-	while (++i < vars->map.sprite_cnt - 1)
+	while (++i < vars->map->sprite_cnt - 1)
 	{
 		sprite = -1;
-		while (++sprite < vars->map.sprite_cnt - 1)
+		while (++sprite < vars->map->sprite_cnt - 1)
 		{
 			if (ray->sprite_dist[sprite] < ray->sprite_dist[sprite + 1])
 			{
@@ -86,8 +86,8 @@ static void	draw_sprite(t_vars *vars, t_ray *ray, t_sprite_sp *s)
 
 static void	project_and_draw(t_vars *vars, t_ray *ray, t_sprite_sp *s, int i)
 {
-	s->x = vars->map.sprite[ray->sprite_order[i]].x - vars->p.pos_x;
-	s->y = vars->map.sprite[ray->sprite_order[i]].y - vars->p.pos_y;
+	s->x = vars->map->sprite[ray->sprite_order[i]].x - vars->p.pos_x;
+	s->y = vars->map->sprite[ray->sprite_order[i]].y - vars->p.pos_y;
 	s->inv_det = 1.0
 		/ (vars->p.plane_x * vars->p.dir_y - vars->p.plane_y * vars->p.dir_x);
 	s->transform_x = s->inv_det * (vars->p.dir_y * s->x - vars->p.dir_x * s->y);
@@ -95,7 +95,7 @@ static void	project_and_draw(t_vars *vars, t_ray *ray, t_sprite_sp *s, int i)
 		* (-vars->p.plane_y * s->x + vars->p.plane_x * s->y);
 	s->screen_x = (int)((WIN_W / 2) * (1 + s->transform_x / s->transform_y));
 	calculate_sprite_dimensions_on_screen(s);
-	s->id = vars->map.sprite[ray->sprite_order[i]].id;
+	s->id = vars->map->sprite[ray->sprite_order[i]].id;
 	s->frame = (int)(vars->frame / 10);
 	draw_sprite(vars, ray, s);
 }
@@ -106,20 +106,20 @@ void	raycast_sprite(t_vars *vars, t_ray *ray)
 	t_sprite_sp	*s;
 
 	s = (t_sprite_sp *)malloc(sizeof(t_sprite_sp));
-	ray->sprite_order = (int *)malloc(sizeof(int) * vars->map.sprite_cnt);
-	ray->sprite_dist = (float *)malloc(sizeof(float) * vars->map.sprite_cnt);
+	ray->sprite_order = (int *)malloc(sizeof(int) * vars->map->sprite_cnt);
+	ray->sprite_dist = (float *)malloc(sizeof(float) * vars->map->sprite_cnt);
 	i = -1;
-	while (++i < vars->map.sprite_cnt)
+	while (++i < vars->map->sprite_cnt)
 	{
 		ray->sprite_order[i] = i;
-		ray->sprite_dist[i] = ((vars->p.pos_x - vars->map.sprite[i].x)
-				* (vars->p.pos_x - vars->map.sprite[i].x)
-				+ (vars->p.pos_y - vars->map.sprite[i].y)
-				* (vars->p.pos_y - vars->map.sprite[i].y));
+		ray->sprite_dist[i] = ((vars->p.pos_x - vars->map->sprite[i].x)
+				* (vars->p.pos_x - vars->map->sprite[i].x)
+				+ (vars->p.pos_y - vars->map->sprite[i].y)
+				* (vars->p.pos_y - vars->map->sprite[i].y));
 	}
 	sort_sprites(vars, ray);
 	i = -1;
-	while (++i < vars->map.sprite_cnt)
+	while (++i < vars->map->sprite_cnt)
 		project_and_draw(vars, ray, s, i);
 	free(s);
 	free(ray->sprite_order);

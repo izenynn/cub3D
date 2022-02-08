@@ -31,11 +31,12 @@ void	free_map(t_map *map)
 	free(map->we);
 	free(map->ea);
 	free(map->door);
+	free(map);
 }
 
 void	free_vars(t_vars *vars)
 {
-	free_map(&vars->map);
+	free_map(vars->map);
 	free(vars);
 }
 

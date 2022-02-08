@@ -42,20 +42,20 @@ static int	init_sprites(t_vars *vars)
 	int		j;
 
 	i = 0;
-	while (vars->map.sprites[i] != NULL)
+	while (vars->map->sprites[i] != NULL)
 		i++;
 	vars->sprite = (t_tex ***)ft_calloc(i + 1, sizeof(t_tex **));
 	i = -1;
-	while (vars->map.sprites[++i] != NULL)
+	while (vars->map->sprites[++i] != NULL)
 	{
 		j = 0;
-		while (vars->map.sprites[i][j] != NULL)
+		while (vars->map->sprites[i][j] != NULL)
 			j++;
 		vars->sprite[i] = (t_tex **)ft_calloc(j + 1, sizeof(t_tex *));
 		j = -1;
-		while (vars->map.sprites[i][++j] != NULL)
+		while (vars->map->sprites[i][++j] != NULL)
 		{
-			if (load_sprite(vars, &vars->sprite[i][j], vars->map.sprites[i][j])
+			if (load_sprite(vars, &vars->sprite[i][j], vars->map->sprites[i][j])
 				!= 0)
 				return (1);
 		}
@@ -65,11 +65,11 @@ static int	init_sprites(t_vars *vars)
 
 int	init_textures(t_vars *vars)
 {
-	if (load_texture(vars, &vars->tex[TEX_NO], vars->map.no) != 0
-		|| load_texture(vars, &vars->tex[TEX_SO], vars->map.so) != 0
-		|| load_texture(vars, &vars->tex[TEX_WE], vars->map.we) != 0
-		|| load_texture(vars, &vars->tex[TEX_EA], vars->map.ea) != 0
-		|| load_texture(vars, &vars->tex[TEX_DOOR], vars->map.door) != 0)
+	if (load_texture(vars, &vars->tex[TEX_NO], vars->map->no) != 0
+		|| load_texture(vars, &vars->tex[TEX_SO], vars->map->so) != 0
+		|| load_texture(vars, &vars->tex[TEX_WE], vars->map->we) != 0
+		|| load_texture(vars, &vars->tex[TEX_EA], vars->map->ea) != 0
+		|| load_texture(vars, &vars->tex[TEX_DOOR], vars->map->door) != 0)
 		return (1);
 	if (init_sprites(vars) != 0)
 		return (1);

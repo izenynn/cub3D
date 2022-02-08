@@ -225,7 +225,7 @@ typedef struct s_p
 /* s_vars: program struct */
 typedef struct s_vars {
 	int			frame;
-	t_map		map;
+	t_map		*map;
 	t_p			p;
 	t_img		img;
 	t_img		minimap;
@@ -295,8 +295,8 @@ typedef struct s_sprite_sp {
 
 /* parse_map.c */
 
-/* main_parse.c */
-int		first_read(char *str, t_map *map);
+/* parser_main.c */
+int		first_read(t_map *map, char *str);
 int		init_parser(t_map *map, char *str);
 
 /* parse_config.c */
@@ -341,6 +341,11 @@ int		initialise_mlx(t_vars *vars);
 
 /* minimap.c */
 void	initialise_minimap(t_vars *vars);
+
+/* minimap_utils.c */
+void	calculate_inner_map_offset(t_vars *vars);
+void	init_mlx_image(t_vars *vars);
+void	draw_background(t_vars *vars);
 
 /* mlx_utils.c */
 int		get_pixel_color(t_img *img, int x, int y);

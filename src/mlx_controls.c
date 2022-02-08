@@ -18,7 +18,7 @@ void	handle_move(int keycode, t_vars *vars, float speed)
 	char	**m;
 
 	p = &vars->p;
-	m = vars->map.map;
+	m = vars->map->map;
 	if (keycode == KEY_W)
 	{
 		if (m[(int)p->pos_y][(int)(p->pos_x + p->dir_x * speed)] == DOOR_OPEN
@@ -45,7 +45,7 @@ void	handle_sidemove(int keycode, t_vars *vars, float speed)
 	char	**m;
 
 	p = &vars->p;
-	m = vars->map.map;
+	m = vars->map->map;
 	if (keycode == KEY_D)
 	{
 		if (m[(int)p->pos_y][(int)(p->pos_x - p->plane_x * speed)] == DOOR_OPEN
@@ -98,7 +98,7 @@ void	handle_door(t_vars *vars)
 	int		door_hit[2];
 
 	p = &vars->p;
-	m = vars->map.map;
+	m = vars->map->map;
 	door_hit[X] = vars->door_hit[X];
 	door_hit[Y] = vars->door_hit[Y];
 	if (door_hit[X] == -1 || door_hit[Y] == -1)
