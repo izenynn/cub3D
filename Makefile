@@ -106,11 +106,11 @@ SRC_FILES +=	parser_main.c		parse_map.c			parse_config.c			\
 				parser_utils.c
 
 # SOURCES MINILIBX
-SRC_FILES +=	mlx_main.c			mlx_hook.c			mlx_init.c				\
-				mlx_utils.c			mlx_loop.c			mlx_controls.c			\
-				mlx_textures.c		minimap.c			player.c				\
-				draw.c				raycast_wall.c		raycast_wall_utils.c	\
-				raycast_sprite.c
+SRC_FILES +=	mlx_main.c				mlx_hook.c			mlx_init.c			\
+				mlx_utils.c				mlx_loop.c			mlx_controls.c		\
+				mlx_textures.c			minimap.c			minimap_utils.c		\
+				player.c				draw.c				raycast_wall.c		\
+				raycast_wall_utils.c	raycast_sprite.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

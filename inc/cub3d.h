@@ -342,6 +342,11 @@ int		initialise_mlx(t_vars *vars);
 /* minimap.c */
 void	initialise_minimap(t_vars *vars);
 
+/* minimap_utils.c */
+void	calculate_inner_map_offset(t_vars *vars);
+void	init_mlx_image(t_vars *vars);
+void	draw_background(t_vars *vars);
+
 /* mlx_utils.c */
 int		get_pixel_color(t_img *img, int x, int y);
 void	img_pixel_put(t_img *img, int x, int y, int color);
