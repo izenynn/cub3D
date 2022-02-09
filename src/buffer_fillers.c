@@ -16,7 +16,7 @@ void	fill_map(t_map **map)
 		if (!*(*map)->buffer[(*map)->index])
 			break ;
 		(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
-									 0, ft_strlen((*map)->buffer[(*map)->index]));
+				0, ft_strlen((*map)->buffer[(*map)->index]));
 		(*map)->index++;
 	}
 	(*map)->map[i] = NULL;

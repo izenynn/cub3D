@@ -50,8 +50,7 @@ int	last_map_check(t_map **map)
 		j = skip_spaces((*map)->map[i], 0);
 		while ((*map)->map[i][++j] != '\n' && (*map)->map[i][j] != '\0')
 		{
-			if ((*map)->map[i][j] == 'N' || (*map)->map[i][j] == 'S'
-				|| (*map)->map[i][j] == 'W' || (*map)->map[i][j] == 'E')
+			if (ft_strchr("NWSE", (*map)->map[i][j]))
 			{
 				(*map)->p_pos[0] = (float)j;
 				(*map)->p_pos[1] = (float)i;
@@ -62,8 +61,7 @@ int	last_map_check(t_map **map)
 			{
 				j = check_surroundings(map, i, j);
 				if (j == -1)
-					return (error_ret("Error\nMap is not surrounded by 1's\n",
-									  1));
+					return (error_ret("Error\nMap isn't closed by 1\n", 1));
 			}
 		}
 	}
