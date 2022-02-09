@@ -107,6 +107,7 @@
 #  define KEY_O 31
 #  define KEY_L 37
 #  define KEY_E 14
+#  define KEY_C 8
 # else
 #  ifndef LINUX
 #   define LINUX
@@ -131,6 +132,7 @@
 #  define KEY_O 111
 #  define KEY_L 108
 #  define KEY_E 101
+#  define KEY_C 999
 # endif
 
 /* PARSER DEFINES */
@@ -262,11 +264,11 @@ typedef struct s_keys {
 	t_bool	a;
 	t_bool	s;
 	t_bool	d;
-	t_bool	r;
+	t_bool	c;
 	t_bool	right_arrow;
 	t_bool	left_arrow;
-	int 	mouse_x;
-	int 	prev_mouse_x;
+	int		mouse_x;
+	int		prev_mouse_x;
 }	t_keys;
 
 /* s_vars: program struct */
@@ -370,6 +372,7 @@ int		mlx_main(t_vars *vars);
 int		close_win(t_vars *vars);
 int		key_press_hook(int keycode, t_vars *vars);
 int		key_relase_hook(int keycode, t_vars *vars);
+int		mouse_hook(int x, int y, t_vars *vars);
 
 /* mlx_init.c */
 int		initialise_mlx(t_vars *vars);

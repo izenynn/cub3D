@@ -21,10 +21,16 @@ static void	draw_menu(t_vars *vars)
 	mlx = vars->mlx;
 	win = vars->win;
 	y = 0;
-	mlx_string_put(mlx, win, 15, y += 15, TEXT_COLOR, "Controls:");
-	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Move: W, A, S, D");
-	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Look: Mouse / Arrows");
-	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR, "Open / Close doors: E");
+	mlx_string_put(mlx, win, 15, y += 15, TEXT_COLOR,
+		"Controls:");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
+		"[ W ] [ A ] [ S ] [ D ] move");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
+		"[ Mouse ] / [ Arrows ] rotate camera");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
+		"[ C ] toggle mouse");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
+		"[ E ] open / close doors");
 }
 
 void	draw_square(t_img *img, int coords[2], float side_len, int color)

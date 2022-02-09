@@ -91,7 +91,7 @@ int	initialise_vars(t_vars *vars)
 	vars->keys.s = FALSE;
 	vars->keys.a = FALSE;
 	vars->keys.d = FALSE;
-	vars->keys.r = FALSE;
+	vars->keys.c = TRUE;
 	vars->keys.mouse_x = -1;
 	vars->keys.right_arrow = FALSE;
 	vars->keys.left_arrow = FALSE;

@@ -12,22 +12,6 @@
 
 #include "cub3d.h"
 
-int	mouse_hook(int x, int y, t_vars *vars)
-{
-	float	diff_x;
-
-	vars->keys.prev_mouse_x = vars->keys.mouse_x;
-	vars->keys.mouse_x = x;
-	diff_x = (float)vars->keys.mouse_x - (float)vars->keys.prev_mouse_x;
-	if ((x > -1 && x < WIN_W) && (y > -1 && y < WIN_H)) {
-		if (diff_x > 0)
-			handle_look(KEY_RIGHT, vars, fabs(diff_x) / (float)MOUSE_MOD);
-		else
-			handle_look(KEY_LEFT, vars, fabs(diff_x) / (float)MOUSE_MOD);
-	}
-	return (0);
-}
-
 int	mlx_main(t_vars *vars)
 {
 	if (initialise_vars(vars))

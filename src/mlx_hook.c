@@ -39,6 +39,13 @@ int	key_press_hook(int keycode, t_vars *vars)
 		vars->keys.left_arrow = TRUE;
 	else if (keycode == KEY_E)
 		handle_door(vars);
+	else if (keycode == KEY_C)
+	{
+		if (vars->keys.c == TRUE)
+			vars->keys.c = FALSE;
+		else
+			vars->keys.c = TRUE;
+	}
 	return (0);
 }
 
@@ -56,5 +63,23 @@ int	key_relase_hook(int keycode, t_vars *vars)
 		vars->keys.right_arrow = FALSE;
 	else if (keycode == KEY_LEFT)
 		vars->keys.left_arrow = FALSE;
+	return (0);
+}
+
+int	mouse_hook(int x, int y, t_vars *vars)
+{
+	float	diff_x;
+
+	(void)y;
+	vars->keys.prev_mouse_x = vars->keys.mouse_x;
+	vars->keys.mouse_x = x;
+	diff_x = (float)vars->keys.mouse_x - (float)vars->keys.prev_mouse_x;
+	if (vars->keys.c == TRUE)
+	{
+		if (diff_x > 0)
+			handle_look(KEY_RIGHT, vars, fabs(diff_x) / (float)MOUSE_MOD);
+		else
+			handle_look(KEY_LEFT, vars, fabs(diff_x) / (float)MOUSE_MOD);
+	}
 	return (0);
 }
