@@ -51,7 +51,7 @@ int	parse_sprites(t_map *map)
 		{
 			map->sprites[id] = ft_split(aux[1], ';');
 			if (dptr_len(map->sprites[id]) != 6)
-				return (error_ret("Error\nAnimations need 6 textures\n", -1));
+				return (error_ret("Error\nAnimations need 6 textures\n", 1));
 		}
 		else
 			return (-1);

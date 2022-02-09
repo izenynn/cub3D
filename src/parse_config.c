@@ -30,7 +30,7 @@ static int	read_colour(t_map **map, int i)
 		split = ft_split(aux, ',');
 		free(aux);
 		if (process_colour(map, i, split) == 1)
-			return (error_ret("Error\nInvalid Colour\n", -1));
+			return (error_ret("Error\nInvalid Colour\n", 1));
 	}
 	else
 		return (1);
@@ -130,7 +130,7 @@ int	parse_textures(t_map *map)
 	if (!map->no || !map->so
 		|| !map->we || !map->ea || !map->frgb || !map->crgb)
 		return (error_ret("Error\nMissing data on the config file",
-				-1));
+				1));
 	if (open_texture(map) == 1)
 		return (-1);
 	map->aux = i;
