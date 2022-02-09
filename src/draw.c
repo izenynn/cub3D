@@ -26,6 +26,8 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
 		"[ W ] [ A ] [ S ] [ D ] move");
 	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
+		"[ Shift ] sprint");
+	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
 		"[ Mouse ] / [ Arrows ] rotate camera");
 	mlx_string_put(mlx, win, 15, y += 25, TEXT_COLOR,
 		"[ C ] toggle mouse");

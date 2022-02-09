@@ -19,6 +19,8 @@ static void	handle_move(int keycode, t_vars *vars, float speed)
 
 	p = &vars->p;
 	m = vars->map->map;
+	if (vars->keys.shift == TRUE)
+		speed *= (float)SHIFT_MOD;
 	if (keycode == KEY_W)
 	{
 		if (m[(int)p->pos_y][(int)(p->pos_x + p->dir_x * speed)] == DOOR_OPEN
@@ -46,6 +48,8 @@ static void	handle_sidemove(int keycode, t_vars *vars, float speed)
 
 	p = &vars->p;
 	m = vars->map->map;
+	if (vars->keys.shift == TRUE)
+		speed *= (float)SHIFT_MOD;
 	if (keycode == KEY_D)
 	{
 		if (m[(int)p->pos_y][(int)(p->pos_x - p->plane_x * speed)] == DOOR_OPEN

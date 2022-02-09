@@ -75,7 +75,8 @@
 # define DOOR_CLOSE 'C'
 # define DEFAULT_SPEED 0.04
 # define DEFAULT_ROT_SPEED 0.025
-# define MOUSE_MOD 200
+# define MOUSE_MOD 250
+# define SHIFT_MOD 2
 # define Y 0
 # define X 1
 # define TEXT_COLOR 0xFFFFFF
@@ -108,6 +109,7 @@
 #  define KEY_L 37
 #  define KEY_E 14
 #  define KEY_C 8
+#  define KEY_SHIFT 999 // TODO
 # else
 #  ifndef LINUX
 #   define LINUX
@@ -133,6 +135,7 @@
 #  define KEY_L 108
 #  define KEY_E 101
 #  define KEY_C 99
+#  define KEY_SHIFT 65505
 # endif
 
 /* PARSER DEFINES */
@@ -267,6 +270,7 @@ typedef struct s_keys {
 	t_bool	c;
 	t_bool	right_arrow;
 	t_bool	left_arrow;
+	t_bool	shift;
 	int		mouse_x;
 	int		prev_mouse_x;
 }	t_keys;

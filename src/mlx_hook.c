@@ -21,8 +21,17 @@ int	close_win(t_vars *vars)
 	return (0);
 }
 
+static void	toggle_mouse(t_vars *vars)
+{
+	if (vars->keys.c == TRUE)
+		vars->keys.c = FALSE;
+	else
+		vars->keys.c = TRUE;
+}
+
 int	key_press_hook(int keycode, t_vars *vars)
 {
+	//printf("keycode: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_win(vars);
 	else if (keycode == KEY_W)
@@ -37,15 +46,12 @@ int	key_press_hook(int keycode, t_vars *vars)
 		vars->keys.right_arrow = TRUE;
 	else if (keycode == KEY_LEFT)
 		vars->keys.left_arrow = TRUE;
+	else if (keycode == KEY_SHIFT)
+		vars->keys.shift = TRUE;
 	else if (keycode == KEY_E)
 		handle_door(vars);
 	else if (keycode == KEY_C)
-	{
-		if (vars->keys.c == TRUE)
-			vars->keys.c = FALSE;
-		else
-			vars->keys.c = TRUE;
-	}
+		toggle_mouse(vars);
 	return (0);
 }
 
@@ -63,6 +69,8 @@ int	key_relase_hook(int keycode, t_vars *vars)
 		vars->keys.right_arrow = FALSE;
 	else if (keycode == KEY_LEFT)
 		vars->keys.left_arrow = FALSE;
+	else if (keycode == KEY_SHIFT)
+		vars->keys.shift = FALSE;
 	return (0);
 }
 
