@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/08 13:06:41 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:23:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	parse_sprites(t_map *map)
 	int		i;
 	int		id;
 
-	map->sprites = (char ***)ft_calloc(map->sprite_cnt + 1, sizeof(char **));
-	map->spaux = (t_spaux *)ft_calloc(map->sprite_cnt + 1, sizeof(t_spaux));
+	alloc_sprites_struct(map);
 	if (!map->sprites || !map->spaux)
 		return (-1);
 	i = map->sprite_index + 1;
@@ -56,11 +55,7 @@ int	parse_sprites(t_map *map)
 		}
 		else
 			return (-1);
-		map->spaux[id].id = id;
-		map->spaux[id].type = ft_strdup(aux[0]);
-		id++;
-		i++;
-		free_split(aux);
+		store_sprites(map, aux, &i, &id);
 	}
 	return (0);
 }

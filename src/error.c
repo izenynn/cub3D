@@ -48,5 +48,6 @@ int	error_ret(const char *s, int ret_code)
 	write(STDERR_FILENO, ": ", 2);
 	if (s)
 		write(STDERR_FILENO, s, ft_strlen(s));
+	exit(ret_code);
 	return (ret_code);
 }
