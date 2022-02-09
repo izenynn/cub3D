@@ -8,7 +8,7 @@ C 84,78,104
 F 32,60,86
 
 BEGIN SPRITES
-CHEST ./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;
+CHEST ./textures/chest_small.xpm;./textures/chest_small.xpm;./textures/chest_small.xpm;./textures/chest_small.xpm;./textures/chest_small.xpm;./textures/chest_small.xpm;
 SLIME ./textures/slime_1.xpm;./textures/slime_2.xpm;./textures/slime_3.xpm;./textures/slime_4.xpm;./textures/slime_5.xpm;./textures/slime_6.xpm;
 GHOST ./textures/ghost_1.xpm;./textures/ghost_2.xpm;./textures/ghost_3.xpm;./textures/ghost_4.xpm;./textures/ghost_5.xpm;./textures/ghost_6.xpm;
 THING ./textures/thing_1.xpm;./textures/thing_2.xpm;./textures/thing_3.xpm;./textures/thing_4.xpm;./textures/thing_5.xpm;./textures/thing_6.xpm;
@@ -17,11 +17,12 @@ BEAR ./textures/bear_1.xpm;./textures/bear_2.xpm;./textures/bear_3.xpm;./texture
 WOLF ./textures/wolf_1.xpm;./textures/wolf_2.xpm;./textures/wolf_3.xpm;./textures/wolf_4.xpm;./textures/wolf_5.xpm;./textures/wolf_6.xpm;
 SNOT ./textures/snot_1.xpm;./textures/snot_2.xpm;./textures/snot_3.xpm;./textures/snot_4.xpm;./textures/snot_5.xpm;./textures/snot_6.xpm;
 CAPSULE ./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;
+ROCK ./textures/rock.xpm;./textures/rock.xpm;./textures/rock.xpm;./textures/rock.xpm;./textures/rock.xpm;./textures/rock.xpm;
+SIGN ./textures/sign.xpm;./textures/sign.xpm;./textures/sign.xpm;./textures/sign.xpm;./textures/sign.xpm;./textures/sign.xpm;
+BARREL ./textures/barrel.xpm;./textures/barrel.xpm;./textures/barrel.xpm;./textures/barrel.xpm;./textures/barrel.xpm;./textures/barrel.xpm;
 END SPRITES
 
 BEGIN POS
-
-CHEST 13,2
 
 SLIME 18,23
 GHOST 17,23
@@ -39,29 +40,37 @@ CAPSULE 13,23
 CAPSULE 12,23
 
 SLIME 4,19
-SLIME 7,18
-SLIME 8,19
+BARREL 7,18
+BARREL 8,19
 
-GHOST 4,15
-THING 8,15
-GHOST 7,14
+GHOST 5,15
+DEFORM 8,15
+ROCK 7,14
 
-DEFORM 13,14
-THING 16,15
+ROCK 13,14
+SNOT 16,15
 DEFORM 18,14
 
 BEAR 4,11
 BEAR 11,11
-BEAR 18,11
+SIGN 15,11
 
-WOLF 4,7
+ROCK 4,7
+ROCK 8,7
 WOLF 7,8
-WOLF 8,7
 
-SNOT 14,8
+BARREL 15,8
+SIGN 14,7
 SNOT 16,7
 
+SIGN 18,4
 THING 17,3
+
+CHEST 13,2
+BARREL 12,2
+CHEST 12,3
+ROCK 12,4
+BARREL 13,4
 
 END POS
 
