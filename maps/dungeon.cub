@@ -16,6 +16,7 @@ DEFORM ./textures/deform_1.xpm;./textures/deform_2.xpm;./textures/deform_3.xpm;.
 BEAR ./textures/bear_1.xpm;./textures/bear_2.xpm;./textures/bear_3.xpm;./textures/bear_4.xpm;./textures/bear_5.xpm;./textures/bear_6.xpm;
 WOLF ./textures/wolf_1.xpm;./textures/wolf_2.xpm;./textures/wolf_3.xpm;./textures/wolf_4.xpm;./textures/wolf_5.xpm;./textures/wolf_6.xpm;
 SNOT ./textures/snot_1.xpm;./textures/snot_2.xpm;./textures/snot_3.xpm;./textures/snot_4.xpm;./textures/snot_5.xpm;./textures/snot_6.xpm;
+CAPSULE ./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;./textures/capsule_2.xpm;
 END SPRITES
 
 BEGIN POS
@@ -29,6 +30,13 @@ DEFORM 15,23
 BEAR 14,23
 WOLF 13,23
 SNOT 12,23
+CAPSULE 18,23
+CAPSULE 17,23
+CAPSULE 16,23
+CAPSULE 15,23
+CAPSULE 14,23
+CAPSULE 13,23
+CAPSULE 12,23
 
 SLIME 4,19
 SLIME 7,18
