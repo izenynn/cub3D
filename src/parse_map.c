@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acostal- <acostal-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 13:03:39 by acostal-          #+#    #+#             */
+/*   Updated: 2022/02/09 13:03:40 by acostal-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int	check_top_and_bot(char *line)
+static int	check_top_and_bot(const char *line)
 {
 	int	i;
 
@@ -9,7 +21,7 @@ static int	check_top_and_bot(char *line)
 	{
 		if (line[i] != '1' && line[i] != ' ')
 			return (error_ret("Error\nFirst or last"
-							  "line is not filled by 1's\n", 1));
+					"line is not filled by 1's\n", 1));
 	}
 	return (0);
 }
@@ -45,9 +57,8 @@ int	parse_map(t_map **map)
 
 	i = -1;
 	while ((*map)->buffer[(*map)->aux]
-		&& (*map)->buffer[(*map)->aux][0] == '\0') {
+		&& (*map)->buffer[(*map)->aux][0] == '\0')
 		(*map)->aux++;
-	}
 	(*map)->index = (*map)->aux;
 	while ((*map)->aux <= ((*map)->lines) && (*map)->buffer[(*map)->aux])
 	{

@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 18:16:26 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/08 13:06:41 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:23:19 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int	first_read(t_map *map, char *str)
 	close(fd);
 	return (0);
 }
-int parse_sprites(t_map *map)
+
+int	parse_sprites(t_map *map)
 {
 	char	**aux;
 	int		i;
 	int		id;
 
-	map->sprites = (char ***)ft_calloc(map->sprite_cnt + 1, sizeof(char **));
-	map->spaux = (t_spaux *)ft_calloc(map->sprite_cnt + 1, sizeof(t_spaux));
+	alloc_sprites_struct(map);
 	if (!map->sprites || !map->spaux)
 		return (-1);
 	i = map->sprite_index + 1;
@@ -51,26 +51,41 @@ int parse_sprites(t_map *map)
 		{
 			map->sprites[id] = ft_split(aux[1], ';');
 			if (dptr_len(map->sprites[id]) != 6)
-					return (error_ret("Error\nAnimations need 6 textures\n", -1));
+				return (error_ret("Error\nAnimations need 6 textures\n", 1));
 		}
 		else
 			return (-1);
-		map->spaux[id].id = id;
-		map->spaux[id].type = ft_strdup(aux[0]);
-		id++;
-		i++;
-		free_split(aux);
+		store_sprites(map, aux, &i, &id);
 	}
 	return (0);
 }
 
-int store_pos(t_map *map)
+int	save_pos(t_map *map, int i, int j, int *cnt)
 {
-	char *aux;
-	char **aux2;
-	int cnt;
-	int i;
-	int j;
+	char	*aux;
+	char	**aux2;
+
+	if (ft_strncmp(map->buffer[i], map->spaux[j].type,
+			ft_strlen(map->spaux[j].type)) == 0)
+	{
+		aux = ft_substr(map->buffer[i], ft_strlen(map->spaux[j].type) + 1,
+				ft_strlen(map->buffer[i]));
+		aux2 = ft_split(aux, ',');
+		map->sprite[*cnt].x = ft_atoi(aux2[0]);
+		map->sprite[*cnt].y = ft_atoi(aux2[1]);
+		map->sprite[*cnt++].id = map->spaux[j].id;
+		free_split(aux2);
+		free(aux);
+		return (1);
+	}
+	return (0);
+}
+
+int	store_pos(t_map *map)
+{
+	int		cnt;
+	int		i;
+	int		j;
 
 	map->sprite = (t_sprite *)ft_calloc(map->pos_cnt + 2, sizeof(t_sprite));
 	if (!map->sprite)
@@ -81,19 +96,8 @@ int store_pos(t_map *map)
 	{
 		j = -1;
 		while (++j < map->sprite_cnt)
-		{
-			if (ft_strncmp(map->buffer[i], map->spaux[j].type, ft_strlen(map->spaux[j].type)) == 0)
-			{
-				aux = ft_substr(map->buffer[i], ft_strlen(map->spaux[j].type) + 1, ft_strlen(map->buffer[i]));
-				aux2 = ft_split(aux, ',');
-				map->sprite[cnt].x = ft_atoi(aux2[0]);
-				map->sprite[cnt].y = ft_atoi(aux2[1]);
-				map->sprite[cnt++].id = map->spaux[j].id;
-				free_split(aux2);
-				free(aux);
+			if (save_pos(map, i, j, &cnt) == 1)
 				break ;
-			}
-		}
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2022/01/13 13:57:25 by dpoveda-         ###   ########.fr        #
+#   Updated: 2022/02/09 12:28:01 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ SRC_FILES =		main.c				error.c				utils_1.c				\
 
 # SOURCES PARSE
 SRC_FILES +=	parser_main.c		parse_map.c			parse_config.c			\
-				parser_utils.c		buffer_fillers.c	parse_map2.c
+				parser_utils.c		buffer_fillers.c	parse_map2.c			\
+				parser_sprite_utils.c parse_config_utils.c
 
 # SOURCES MINILIBX
 SRC_FILES +=	mlx_main.c				mlx_hook.c			mlx_init.c			\

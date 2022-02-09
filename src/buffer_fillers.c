@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buffer_fillers.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acostal- <acostal-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 13:03:06 by acostal-          #+#    #+#             */
+/*   Updated: 2022/02/09 13:03:07 by acostal-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	fill_map(t_map **map)
@@ -16,7 +28,7 @@ void	fill_map(t_map **map)
 		if (!*(*map)->buffer[(*map)->index])
 			break ;
 		(*map)->map[i++] = ft_substr((*map)->buffer[(*map)->index],
-									 0, ft_strlen((*map)->buffer[(*map)->index]));
+				0, ft_strlen((*map)->buffer[(*map)->index]));
 		(*map)->index++;
 	}
 	(*map)->map[i] = NULL;
