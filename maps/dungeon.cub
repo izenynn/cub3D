@@ -8,9 +8,12 @@ C 13,43,69
 F 13,43,69
 
 BEGIN SPRITES
+CHEST ./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;
 END SPRITES
 
 BEGIN POS
+CHEST 13,2
+CHEST 14,17
 END POS
 
           1111111111

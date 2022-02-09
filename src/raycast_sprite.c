@@ -20,10 +20,10 @@ static void	sort_sprites(t_vars *vars, t_ray *ray)
 	int		i;
 
 	i = -1;
-	while (++i < vars->map->sprite_cnt - 1)
+	while (++i < vars->map->pos_cnt - 1)
 	{
 		sprite = -1;
-		while (++sprite < vars->map->sprite_cnt - 1)
+		while (++sprite < vars->map->pos_cnt - 1)
 		{
 			if (ray->sprite_dist[sprite] < ray->sprite_dist[sprite + 1])
 			{
@@ -108,10 +108,10 @@ void	raycast_sprite(t_vars *vars)
 
 	ray = vars->ray;
 	s = (t_sprite_sp *)malloc(sizeof(t_sprite_sp));
-	ray->sprite_order = (int *)malloc(sizeof(int) * vars->map->sprite_cnt);
-	ray->sprite_dist = (float *)malloc(sizeof(float) * vars->map->sprite_cnt);
+	ray->sprite_order = (int *)malloc(sizeof(int) * vars->map->pos_cnt);
+	ray->sprite_dist = (float *)malloc(sizeof(float) * vars->map->pos_cnt);
 	i = -1;
-	while (++i < vars->map->sprite_cnt)
+	while (++i < vars->map->pos_cnt)
 	{
 		ray->sprite_order[i] = i;
 		ray->sprite_dist[i] = ((vars->p.pos_x - vars->map->sprite[i].x)
@@ -121,7 +121,7 @@ void	raycast_sprite(t_vars *vars)
 	}
 	sort_sprites(vars, ray);
 	i = -1;
-	while (++i < vars->map->sprite_cnt)
+	while (++i < vars->map->pos_cnt)
 		project_and_draw(vars, ray, s, i);
 	free(s);
 	free(ray->sprite_order);

@@ -10,13 +10,17 @@ F 0,0,255
 BEGIN SPRITES
 SLIME ./textures/slime_1.xpm;./textures/slime_2.xpm;./textures/slime_3.xpm;./textures/slime_4.xpm;./textures/slime_5.xpm;./textures/slime_6.xpm
 BARREL ./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_3.xpm;./textures/wall_4.xpm
-TORCH ./textures/eagle.xpm;./textures/wood.xpm;./textures/door.xpm;./textures/eagle.xpm;./textures/wood.xpm;./textures/wall_4.xpm
+TORCH ./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm
+CHEST ./textures/chest.xpm;./textures/slime_1.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;
 END SPRITES
 
 BEGIN POS
-SLIME 3,9
-BARREL 4,10
+CHEST 3,9
 TORCH 3,11
+SLIME 4,10
+SLIME 4,11
+SLIME 4,12
+SLIME 26,12
 END POS
 
         1111111111111111111111111
