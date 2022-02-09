@@ -304,23 +304,28 @@ typedef struct s_sprite_sp {
 	int		id;
 	int		frame;
 }	t_sprite_sp;
+
 /* buffer_fillers.c */
 void	fill_map(t_map **map);
 int		fill_buffer(char *file, int lines, t_map *map);
 
 /* parser_main.c */
 int		first_read(t_map *map, char *str);
-
 int		init_parser(t_map *map, char *str);
+
+/* parser_sprite_utils.c */
+void	alloc_sprites_struct(t_map *map);
+void	store_sprites(const t_map *map, char **aux, int *i, int *id);
 /* parse_config.c */
 int		parse_textures(t_map *map);
+
 /* parse_map.c */
 int		parse_map(t_map **map);
 
 /* parse_map2.c*/
-int	above_and_below(t_map **map, int i, int j, int x);
-int	check_surroundings(t_map **map, int i, int j);
-int	last_map_check(t_map **map);
+int		above_and_below(t_map **map, int i, int j, int x);
+int		check_surroundings(t_map **map, int i, int j);
+int		last_map_check(t_map **map);
 
 /* parse_utils.c */
 int		check_format(char *str);
