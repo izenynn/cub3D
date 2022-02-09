@@ -87,7 +87,7 @@ int	store_pos(t_map *map)
 	int		i;
 	int		j;
 
-	map->sprite = (t_sprite *)ft_calloc(map->pos_cnt + 2, sizeof(t_sprite));
+	map->sprite = (t_sprite *)ft_calloc(map->pos_cnt + 1, sizeof(t_sprite));
 	if (!map->sprite)
 		return (-1);
 	cnt = 0;
