@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:20:37 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/09 13:10:37 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/09 15:21:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@
 # define DOOR_CLOSE 'C'
 # define DEFAULT_SPEED 0.04
 # define DEFAULT_ROT_SPEED 0.025
+# define MOUSE_MOD 200
 # define Y 0
 # define X 1
 # define TEXT_COLOR 0xFFFFFF
@@ -137,6 +138,7 @@
 # define ES "END SPRITES"
 # define BP "BEGIN POS"
 # define EP "END POS"
+
 /* s_map: map struct
  *
  * res[2]	-> resolution of the window defined on the map file
@@ -260,8 +262,11 @@ typedef struct s_keys {
 	t_bool	a;
 	t_bool	s;
 	t_bool	d;
+	t_bool	r;
 	t_bool	right_arrow;
 	t_bool	left_arrow;
+	int 	mouse_x;
+	int 	prev_mouse_x;
 }	t_keys;
 
 /* s_vars: program struct */
@@ -388,6 +393,7 @@ int		game_loop(void *vars);
 /* mlx_controls.c */
 void	handle_keys(t_vars *vars);
 void	handle_door(t_vars *vars);
+void	handle_look(int keycode, t_vars *vars, float speed);
 
 /* mlx_textures.c */
 int		init_textures(t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 13:46:41 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/08 13:46:43 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/09 15:09:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	handle_sidemove(int keycode, t_vars *vars, float speed)
 	}
 }
 
-static void	handle_look(int keycode, t_vars *vars, float speed)
+void	handle_look(int keycode, t_vars *vars, float speed)
 {
 	t_p		*p;
 	float	old_dir_x;

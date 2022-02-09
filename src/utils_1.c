@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:22:48 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/13 12:58:17 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:56:43 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	initialise_vars(t_vars *vars)
 	vars->keys.s = FALSE;
 	vars->keys.a = FALSE;
 	vars->keys.d = FALSE;
+	vars->keys.r = FALSE;
+	vars->keys.mouse_x = -1;
 	vars->keys.right_arrow = FALSE;
 	vars->keys.left_arrow = FALSE;
 	player_init(vars);
