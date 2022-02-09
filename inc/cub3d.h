@@ -132,7 +132,7 @@
 #  define KEY_O 111
 #  define KEY_L 108
 #  define KEY_E 101
-#  define KEY_C 999
+#  define KEY_C 99
 # endif
 
 /* PARSER DEFINES */
