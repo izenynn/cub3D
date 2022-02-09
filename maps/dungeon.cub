@@ -9,11 +9,24 @@ F 13,43,69
 
 BEGIN SPRITES
 CHEST ./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;
+SLIME ./textures/slime_1.xpm;./textures/slime_2.xpm;./textures/slime_3.xpm;./textures/slime_4.xpm;./textures/slime_5.xpm;./textures/slime_6.xpm;
+GHOST ./textures/ghost_1.xpm;./textures/ghost_2.xpm;./textures/ghost_3.xpm;./textures/ghost_4.xpm;./textures/ghost_5.xpm;./textures/ghost_6.xpm;
+THING ./textures/thing_1.xpm;./textures/thing_2.xpm;./textures/thing_3.xpm;./textures/thing_4.xpm;./textures/thing_5.xpm;./textures/thing_6.xpm;
+DEFORM ./textures/deform_1.xpm;./textures/deform_2.xpm;./textures/deform_3.xpm;./textures/deform_4.xpm;./textures/deform_5.xpm;./textures/deform_6.xpm;
+BEAR ./textures/bear_1.xpm;./textures/bear_2.xpm;./textures/bear_3.xpm;./textures/bear_4.xpm;./textures/bear_5.xpm;./textures/bear_6.xpm;
+WOLF ./textures/wolf_1.xpm;./textures/wolf_2.xpm;./textures/wolf_3.xpm;./textures/wolf_4.xpm;./textures/wolf_5.xpm;./textures/wolf_6.xpm;
+SNOT ./textures/snot_1.xpm;./textures/snot_2.xpm;./textures/snot_3.xpm;./textures/snot_4.xpm;./textures/snot_5.xpm;./textures/snot_6.xpm;
 END SPRITES
 
 BEGIN POS
 CHEST 13,2
-CHEST 14,17
+SLIME 12,17
+GHOST 13,17
+THING 14,17
+DEFORM 15,17
+BEAR 16,17
+WOLF 17,17
+SNOT 18,17
 END POS
 
           1111111111
