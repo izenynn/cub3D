@@ -73,7 +73,7 @@ int	save_pos(t_map *map, int i, int j, int *cnt)
 		aux2 = ft_split(aux, ',');
 		map->sprite[*cnt].x = ft_atoi(aux2[0]);
 		map->sprite[*cnt].y = ft_atoi(aux2[1]);
-		map->sprite[*cnt++].id = map->spaux[j].id;
+		map->sprite[(*cnt)++].id = map->spaux[j].id;
 		free_split(aux2);
 		free(aux);
 		return (1);
