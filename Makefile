@@ -132,6 +132,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	CFLAGS += -D OSX
+	CFLAGS += -O3
 #	########## SHARED VARS       ##########
 	CCFLAGS += -framework OpenGL -framework AppKit
 	LDLIBS = -lft -lmlx
@@ -152,7 +153,6 @@ PHONY := all
 all: $(NAME)
 
 # NAME
-$(NAME): CFLAGS += -O3
 $(NAME): $(LFT_NAME) $(LMLX_NAME) $(OBJ)
 	@printf "\n${YEL}LINKING:${NOCOL}\n"
 	@printf "${BLU}"
