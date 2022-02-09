@@ -81,10 +81,9 @@ int	init_sprites(t_map *map, int i)
 	{
 		map->sprite_index = i;
 		i++;
-		while (map->buffer[i] != NULL)
+		while (map->buffer[i] != NULL
+			&& ft_strncmp(map->buffer[i], ES, ft_strlen(ES)) != 0)
 		{
-			if (ft_strncmp(map->buffer[i], ES, ft_strlen(ES)) == 0)
-				break ;
 			map->sprite_cnt++;
 			i++;
 		}
@@ -93,10 +92,9 @@ int	init_sprites(t_map *map, int i)
 	else if (ft_strncmp(map->buffer[i], BP, ft_strlen(BP)) == 0)
 	{
 		map->pos_index = i;
-		while (map->buffer[i] != NULL)
+		while (map->buffer[i] != NULL
+			&& ft_strncmp(map->buffer[i], EP, ft_strlen(EP)) != 0)
 		{
-			if (ft_strncmp(map->buffer[i], EP, ft_strlen(EP)) == 0)
-				break ;
 			map->pos_cnt++;
 			i++;
 		}
