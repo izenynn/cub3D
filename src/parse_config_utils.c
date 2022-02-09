@@ -6,13 +6,13 @@
 /*   By: acostal- <acostal-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:31 by acostal-          #+#    #+#             */
-/*   Updated: 2022/02/09 13:03:32 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/09 13:09:45 by acostal-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_if_filled(const t_map *map)
+t_bool	check_if_filled(const t_map *map)
 {
 	return (!map->no || !map->so || !map->we
 		|| !map->ea || !map->frgb || !map->crgb || !map->door

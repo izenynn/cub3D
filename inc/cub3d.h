@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:20:37 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/09 13:01:28 by                  ###   ########.fr       */
+/*   Updated: 2022/02/09 13:10:37 by acostal-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 
 /* standard unix library */
 # include <unistd.h>
-/* bools */
-# include <stdbool.h>
+
 /* open() */
 # include <fcntl.h>
 
@@ -324,7 +323,7 @@ int		fill_sprites(t_map *map, int i);
 
 /* parse_config_utils.c */
 void	tex_filler(t_map *map, int *i, int ret);
-bool	check_if_filled(const t_map *map);
+t_bool	check_if_filled(const t_map *map);
 
 /* parse_map.c */
 int		parse_map(t_map **map);
