@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:55:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/10 12:45:15 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:37:25 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	close_win(t_vars *vars)
 {
-	free_map(vars->map);
 	free_all(vars);
 	ft_putstr_fd("Quit\n", STDOUT_FILENO);
 	exit(EXIT_SUCCESS);
