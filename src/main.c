@@ -16,7 +16,6 @@ int	main(int argc, char *argv[])
 {
 	t_vars	*vars;
 
-	(void)argv;
 	if (argc != 2)
 		return (error_ret("Usage: ./cub3D map.cub\n", 1));
 	vars = (t_vars *)malloc(sizeof(t_vars));
