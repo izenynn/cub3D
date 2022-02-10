@@ -113,7 +113,6 @@ endif
 ```
 
 ## Screenshots
-https://www.google.com/search?client=firefox-b-d&q=flood+fill+algo
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)
