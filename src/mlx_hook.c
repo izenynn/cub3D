@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:55:56 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/01/19 09:04:46 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/10 12:45:15 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	toggle_mouse(t_vars *vars)
 
 int	key_press_hook(int keycode, t_vars *vars)
 {
-	//printf("keycode: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_win(vars);
 	else if (keycode == KEY_W)

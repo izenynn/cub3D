@@ -11,11 +11,9 @@ BEGIN SPRITES
 SLIME ./textures/slime_1.xpm;./textures/slime_2.xpm;./textures/slime_3.xpm;./textures/slime_4.xpm;./textures/slime_5.xpm;./textures/slime_6.xpm
 BARREL ./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_1.xpm;./textures/wall_2.xpm;./textures/wall_3.xpm;./textures/wall_4.xpm
 TORCH ./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm;./textures/eagle.xpm
-CHEST ./textures/chest.xpm;./textures/slime_1.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;./textures/chest.xpm;
 END SPRITES
 
 BEGIN POS
-CHEST 3,9
 TORCH 3,11
 SLIME 4,10
 SLIME 4,11

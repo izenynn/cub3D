@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:20:37 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/09 15:21:18 by                  ###   ########.fr       */
+/*   Updated: 2022/02/10 12:45:30 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@
 #  define KEY_L 37
 #  define KEY_E 14
 #  define KEY_C 8
-#  define KEY_SHIFT 999 // TODO
+#  define KEY_SHIFT 257
 # else
 #  ifndef LINUX
 #   define LINUX
