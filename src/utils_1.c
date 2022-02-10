@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:22:48 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/09 14:56:43 by                  ###   ########.fr       */
+/*   Updated: 2022/02/10 16:35:57 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	free_map(t_map *map)
 void	free_vars(t_vars *vars)
 {
 	free_map(vars->map);
+	free(vars->sprite);
+	free(vars->ray);
 	free(vars);
 }
 
@@ -78,9 +80,8 @@ void	free_all(t_vars *vars)
 		}
 		free(vars->sprite[i]);
 	}
-	free(vars->sprite);
 	mlx_destroy_window(vars->mlx, vars->win);
-	free(vars);
+	free_vars(vars);
 }
 
 int	initialise_vars(t_vars *vars)
