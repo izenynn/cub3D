@@ -6,7 +6,7 @@
 /*   By: acostal- <acostal-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:17 by acostal-          #+#    #+#             */
-/*   Updated: 2022/02/09 13:09:43 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:13:31 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	read_colour(t_map **map, int i)
 
 	if (ft_strncmp((*map)->buffer[i], "DOOR", 4) == 0)
 	{
+		if ((*map)->door)
+			return (error_ret("Error\nDuplicated texture\n", 1));
 		aux = ft_substr((*map)->buffer[i], 5, ft_strlen((*map)->buffer[i]));
 		(*map)->door = aux;
 		return (0);
@@ -39,52 +41,51 @@ static int	read_colour(t_map **map, int i)
 	return (0);
 }
 
+int	read_texture2(t_map **map, int i)
+{
+	char	*aux;
+
+	if (ft_strncmp((*map)->buffer[i], "WE", 2) == 0)
+	{
+		if ((*map)->we)
+			return (error_ret("Error\nDuplicated texture2\n", 1));
+		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
+		(*map)->we = aux;
+		return (0);
+	}
+	else if (ft_strncmp((*map)->buffer[i], "EA", 2) == 0)
+	{
+		if ((*map)->ea)
+			return (error_ret("Error\nDuplicated texture1\n", 1));
+		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
+		(*map)->ea = aux;
+		return (0);
+	}
+	return (1);
+}
+
 int	read_texture(t_map **map, int i)
 {
 	char	*aux;
 
 	if (ft_strncmp((*map)->buffer[i], "NO", 2) == 0)
 	{
+		if ((*map)->no)
+			return (error_ret("Error\nDuplicated texture3\n", 1));
 		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
 		(*map)->no = aux;
 	}
 	else if (ft_strncmp((*map)->buffer[i], "SO", 2) == 0)
 	{
+		if ((*map)->so)
+			return (error_ret("Error\nDuplicated texture4\n", 1));
 		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
 		(*map)->so = aux;
 	}
-	else if (ft_strncmp((*map)->buffer[i], "WE", 2) == 0)
-	{
-		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
-		(*map)->we = aux;
-	}
-	else if (ft_strncmp((*map)->buffer[i], "EA", 2) == 0)
-	{
-		aux = ft_substr((*map)->buffer[i], 3, ft_strlen((*map)->buffer[i]));
-		(*map)->ea = aux;
-	}
+	else if (read_texture2(map, i) == 0)
+		return (0);
 	else if (read_colour(map, i) == 1)
 		return (1);
-	return (0);
-}
-
-static int	open_texture(t_map *map)
-{
-	int	fd[5];
-
-	fd[0] = open(map->no, O_RDONLY);
-	fd[1] = open(map->so, O_RDONLY);
-	fd[2] = open(map->we, O_RDONLY);
-	fd[3] = open(map->ea, O_RDONLY);
-	fd[4] = open(map->door, O_RDONLY);
-	if (fd[0] == -1 || fd[1] == -1 || fd[2] == -1
-		|| fd[3] == -1 || fd[4] == -1)
-		return (1);
-	close(fd[0]);
-	close(fd[1]);
-	close(fd[2]);
-	close(fd[3]);
-	close(fd[4]);
 	return (0);
 }
 

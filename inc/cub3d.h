@@ -368,6 +368,7 @@ int		counter(char c, t_map **map);
 int		dptr_len(char **s);
 void	init_map(t_map	*map);
 int		skip_spaces(char *line, int i);
+int		open_texture(t_map *map);
 
 /* mlx_main.c */
 int		mlx_main(t_vars *vars);

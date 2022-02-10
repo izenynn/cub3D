@@ -6,11 +6,20 @@
 /*   By: acostal- <acostal-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:39 by acostal-          #+#    #+#             */
-/*   Updated: 2022/02/09 13:03:40 by acostal-         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:14:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	count_lines(t_map **map, int index)
+{
+	while ((*map)->buffer[index] && *(*map)->buffer[index])
+	{
+		(*map)->height++;
+		index++;
+	}
+}
 
 static int	check_top_and_bot(const char *line)
 {
@@ -31,7 +40,7 @@ static int	line_handler(char *line, int index, t_map **map)
 	int	i;
 
 	i = skip_spaces(line, 0);
-	if (index == 0 || index == (*map)->lines)
+	if (index == 0 || index == (*map)->height - 1)
 		return (check_top_and_bot(line));
 	else if (*line && (line[i] != '1' || line[ft_strlen(line) - 1] != '1'))
 		return (error_ret("Error\nMap not closed by 1's\n", 1));
@@ -60,7 +69,9 @@ int	parse_map(t_map **map)
 		&& (*map)->buffer[(*map)->aux][0] == '\0')
 		(*map)->aux++;
 	(*map)->index = (*map)->aux;
-	while ((*map)->aux <= ((*map)->lines) && (*map)->buffer[(*map)->aux])
+	count_lines(map, (*map)->index);
+	while ((*map)->aux <= ((*map)->lines)
+		&& (*map)->buffer[(*map)->aux] && *(*map)->buffer[(*map)->aux])
 	{
 		if (line_handler((*map)->buffer[(*map)->aux], ++i, map) != 0)
 			return (1);
@@ -71,7 +82,6 @@ int	parse_map(t_map **map)
 	(*map)->map = (char **)ft_calloc((i + 2), sizeof(char *));
 	if (!(*map)->map)
 		return (1);
-	(*map)->height = i + 1;
 	fill_map(map);
 	return (0);
 }

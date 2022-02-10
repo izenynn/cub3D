@@ -48,9 +48,17 @@ int	process_colour(t_map **map, int i, char **sp)
 		|| tmp[2] < 0 || tmp[2] > 256)
 		return (3);
 	if (ft_strncmp((*map)->buffer[i], "F", 1) == 0)
+	{
+		if ((*map)->frgb != 0)
+			return (error_ret("Error\nDuplicated Colours\n", 1));
 		(*map)->frgb = create_trgb(0, tmp[0], tmp[1], tmp[2]);
+	}
 	else
+	{
+		if ((*map)->crgb != 0)
+			return (error_ret("Error\nDuplicated Colours\n", 1));
 		(*map)->crgb = create_trgb(0, tmp[0], tmp[1], tmp[2]);
+	}
 	return (0);
 }
 

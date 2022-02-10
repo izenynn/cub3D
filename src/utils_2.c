@@ -63,3 +63,23 @@ int	counter(char c, t_map **map)
 		return (1);
 	return (0);
 }
+
+int	open_texture(t_map *map)
+{
+	int	fd[5];
+
+	fd[0] = open(map->no, O_RDONLY);
+	fd[1] = open(map->so, O_RDONLY);
+	fd[2] = open(map->we, O_RDONLY);
+	fd[3] = open(map->ea, O_RDONLY);
+	fd[4] = open(map->door, O_RDONLY);
+	if (fd[0] == -1 || fd[1] == -1 || fd[2] == -1
+		|| fd[3] == -1 || fd[4] == -1)
+		return (1);
+	close(fd[0]);
+	close(fd[1]);
+	close(fd[2]);
+	close(fd[3]);
+	close(fd[4]);
+	return (0);
+}
