@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:22:48 by dpoveda-          #+#    #+#             */
-/*   Updated: 2022/02/10 16:35:57 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:40:02 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ int	initialise_vars(t_vars *vars)
 	vars->keys.shift = FALSE;
 	vars->keys.mouse_x = -1;
 	player_init(vars);
+	vars->ray = (t_ray *)malloc(sizeof(t_ray));
+	if (vars->ray == NULL)
+		perror_exit("malloc");
 	return (0);
 }
