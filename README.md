@@ -4,8 +4,8 @@
 
 This project is inspired by the world-famous Wolfenstein 3D game. which was the first FPS ever. Working with ray-casting the goal is to make a dynamic view inside a maze, in which you'll have to find your way.
 
-- Status: on development
-- Result: n/a
+- Status: finished
+- Result: 125%
 - Observations:
 	- It is compatible with Linux and Mac OS.
 
@@ -113,6 +113,9 @@ endif
 ```
 
 ## Screenshots
+
+TODO
+
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)
